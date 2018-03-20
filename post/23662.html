@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="一切随缘" />
+
+
+
+<meta name="description" content="常见的Linux常用命令大全">
+<meta name="keywords" content="linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux常用命令大全">
+<meta property="og:url" content="http://code.skyheng.com/post/23662.html">
+<meta property="og:site_name" content="一切随缘的技术博客">
+<meta property="og:description" content="常见的Linux常用命令大全">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-03-20T14:50:32.502Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux常用命令大全">
+<meta name="twitter:description" content="常见的Linux常用命令大全">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="一切随缘的技术博客" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>Linux常用命令大全 | 一切随缘的技术博客</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?d195b745077c1dbc09dacf43876b8f07";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">一切随缘</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">日拱一卒无有尽、功不唐捐终入海</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/pdf/">书籍</a></li>
+                        
+                            <li><a href="/toolbox/">工具箱</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:chenjh0611@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/chenjh0611" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" href="http://blog.csdn.net/skychenjh" title="CSDN"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI/">CI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/">ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centOS/">centOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css3/">css3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/database/">database</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dubbo/">dubbo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eclipse/">eclipse</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/excel/">excel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/freemarker/">freemarker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jdk/">jdk</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jrebel/">jrebel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/logback/">logback</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nexus/">nexus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/oracle/">oracle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plugin/">plugin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/powerDesigner/">powerDesigner</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rect/">rect</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scanpay/">scanpay</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shiro/">shiro</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/software/">software</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql/">sql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/table/">table</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tomcat/">tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/velocity/">velocity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vmware/">vmware</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/win10/">win10</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wxpay/">wxpay</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zooKeeper/">zooKeeper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式/">分布式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习方法/">学习方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/闲聊/">闲聊</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.skyheng.com/">MyBlog</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://theme.skyheng.com/">后台模板</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.jheng.top/">next博客</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于技术,专注于开发</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">一切随缘</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">一切随缘</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">日拱一卒无有尽、功不唐捐终入海</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/pdf/">书籍</a></li>
+                
+                    <li><a href="/toolbox/">工具箱</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:chenjh0611@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/chenjh0611" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/skychenjh" title="CSDN"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-2016-2016-08-01-Linux常用命令大全" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/post/23662.html" class="article-date">
+      <time datetime="2016-08-01T08:51:27.000Z" itemprop="datePublished">2016-08-01</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Linux常用命令大全
+    </h1>
+  
+
+		
+		   <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">5,446字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">23分</span>
+      </span>
+    </span>
+</div>
+		
+      </header>
+      
+      <div class="article-info article-info-post">
+		
+          <br>
+          <br>
+        
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/linux/">linux</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>常见的Linux常用命令大全<br><a id="more"></a></p>
+<h1 id="Linux常用命令大全"><a href="#Linux常用命令大全" class="headerlink" title="Linux常用命令大全"></a>Linux常用命令大全</h1><h2 id="系统信息"><a href="#系统信息" class="headerlink" title="系统信息"></a>系统信息</h2><ul>
+<li><code>arch</code> 显示机器的处理器架构(1) </li>
+<li><code>uname -m</code> 显示机器的处理器架构(2) </li>
+<li><code>uname -r</code> 显示正在使用的内核版本 </li>
+<li><code>dmidecode -q</code> 显示硬件系统部件 - (SMBIOS / DMI) </li>
+<li><code>hdparm -i /dev/hda</code> 罗列一个磁盘的架构特性 </li>
+<li><code>hdparm -tT /dev/sda</code> 在磁盘上执行测试性读取操作 </li>
+<li><code>cat /proc/cpuinfo</code> 显示CPU info的信息 </li>
+<li><code>cat /proc/interrupts</code> 显示中断 </li>
+<li><code>cat /proc/meminfo</code> 校验内存使用 </li>
+<li><code>cat /proc/swaps</code> 显示哪些swap被使用 </li>
+<li><code>cat /proc/version</code> 显示内核的版本 </li>
+<li><code>cat /proc/net/dev</code> 显示网络适配器及统计 </li>
+<li><code>cat /proc/mounts</code> 显示已加载的文件系统 </li>
+<li><code>lspci -tv</code> 罗列 PCI 设备 </li>
+<li><code>lsusb -tv</code> 显示 USB 设备 </li>
+<li><code>date</code> 显示系统日期 </li>
+<li><code>cal 2007</code> 显示2007年的日历表 </li>
+<li><code>date 041217002007.00</code> 设置日期和时间 - 月日时分年.秒 </li>
+<li><code>clock -w</code> 将时间修改保存到 BIOS </li>
+</ul>
+<h2 id="关机-系统的关机、重启以及登出"><a href="#关机-系统的关机、重启以及登出" class="headerlink" title="关机 (系统的关机、重启以及登出 )"></a>关机 (系统的关机、重启以及登出 )</h2><ul>
+<li><code>shutdown -h now</code> 关闭系统(1) </li>
+<li><code>init 0</code> 关闭系统(2) </li>
+<li><code>telinit 0</code> 关闭系统(3) </li>
+<li><code>shutdown -h hours:minutes &amp;</code> 按预定时间关闭系统 </li>
+<li><code>shutdown -c</code> 取消按预定时间关闭系统 </li>
+<li><code>shutdown -r now</code> 重启(1) </li>
+<li><code>reboot</code> 重启(2) </li>
+<li><code>logout</code> 注销 </li>
+</ul>
+<h2 id="文件和目录"><a href="#文件和目录" class="headerlink" title="文件和目录"></a>文件和目录</h2><ul>
+<li><code>cd /home</code> 进入 ‘/ home’ 目录’ </li>
+<li><code>cd ..</code> 返回上一级目录 </li>
+<li><code>cd ../..</code> 返回上两级目录 </li>
+<li><code>cd</code> 进入个人的主目录 </li>
+<li><code>cd ~user1</code> 进入个人的主目录 </li>
+<li><code>cd -</code> 返回上次所在的目录 </li>
+<li><code>pwd</code> 显示工作路径 </li>
+<li><code>ls</code> 查看目录中的文件 </li>
+<li><code>ls -F</code> 查看目录中的文件 </li>
+<li><code>ls -l</code> 显示文件和目录的详细资料 </li>
+<li><code>ls -a</code> 显示隐藏文件 </li>
+<li><code>ls *[0-9]*</code> 显示包含数字的文件名和目录名 </li>
+<li><code>tree</code> 显示文件和目录由根目录开始的树形结构(1) </li>
+<li><code>lstree</code> 显示文件和目录由根目录开始的树形结构(2) </li>
+<li><code>mkdir dir1</code> 创建一个叫做 ‘dir1’ 的目录’ </li>
+<li><code>mkdir dir1 dir2</code> 同时创建两个目录 </li>
+<li><code>mkdir -p /tmp/dir1/dir2</code> 创建一个目录树 </li>
+<li><code>rm -f file1</code> 删除一个叫做 ‘file1’ 的文件’ </li>
+<li><code>rmdir dir1</code> 删除一个叫做 ‘dir1’ 的目录’ </li>
+<li><code>rm -rf dir1</code> 删除一个叫做 ‘dir1’ 的目录并同时删除其内容 </li>
+<li><code>rm -rf dir1 dir2</code> 同时删除两个目录及它们的内容 </li>
+<li><code>mv dir1 new_dir</code> 重命名/移动 一个目录 </li>
+<li><code>cp file1 file2</code> 复制一个文件 </li>
+<li><code>cp dir/* .</code> 复制一个目录下的所有文件到当前工作目录 </li>
+<li><code>cp -a /tmp/dir1 .</code> 复制一个目录到当前工作目录 </li>
+<li><code>cp -a dir1 dir2</code> 复制一个目录 </li>
+<li><code>ln -s file1 lnk1</code> 创建一个指向文件或目录的软链接 </li>
+<li><code>ln file1 lnk1</code> 创建一个指向文件或目录的物理链接 </li>
+<li><code>touch -t 0712250000 file1</code> 修改一个文件或目录的时间戳 - (YYMMDDhhmm) </li>
+</ul>
+<h2 id="文件搜索"><a href="#文件搜索" class="headerlink" title="文件搜索"></a>文件搜索</h2><ul>
+<li><code>find / -name file1</code> 从 ‘/‘ 开始进入根文件系统搜索文件和目录 </li>
+<li><code>find / -user user1</code> 搜索属于用户 ‘user1’ 的文件和目录 </li>
+<li><code>find /home/user1 -name \*.bin</code> 在目录 <code>&#39;/ home/user1&#39;</code> 中搜索带有’.bin’ 结尾的文件 </li>
+<li><code>find /usr/bin -type f -atime +100</code> 搜索在过去100天内未被使用过的执行文件 </li>
+<li><code>find /usr/bin -type f -mtime -10</code> 搜索在10天内被创建或者修改过的文件 </li>
+<li><code>find / -name \*.rpm -exec chmod 755 &#39;{}&#39; \;</code> 搜索以 ‘.rpm’ 结尾的文件并定义其权限 </li>
+<li><code>find / -xdev -name \*.rpm</code> 搜索以 ‘.rpm’ 结尾的文件，忽略光驱、捷盘等可移动设备 </li>
+<li><code>locate \*.ps</code> 寻找以 ‘.ps’ 结尾的文件 - 先运行 ‘updatedb’ 命令 </li>
+<li><code>whereis halt</code> 显示一个二进制文件、源码或man的位置 </li>
+<li><code>which halt</code> 显示一个二进制文件或可执行文件的完整路径 </li>
+</ul>
+<h2 id="挂载一个文件系统"><a href="#挂载一个文件系统" class="headerlink" title="挂载一个文件系统"></a>挂载一个文件系统</h2><ul>
+<li><code>mount /dev/hda2 /mnt/hda2</code> 挂载一个叫做hda2的盘 - 确定目录 ‘/ mnt/hda2’ 已经存在 </li>
+<li><code>umount /dev/hda2</code> 卸载一个叫做hda2的盘 - 先从挂载点 ‘/ mnt/hda2’ 退出 </li>
+<li><code>fuser -km /mnt/hda2</code> 当设备繁忙时强制卸载 </li>
+<li><code>umount -n /mnt/hda2</code> 运行卸载操作而不写入 /etc/mtab 文件- 当文件为只读或当磁盘写满时非常有用 </li>
+<li><code>mount /dev/fd0 /mnt/floppy</code> 挂载一个软盘 </li>
+<li><code>mount /dev/cdrom /mnt/cdrom</code> 挂载一个cdrom或dvdrom </li>
+<li><code>mount /dev/hdc /mnt/cdrecorder</code> 挂载一个cdrw或dvdrom </li>
+<li><code>mount /dev/hdb /mnt/cdrecorder</code> 挂载一个cdrw或dvdrom </li>
+<li><code>mount -o loop file.iso /mnt/cdrom</code> 挂载一个文件或ISO镜像文件 </li>
+<li><code>mount -t vfat /dev/hda5 /mnt/hda5</code> 挂载一个Windows FAT32文件系统 </li>
+<li><code>mount /dev/sda1 /mnt/usbdisk</code> 挂载一个usb 捷盘或闪存设备 </li>
+<li><code>mount -t smbfs -o username=user,password=pass //WinClient/share /mnt/share</code> 挂载一个windows网络共享 </li>
+</ul>
+<h2 id="磁盘空间"><a href="#磁盘空间" class="headerlink" title="磁盘空间"></a>磁盘空间</h2><ul>
+<li><code>df -h</code> 显示已经挂载的分区列表 </li>
+<li><code>ls -lSr |more</code> 以尺寸大小排列文件和目录 </li>
+<li><code>du -sh dir1</code> 估算目录 ‘dir1’ 已经使用的磁盘空间’ </li>
+<li><code>du -sk * | sort -rn</code> 以容量大小为依据依次显示文件和目录的大小 </li>
+<li><code>rpm -q -a --qf &#39;%10{SIZE}t%{NAME}n&#39; | sort -k1,1n</code> 以大小为依据依次显示已安装的rpm包所使用的空间 (fedora, redhat类系统) </li>
+<li><code>dpkg-query -W -f=&#39;${Installed-Size;10}t${Package}n&#39; | sort -k1,1n</code> 以大小为依据显示已安装的deb包所使用的空间 (ubuntu, debian类系统) </li>
+</ul>
+<h2 id="用户和群组"><a href="#用户和群组" class="headerlink" title="用户和群组"></a>用户和群组</h2><ul>
+<li><code>groupadd group_name</code> 创建一个新用户组 </li>
+<li><code>groupdel group_name</code> 删除一个用户组 </li>
+<li><code>groupmod -n new_group_name old_group_name</code> 重命名一个用户组 </li>
+<li><code>useradd -c &quot;Name Surname &quot; -g admin -d /home/user1 -s /bin/bash user1</code> 创建一个属于 “admin” 用户组的用户 </li>
+<li><code>useradd user1</code> 创建一个新用户 </li>
+<li><code>userdel -r user1</code> 删除一个用户 ( ‘-r’ 排除主目录) </li>
+<li><code>usermod -c &quot;User FTP&quot; -g system -d /ftp/user1 -s /bin/nologin user1</code> 修改用户属性 </li>
+<li><code>passwd</code> 修改口令 </li>
+<li><code>passwd user1</code> 修改一个用户的口令 (只允许root执行) </li>
+<li><code>chage -E 2005-12-31 user1</code> 设置用户口令的失效期限 </li>
+<li><code>pwck 检查 &#39;/etc/passwd&#39;</code> 的文件格式和语法修正以及存在的用户 </li>
+<li><code>grpck 检查 &#39;/etc/passwd&#39;</code> 的文件格式和语法修正以及存在的群组 </li>
+<li><code>newgrp group_name</code> 登陆进一个新的群组以改变新创建文件的预设群组 </li>
+</ul>
+<h2 id="文件的权限-使用-“-”-设置权限，使用-“-“-用于取消"><a href="#文件的权限-使用-“-”-设置权限，使用-“-“-用于取消" class="headerlink" title="文件的权限 - 使用 “+” 设置权限，使用 “-“ 用于取消"></a>文件的权限 - 使用 “+” 设置权限，使用 “-“ 用于取消</h2><ul>
+<li><code>ls -lh</code> 显示权限 </li>
+<li><code>ls /tmp | pr -T5 -W$COLUMNS</code> 将终端划分成5栏显示 </li>
+<li><code>chmod ugo+rwx directory1</code> 设置目录的所有人(u)、群组(g)以及其他人(o)以读（r ）、写(w)和执行(x)的权限 </li>
+<li><code>chmod go-rwx directory1</code> 删除群组(g)与其他人(o)对目录的读写执行权限 </li>
+<li><code>chown user1 file1</code> 改变一个文件的所有人属性 </li>
+<li><code>chown -R user1 directory1</code> 改变一个目录的所有人属性并同时改变改目录下所有文件的属性 </li>
+<li><code>chgrp group1 file1</code> 改变文件的群组 </li>
+<li><code>chown user1:group1 file1</code> 改变一个文件的所有人和群组属性 </li>
+<li><code>find / -perm -u+s</code> 罗列一个系统中所有使用了SUID控制的文件 </li>
+<li><code>chmod u+s /bin/file1</code> 设置一个二进制文件的 SUID 位 - 运行该文件的用户也被赋予和所有者同样的权限 </li>
+<li><code>chmod u-s /bin/file1</code> 禁用一个二进制文件的 SUID位 </li>
+<li><code>chmod g+s /home/public</code> 设置一个目录的SGID 位 - 类似SUID ，不过这是针对目录的 </li>
+<li><code>chmod g-s /home/public</code> 禁用一个目录的 SGID 位 </li>
+<li><code>chmod o+t /home/public</code> 设置一个文件的 STIKY 位 - 只允许合法所有人删除文件 </li>
+<li><code>chmod o-t /home/public</code> 禁用一个目录的 STIKY 位 </li>
+</ul>
+<h2 id="文件的特殊属性-使用-“-”-设置权限，使用-“-“-用于取消"><a href="#文件的特殊属性-使用-“-”-设置权限，使用-“-“-用于取消" class="headerlink" title="文件的特殊属性 - 使用 “+” 设置权限，使用 “-“ 用于取消"></a>文件的特殊属性 - 使用 “+” 设置权限，使用 “-“ 用于取消</h2><ul>
+<li><code>chattr +a file1</code> 只允许以追加方式读写文件 </li>
+<li><code>chattr +c file1</code> 允许这个文件能被内核自动压缩/解压 </li>
+<li><code>chattr +d file1</code> 在进行文件系统备份时，dump程序将忽略这个文件 </li>
+<li><code>chattr +i file1</code> 设置成不可变的文件，不能被删除、修改、重命名或者链接 </li>
+<li><code>chattr +s file1</code> 允许一个文件被安全地删除 </li>
+<li><code>chattr +S file1</code> 一旦应用程序对这个文件执行了写操作，使系统立刻把修改的结果写到磁盘 </li>
+<li><code>chattr +u file1</code> 若文件被删除，系统会允许你在以后恢复这个被删除的文件 </li>
+<li><code>lsattr</code> 显示特殊的属性 </li>
+</ul>
+<h2 id="打包和压缩文件"><a href="#打包和压缩文件" class="headerlink" title="打包和压缩文件"></a>打包和压缩文件</h2><ul>
+<li><code>bunzip2 file1.bz2</code> 解压一个叫做 ‘file1.bz2’的文件 </li>
+<li><code>bzip2 file1</code> 压缩一个叫做 ‘file1’ 的文件 </li>
+<li><code>gunzip file1.gz</code> 解压一个叫做 ‘file1.gz’的文件 </li>
+<li><code>gzip file1</code> 压缩一个叫做 ‘file1’的文件 </li>
+<li><code>gzip -9 file1</code> 最大程度压缩 </li>
+<li><code>rar a file1.rar test_file</code> 创建一个叫做 ‘file1.rar’ 的包 </li>
+<li><code>rar a file1.rar file1 file2 dir1</code> 同时压缩 ‘file1’, ‘file2’ 以及目录 ‘dir1’ </li>
+<li><code>rar x file1.rar</code> 解压rar包 </li>
+<li><code>unrar x file1.rar</code> 解压rar包 </li>
+<li><code>tar -cvf archive.tar file1</code> 创建一个非压缩的 tarball </li>
+<li><code>tar -cvf archive.tar file1 file2 dir1</code> 创建一个包含了 ‘file1’, ‘file2’ 以及 ‘dir1’的档案文件 </li>
+<li><code>tar -tf archive.tar</code> 显示一个包中的内容 </li>
+<li><code>tar -xvf archive.tar</code> 释放一个包 </li>
+<li><code>tar -xvf archive.tar -C /tmp</code> 将压缩包释放到 /tmp目录下 </li>
+<li><code>tar -cvfj archive.tar.bz2 dir1</code> 创建一个bzip2格式的压缩包 </li>
+<li><code>tar -xvfj archive.tar.bz2</code> 解压一个bzip2格式的压缩包 </li>
+<li><code>tar -cvfz archive.tar.gz dir1</code> 创建一个gzip格式的压缩包 </li>
+<li><code>tar -xvfz archive.tar.gz</code> 解压一个gzip格式的压缩包 </li>
+<li><code>zip file1.zip file1</code> 创建一个zip格式的压缩包 </li>
+<li><code>zip -r file1.zip file1 file2 dir1</code> 将几个文件和目录同时压缩成一个zip格式的压缩包 </li>
+<li><code>unzip file1.zip</code> 解压一个zip格式压缩包 </li>
+</ul>
+<h2 id="RPM-包-（Fedora-Redhat及类似系统）"><a href="#RPM-包-（Fedora-Redhat及类似系统）" class="headerlink" title="RPM 包 - （Fedora, Redhat及类似系统）"></a>RPM 包 - （Fedora, Redhat及类似系统）</h2><ul>
+<li><code>rpm -ivh package.rpm</code> 安装一个rpm包 </li>
+<li><code>rpm -ivh --nodeeps package.rpm</code> 安装一个rpm包而忽略依赖关系警告 </li>
+<li><code>rpm -U package.rpm</code> 更新一个rpm包但不改变其配置文件 </li>
+<li><code>rpm -F package.rpm</code> 更新一个确定已经安装的rpm包 </li>
+<li><code>rpm -e package_name.rpm</code> 删除一个rpm包 </li>
+<li><code>rpm -qa</code> 显示系统中所有已经安装的rpm包 </li>
+<li><code>rpm -qa | grep httpd</code> 显示所有名称中包含 “httpd” 字样的rpm包 </li>
+<li><code>rpm -qi package_name</code> 获取一个已安装包的特殊信息 </li>
+<li><code>rpm -qg &quot;System Environment/Daemons&quot;</code> 显示一个组件的rpm包 </li>
+<li><code>rpm -ql package_name</code> 显示一个已经安装的rpm包提供的文件列表 </li>
+<li><code>rpm -qc package_name</code> 显示一个已经安装的rpm包提供的配置文件列表 </li>
+<li><code>rpm -q package_name --whatrequires</code> 显示与一个rpm包存在依赖关系的列表 </li>
+<li><code>rpm -q package_name --whatprovides</code> 显示一个rpm包所占的体积 </li>
+<li><code>rpm -q package_name --scripts</code> 显示在安装/删除期间所执行的脚本l </li>
+<li><code>rpm -q package_name --changelog</code> 显示一个rpm包的修改历史 </li>
+<li><code>rpm -qf /etc/httpd/conf/httpd.conf</code> 确认所给的文件由哪个rpm包所提供 </li>
+<li><code>rpm -qp package.rpm -l</code> 显示由一个尚未安装的rpm包提供的文件列表 </li>
+<li><code>rpm --import /media/cdrom/RPM-GPG-KEY</code> 导入公钥数字证书 </li>
+<li><code>rpm --checksig package.rpm</code> 确认一个rpm包的完整性 </li>
+<li><code>rpm -qa gpg-pubkey</code> 确认已安装的所有rpm包的完整性 </li>
+<li><code>rpm -V package_name</code> 检查文件尺寸、 许可、类型、所有者、群组、MD5检查以及最后修改时间 </li>
+<li><code>rpm -Va</code> 检查系统中所有已安装的rpm包- 小心使用 </li>
+<li><code>rpm -Vp package.rpm</code> 确认一个rpm包还未安装 </li>
+<li><code>rpm2cpio package.rpm | cpio --extract --make-directories *bin*</code> 从一个rpm包运行可执行文件 </li>
+<li><code>rpm -ivh /usr/src/redhat/RPMS/</code>arch<code>/package.rpm</code> 从一个rpm源码安装一个构建好的包 </li>
+<li><code>rpmbuild --rebuild package_name.src.rpm</code> 从一个rpm源码构建一个 rpm 包 </li>
+</ul>
+<h2 id="APT-软件工具-Debian-Ubuntu-以及类似系统"><a href="#APT-软件工具-Debian-Ubuntu-以及类似系统" class="headerlink" title="APT 软件工具 (Debian, Ubuntu 以及类似系统)"></a>APT 软件工具 (Debian, Ubuntu 以及类似系统)</h2><ul>
+<li><code>apt-get install package_name</code> 安装/更新一个 deb 包 </li>
+<li><code>apt-cdrom install package_name</code> 从光盘安装/更新一个 deb 包 </li>
+<li><code>apt-get update</code> 升级列表中的软件包 </li>
+<li><code>apt-get upgrade</code> 升级所有已安装的软件 </li>
+<li><code>apt-get remove package_name</code> 从系统删除一个deb包 </li>
+<li><code>apt-get check</code> 确认依赖的软件仓库正确 </li>
+<li><code>apt-get clean</code> 从下载的软件包中清理缓存 </li>
+<li><code>apt-cache search searched-package</code> 返回包含所要搜索字符串的软件包名称 </li>
+</ul>
+<h2 id="YUM-软件包升级器-（Fedora-RedHat及类似系统）"><a href="#YUM-软件包升级器-（Fedora-RedHat及类似系统）" class="headerlink" title="YUM 软件包升级器 - （Fedora, RedHat及类似系统）"></a>YUM 软件包升级器 - （Fedora, RedHat及类似系统）</h2><pre><code>yum install package_name 下载并安装一个rpm包 
+yum localinstall package_name.rpm 将安装一个rpm包，使用你自己的软件仓库为你解决所有依赖关系 
+yum update package_name.rpm 更新当前系统中所有安装的rpm包 
+yum update package_name 更新一个rpm包 
+yum remove package_name 删除一个rpm包 
+yum list 列出当前系统中安装的所有包 
+yum search package_name 在rpm仓库中搜寻软件包 
+yum clean packages 清理rpm缓存删除下载的包 
+yum clean headers 删除所有头文件 
+yum clean all 删除所有缓存的包和头文件 
+</code></pre><h2 id="DEB-包-Debian-Ubuntu-以及类似系统"><a href="#DEB-包-Debian-Ubuntu-以及类似系统" class="headerlink" title="DEB 包 (Debian, Ubuntu 以及类似系统)"></a>DEB 包 (Debian, Ubuntu 以及类似系统)</h2><pre><code>dpkg -i package.deb 安装/更新一个 deb 包 
+dpkg -r package_name 从系统删除一个 deb 包 
+dpkg -l 显示系统中所有已经安装的 deb 包 
+dpkg -l | grep httpd 显示所有名称中包含 &quot;httpd&quot; 字样的deb包 
+dpkg -s package_name 获得已经安装在系统中一个特殊包的信息 
+dpkg -L package_name 显示系统中已经安装的一个deb包所提供的文件列表 
+dpkg --contents package.deb 显示尚未安装的一个包所提供的文件列表 
+dpkg -S /bin/ping 确认所给的文件由哪个deb包提供 
+</code></pre><h2 id="查看文件内容"><a href="#查看文件内容" class="headerlink" title="查看文件内容"></a>查看文件内容</h2><pre><code>cat file1 从第一个字节开始正向查看文件的内容 
+tac file1 从最后一行开始反向查看一个文件的内容 
+more file1 查看一个长文件的内容 
+less file1 类似于 &apos;more&apos; 命令，但是它允许在文件中和正向操作一样的反向操作 
+head -2 file1 查看一个文件的前两行 
+tail -2 file1 查看一个文件的最后两行 
+tail -f /var/log/messages 实时查看被添加到一个文件中的内容 
+</code></pre><h2 id="文本处理"><a href="#文本处理" class="headerlink" title="文本处理"></a>文本处理</h2><pre><code>cat file1 file2 ... | command &lt;&gt; file1_in.txt_or_file1_out.txt general syntax for text manipulation using PIPE, STDIN and STDOUT 
+cat file1 | command( sed, grep, awk, grep, etc...) &gt; result.txt 合并一个文件的详细说明文本，并将简介写入一个新文件中 
+cat file1 | command( sed, grep, awk, grep, etc...) &gt;&gt; result.txt 合并一个文件的详细说明文本，并将简介写入一个已有的文件中 
+grep Aug /var/log/messages 在文件 &apos;/var/log/messages&apos;中查找关键词&quot;Aug&quot; 
+grep ^Aug /var/log/messages 在文件 &apos;/var/log/messages&apos;中查找以&quot;Aug&quot;开始的词汇 
+grep [0-9] /var/log/messages 选择 &apos;/var/log/messages&apos; 文件中所有包含数字的行 
+grep Aug -R /var/log/* 在目录 &apos;/var/log&apos; 及随后的目录中搜索字符串&quot;Aug&quot; 
+sed &apos;s/stringa1/stringa2/g&apos; example.txt 将example.txt文件中的 &quot;string1&quot; 替换成 &quot;string2&quot; 
+sed &apos;/^$/d&apos; example.txt 从example.txt文件中删除所有空白行 
+sed &apos;/ *#/d; /^$/d&apos; example.txt 从example.txt文件中删除所有注释和空白行 
+echo &apos;esempio&apos; | tr &apos;[:lower:]&apos; &apos;[:upper:]&apos; 合并上下单元格内容 
+sed -e &apos;1d&apos; result.txt 从文件example.txt 中排除第一行 
+sed -n &apos;/stringa1/p&apos; 查看只包含词汇 &quot;string1&quot;的行 
+sed -e &apos;s/ *$//&apos; example.txt 删除每一行最后的空白字符 
+sed -e &apos;s/stringa1//g&apos; example.txt 从文档中只删除词汇 &quot;string1&quot; 并保留剩余全部 
+sed -n &apos;1,5p;5q&apos; example.txt 查看从第一行到第5行内容 
+sed -n &apos;5p;5q&apos; example.txt 查看第5行 
+sed -e &apos;s/00*/0/g&apos; example.txt 用单个零替换多个零 
+cat -n file1 标示文件的行数 
+cat example.txt | awk &apos;NR%2==1&apos; 删除example.txt文件中的所有偶数行 
+echo a b c | awk &apos;{print $1}&apos; 查看一行第一栏 
+echo a b c | awk &apos;{print $1,$3}&apos; 查看一行的第一和第三栏 
+paste file1 file2 合并两个文件或两栏的内容 
+paste -d &apos;+&apos; file1 file2 合并两个文件或两栏的内容，中间用&quot;+&quot;区分 
+sort file1 file2 排序两个文件的内容 
+sort file1 file2 | uniq 取出两个文件的并集(重复的行只保留一份) 
+sort file1 file2 | uniq -u 删除交集，留下其他的行 
+sort file1 file2 | uniq -d 取出两个文件的交集(只留下同时存在于两个文件中的文件) 
+comm -1 file1 file2 比较两个文件的内容只删除 &apos;file1&apos; 所包含的内容 
+comm -2 file1 file2 比较两个文件的内容只删除 &apos;file2&apos; 所包含的内容 
+comm -3 file1 file2 比较两个文件的内容只删除两个文件共有的部分 
+</code></pre><h2 id="解压war包"><a href="#解压war包" class="headerlink" title="解压war包"></a>解压war包</h2><pre><code>jar -xvf ROOT.war (前提是要安装Jdk)
+jar -cvfM0 ROOT.war ./  把当前目录下的所有文件打包成ROOT.war
+</code></pre><h2 id="字符设置和文件格式转换"><a href="#字符设置和文件格式转换" class="headerlink" title="字符设置和文件格式转换"></a>字符设置和文件格式转换</h2><pre><code>dos2unix filedos.txt fileunix.txt 将一个文本文件的格式从MSDOS转换成UNIX 
+unix2dos fileunix.txt filedos.txt 将一个文本文件的格式从UNIX转换成MSDOS 
+recode ..HTML &lt; page.txt &gt; page.html 将一个文本文件转换成html 
+recode -l | more 显示所有允许的转换格式 
+</code></pre><h2 id="文件系统分析"><a href="#文件系统分析" class="headerlink" title="文件系统分析"></a>文件系统分析</h2><pre><code>badblocks -v /dev/hda1 检查磁盘hda1上的坏磁块 
+fsck /dev/hda1 修复/检查hda1磁盘上linux文件系统的完整性 
+fsck.ext2 /dev/hda1 修复/检查hda1磁盘上ext2文件系统的完整性 
+e2fsck /dev/hda1 修复/检查hda1磁盘上ext2文件系统的完整性 
+e2fsck -j /dev/hda1 修复/检查hda1磁盘上ext3文件系统的完整性 
+fsck.ext3 /dev/hda1 修复/检查hda1磁盘上ext3文件系统的完整性 
+fsck.vfat /dev/hda1 修复/检查hda1磁盘上fat文件系统的完整性 
+fsck.msdos /dev/hda1 修复/检查hda1磁盘上dos文件系统的完整性 
+dosfsck /dev/hda1 修复/检查hda1磁盘上dos文件系统的完整性 
+</code></pre><h2 id="初始化一个文件系统"><a href="#初始化一个文件系统" class="headerlink" title="初始化一个文件系统"></a>初始化一个文件系统</h2><pre><code>mkfs /dev/hda1 在hda1分区创建一个文件系统 
+mke2fs /dev/hda1 在hda1分区创建一个linux ext2的文件系统 
+mke2fs -j /dev/hda1 在hda1分区创建一个linux ext3(日志型)的文件系统 
+mkfs -t vfat 32 -F /dev/hda1 创建一个 FAT32 文件系统 
+fdformat -n /dev/fd0 格式化一个软盘 
+mkswap /dev/hda3 创建一个swap文件系统 
+</code></pre><h2 id="SWAP文件系统"><a href="#SWAP文件系统" class="headerlink" title="SWAP文件系统"></a>SWAP文件系统</h2><pre><code>mkswap /dev/hda3 创建一个swap文件系统 
+swapon /dev/hda3 启用一个新的swap文件系统 
+swapon /dev/hda2 /dev/hdb3 启用两个swap分区 
+</code></pre><h2 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h2><pre><code>dump -0aj -f /tmp/home0.bak /home 制作一个 &apos;/home&apos; 目录的完整备份 
+dump -1aj -f /tmp/home0.bak /home 制作一个 &apos;/home&apos; 目录的交互式备份 
+restore -if /tmp/home0.bak 还原一个交互式备份 
+rsync -rogpav --delete /home /tmp 同步两边的目录 
+rsync -rogpav -e ssh --delete /home ip_address:/tmp 通过SSH通道rsync 
+rsync -az -e ssh --delete ip_addr:/home/public /home/local 通过ssh和压缩将一个远程目录同步到本地目录 
+rsync -az -e ssh --delete /home/local ip_addr:/home/public 通过ssh和压缩将本地目录同步到远程目录 
+dd bs=1M if=/dev/hda | gzip | ssh user@ip_addr &apos;dd of=hda.gz&apos; 通过ssh在远程主机上执行一次备份本地磁盘的操作 
+dd if=/dev/sda of=/tmp/file1 备份磁盘内容到一个文件 
+tar -Puf backup.tar /home/user 执行一次对 &apos;/home/user&apos; 目录的交互式备份操作 
+( cd /tmp/local/ &amp;&amp; tar c . ) | ssh -C user@ip_addr &apos;cd /home/share/ &amp;&amp; tar x -p&apos; 通过ssh在远程目录中复制一个目录内容 
+( tar c /home ) | ssh -C user@ip_addr &apos;cd /home/backup-home &amp;&amp; tar x -p&apos; 通过ssh在远程目录中复制一个本地目录 
+tar cf - . | (cd /tmp/backup ; tar xf - ) 本地将一个目录复制到另一个地方，保留原有权限及链接 
+find /home/user1 -name &apos;*.txt&apos; | xargs cp -av --target-directory=/home/backup/ --parents 从一个目录查找并复制所有以 &apos;.txt&apos; 结尾的文件到另一个目录 
+find /var/log -name &apos;*.log&apos; | tar cv --files-from=- | bzip2 &gt; log.tar.bz2 查找所有以 &apos;.log&apos; 结尾的文件并做成一个bzip包 
+dd if=/dev/hda of=/dev/fd0 bs=512 count=1 做一个将 MBR (Master Boot Record)内容复制到软盘的动作 
+dd if=/dev/fd0 of=/dev/hda bs=512 count=1 从已经保存到软盘的备份中恢复MBR内容 
+</code></pre><h2 id="光盘"><a href="#光盘" class="headerlink" title="光盘"></a>光盘</h2><pre><code>cdrecord -v gracetime=2 dev=/dev/cdrom -eject blank=fast -force 清空一个可复写的光盘内容 
+mkisofs /dev/cdrom &gt; cd.iso 在磁盘上创建一个光盘的iso镜像文件 
+mkisofs /dev/cdrom | gzip &gt; cd_iso.gz 在磁盘上创建一个压缩了的光盘iso镜像文件 
+mkisofs -J -allow-leading-dots -R -V &quot;Label CD&quot; -iso-level 4 -o ./cd.iso data_cd 创建一个目录的iso镜像文件 
+cdrecord -v dev=/dev/cdrom cd.iso 刻录一个ISO镜像文件 
+gzip -dc cd_iso.gz | cdrecord dev=/dev/cdrom - 刻录一个压缩了的ISO镜像文件 
+mount -o loop cd.iso /mnt/iso 挂载一个ISO镜像文件 
+cd-paranoia -B 从一个CD光盘转录音轨到 wav 文件中 
+cd-paranoia -- &quot;-3&quot; 从一个CD光盘转录音轨到 wav 文件中（参数-3） 
+cdrecord --scanbus 扫描总线以识别scsi通道 
+dd if=/dev/hdc | md5sum 校验一个设备的md5sum编码，例如一张 CD 
+</code></pre><h2 id="网络-（以太网和WIFI无线）"><a href="#网络-（以太网和WIFI无线）" class="headerlink" title="网络 - （以太网和WIFI无线）"></a>网络 - （以太网和WIFI无线）</h2><pre><code>ifconfig eth0 显示一个以太网卡的配置 
+ifup eth0 启用一个 &apos;eth0&apos; 网络设备 
+ifdown eth0 禁用一个 &apos;eth0&apos; 网络设备 
+ifconfig eth0 192.168.1.1 netmask 255.255.255.0 控制IP地址 
+ifconfig eth0 promisc 设置 &apos;eth0&apos; 成混杂模式以嗅探数据包 (sniffing) 
+dhclient eth0 以dhcp模式启用 &apos;eth0&apos; 
+route -n show routing table 
+route add -net 0/0 gw IP_Gateway configura default gateway 
+route add -net 192.168.0.0 netmask 255.255.0.0 gw 192.168.1.1 configure static route to reach network &apos;192.168.0.0/16&apos; 
+route del 0/0 gw IP_gateway remove static route 
+echo &quot;1&quot; &gt; /proc/sys/net/ipv4/ip_forward activate ip routing 
+hostname show hostname of system 
+host www.example.com lookup hostname to resolve name to ip address and viceversa(1) 
+nslookup www.example.com lookup hostname to resolve name to ip address and viceversa(2) 
+ip link show show link status of all interfaces 
+mii-tool eth0 show link status of &apos;eth0&apos; 
+ethtool eth0 show statistics of network card &apos;eth0&apos; 
+netstat -tup show all active network connections and their PID 
+netstat -tupl show all network services listening on the system and their PID 
+tcpdump tcp port 80 show all HTTP traffic 
+iwlist scan show wireless networks 
+iwconfig eth1 show configuration of a wireless network card 
+hostname show hostname 
+host www.example.com lookup hostname to resolve name to ip address and viceversa 
+nslookup www.example.com lookup hostname to resolve name to ip address and viceversa 
+whois www.example.com lookup on Whois database 
+</code></pre><h2 id="Microsoft-Windows-networks-SAMBA"><a href="#Microsoft-Windows-networks-SAMBA" class="headerlink" title="Microsoft Windows networks (SAMBA)"></a>Microsoft Windows networks (SAMBA)</h2><pre><code>nbtscan ip_addr netbios name resolution 
+nmblookup -A ip_addr netbios name resolution 
+smbclient -L ip_addr/hostname show remote shares of a windows host 
+smbget -Rr smb://ip_addr/share like wget can download files from a host windows via smb 
+mount -t smbfs -o username=user,password=pass //WinClient/share /mnt/share mount a windows network share
+</code></pre>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/post/23662.html">Linux常用命令大全</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">一切随缘</a></p>
+        <p><span>发布时间:</span>2016-08-01, 16:51:27</p>
+        <p><span>最后更新:</span>2018-03-20, 22:50:32</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/post/23662.html" title="Linux常用命令大全">http://code.skyheng.com/post/23662.html</a>
+            <span class="copy-path" data-clipboard-text="原文: http://code.skyheng.com/post/23662.html　　作者: 一切随缘" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/post/52802.html">
+                    GIT的常用操作命令
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/post/31797.html">
+                    常用软件与工具整理
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux常用命令大全"><span class="toc-number">1.</span> <span class="toc-text">Linux常用命令大全</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#系统信息"><span class="toc-number">1.1.</span> <span class="toc-text">系统信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关机-系统的关机、重启以及登出"><span class="toc-number">1.2.</span> <span class="toc-text">关机 (系统的关机、重启以及登出 )</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件和目录"><span class="toc-number">1.3.</span> <span class="toc-text">文件和目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件搜索"><span class="toc-number">1.4.</span> <span class="toc-text">文件搜索</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#挂载一个文件系统"><span class="toc-number">1.5.</span> <span class="toc-text">挂载一个文件系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#磁盘空间"><span class="toc-number">1.6.</span> <span class="toc-text">磁盘空间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用户和群组"><span class="toc-number">1.7.</span> <span class="toc-text">用户和群组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件的权限-使用-“-”-设置权限，使用-“-“-用于取消"><span class="toc-number">1.8.</span> <span class="toc-text">文件的权限 - 使用 “+” 设置权限，使用 “-“ 用于取消</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件的特殊属性-使用-“-”-设置权限，使用-“-“-用于取消"><span class="toc-number">1.9.</span> <span class="toc-text">文件的特殊属性 - 使用 “+” 设置权限，使用 “-“ 用于取消</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#打包和压缩文件"><span class="toc-number">1.10.</span> <span class="toc-text">打包和压缩文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RPM-包-（Fedora-Redhat及类似系统）"><span class="toc-number">1.11.</span> <span class="toc-text">RPM 包 - （Fedora, Redhat及类似系统）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#APT-软件工具-Debian-Ubuntu-以及类似系统"><span class="toc-number">1.12.</span> <span class="toc-text">APT 软件工具 (Debian, Ubuntu 以及类似系统)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#YUM-软件包升级器-（Fedora-RedHat及类似系统）"><span class="toc-number">1.13.</span> <span class="toc-text">YUM 软件包升级器 - （Fedora, RedHat及类似系统）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DEB-包-Debian-Ubuntu-以及类似系统"><span class="toc-number">1.14.</span> <span class="toc-text">DEB 包 (Debian, Ubuntu 以及类似系统)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查看文件内容"><span class="toc-number">1.15.</span> <span class="toc-text">查看文件内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文本处理"><span class="toc-number">1.16.</span> <span class="toc-text">文本处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解压war包"><span class="toc-number">1.17.</span> <span class="toc-text">解压war包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符设置和文件格式转换"><span class="toc-number">1.18.</span> <span class="toc-text">字符设置和文件格式转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件系统分析"><span class="toc-number">1.19.</span> <span class="toc-text">文件系统分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#初始化一个文件系统"><span class="toc-number">1.20.</span> <span class="toc-text">初始化一个文件系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SWAP文件系统"><span class="toc-number">1.21.</span> <span class="toc-text">SWAP文件系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#备份"><span class="toc-number">1.22.</span> <span class="toc-text">备份</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#光盘"><span class="toc-number">1.23.</span> <span class="toc-text">光盘</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#网络-（以太网和WIFI无线）"><span class="toc-number">1.24.</span> <span class="toc-text">网络 - （以太网和WIFI无线）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Microsoft-Windows-networks-SAMBA"><span class="toc-number">1.25.</span> <span class="toc-text">Microsoft Windows networks (SAMBA)</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Linux常用命令大全　| 一切随缘的技术博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+    
+
+    
+    
+
+    
+        <section class="changyan" id="comments">
+    <div id="SOHUCS" sid="post/23662.html" ></div>
+    <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+        <script type="text/javascript">
+            window.changyan.api.config({
+                appid: "cyts7t2el",
+                conf: "fb4aa871793bef5899de054a3902f3eb"
+            });
+        </script>
+    </script>
+</section>
+    
+
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/post/52802.html" title="上一篇: GIT的常用操作命令">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/post/31797.html" title="下一篇: 常用软件与工具整理">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/post/36308.html">MarkdownPad2在win10上安装及破解</a></li><li class="post-list-item"><a class="post-list-link" href="/post/61360.html">关系数据库常用SQL的详细用法</a></li><li class="post-list-item"><a class="post-list-link" href="/post/5372.html">Hexo部署在阿里云服务器上</a></li><li class="post-list-item"><a class="post-list-link" href="/post/55981.html">BigDecimal的用法详解及注意事项</a></li><li class="post-list-item"><a class="post-list-link" href="/post/4240.html">Java日期时间格式化转换符</a></li><li class="post-list-item"><a class="post-list-link" href="/post/46695.html">Hexo使用过程中常见问题记录</a></li><li class="post-list-item"><a class="post-list-link" href="/post/62692.html">PowerDesigner16应用</a></li><li class="post-list-item"><a class="post-list-link" href="/post/27822.html">怎样在虚拟机上安装Ubuntu17.10系统</a></li><li class="post-list-item"><a class="post-list-link" href="/post/55614.html">Java8 JDK1.8 API中文</a></li><li class="post-list-item"><a class="post-list-link" href="/post/8806.html">前端CDN公共库大全</a></li><li class="post-list-item"><a class="post-list-link" href="/post/25067.html">Shiro Freemarker标签的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/post/50779.html">Velocity与Freemarker比较</a></li><li class="post-list-item"><a class="post-list-link" href="/post/24506.html">Logback.xml常用配置详解</a></li><li class="post-list-item"><a class="post-list-link" href="/post/61394.html">Mysql数据库优化方法,千万级数据库记录查询轻松解决</a></li><li class="post-list-item"><a class="post-list-link" href="/post/49258.html">程序员，你为什么值这么多钱？</a></li><li class="post-list-item"><a class="post-list-link" href="/post/52661.html">数据库事务的四大特性以及事务的隔离级别</a></li><li class="post-list-item"><a class="post-list-link" href="/post/32480.html">从Request中获得参数Map返回可读的Map</a></li><li class="post-list-item"><a class="post-list-link" href="/post/56296.html">Win10常用的快捷键</a></li><li class="post-list-item"><a class="post-list-link" href="/post/25267.html">ZooKeeper常用命令介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/post/50164.html">ZooKeeper的安装与设置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/4103.html">收集的国内Maven镜像地址</a></li><li class="post-list-item"><a class="post-list-link" href="/post/47539.html">Windows下git pull批处理</a></li><li class="post-list-item"><a class="post-list-link" href="/post/8298.html">Git常用的操作命令</a></li><li class="post-list-item"><a class="post-list-link" href="/post/26220.html">python安装</a></li><li class="post-list-item"><a class="post-list-link" href="/post/46664.html">实例Demo之3D-Transform立方体效果</a></li><li class="post-list-item"><a class="post-list-link" href="/post/51910.html">Redis在Linux下的安装和配置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20294.html">Tomcat7优化配置参数</a></li><li class="post-list-item"><a class="post-list-link" href="/post/56640.html">一些好的技术博客,追随牛逼的人,让自己更牛逼</a></li><li class="post-list-item"><a class="post-list-link" href="/post/37438.html">国内外知名IT科技博客（强烈推荐）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/59806.html">Eclipse常用插件安装</a></li><li class="post-list-item"><a class="post-list-link" href="/post/33906.html">Eclipse安装JRebel6.4.8热部署插件教程</a></li><li class="post-list-item"><a class="post-list-link" href="/post/8028.html">JQuery的eval解析JSON中的注意点介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/post/28651.html">关于分布式一致性的探究</a></li><li class="post-list-item"><a class="post-list-link" href="/post/5101.html">初识分布式系统</a></li><li class="post-list-item"><a class="post-list-link" href="/post/13879.html">用Excel生成和管理Markdown表格</a></li><li class="post-list-item"><a class="post-list-link" href="/post/29405.html">Hexo最常用的几个命令</a></li><li class="post-list-item"><a class="post-list-link" href="/post/52802.html">GIT的常用操作命令</a></li><li class="post-list-item"><a class="post-list-link" href="/post/31797.html">常用软件与工具整理</a></li><li class="post-list-item"><a class="post-list-link" href="/post/23662.html">Linux常用命令大全</a></li><li class="post-list-item"><a class="post-list-link" href="/post/62293.html">在一个千万级的数据库查询中，如何提高查询效率？</a></li><li class="post-list-item"><a class="post-list-link" href="/post/60804.html">VMware中CentOS设置静态IP</a></li><li class="post-list-item"><a class="post-list-link" href="/post/9311.html">Tomcat8安装和配置以及优化</a></li><li class="post-list-item"><a class="post-list-link" href="/post/65527.html">【微信支付】“刷卡支付”、“被扫支付”开发JavaDemo</a></li><li class="post-list-item"><a class="post-list-link" href="/post/30401.html">【微信支付】“刷卡支付”、“被扫支付”开发说明</a></li><li class="post-list-item"><a class="post-list-link" href="/post/60927.html">Svn密码破解，Svn密码本地找回</a></li><li class="post-list-item"><a class="post-list-link" href="/post/26924.html">Subversion在Linux下的安装与配置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/56374.html">Mysql在Linux下的安装和配置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/24125.html">Maven在Linux下的安装和配置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/7577.html">在linux下的JDK安装和配置（基于阿里云服务器CentOS 6.5）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/59363.html">Nexus在linux下的安装和配置（基于阿里云服务器CentOS 6.5）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/4365.html">我的学习归纳方法（以学习Maven为例）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/53342.html">使用Github搭建Hexo技术博客--增强教程</a></li><li class="post-list-item"><a class="post-list-link" href="/post/4103.html">使用Github搭建Hexo技术博客--安装教程</a></li><li class="post-list-item"><a class="post-list-link" href="/post/2803.html">构建工具Maven相关知识整理专题</a></li><li class="post-list-item"><a class="post-list-link" href="/post/17946.html">JAVA中重写和重载区别</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2015-2018 一切随缘
+                <span>| </span>
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备16005473号-1</a>
+                <!--|| <span>博客全站共2字</span>-->
+            </div>
+            <div class="footer-right">
+                <a>
+                    
+                        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1273088600'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1273088600%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+                    
+                </a>
+                <span>| </span>
+                Hosted by <a href="https://pages.coding.me" style="font-weight: bold" target="_blank" >Coding Pages</a>
+				<!--
+                    <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>Theme
+                    <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE
+                    <i class="fa fa-heart animated infinite pulse"></i>
+                 -->
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+	<script type="text/javascript" src="/resources/love.js"></script>
+	<script type="text/javascript" src="/resources/float.js"></script>
+	<script type="text/javascript" src="/resources/typewriter.js"></script>
+	<script type="text/javascript" color=0,104,183 opacity=1 zindex=-1 count=50 src="/resources/particle.js"></script>
+
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+  </div>
+</body>
+</html>

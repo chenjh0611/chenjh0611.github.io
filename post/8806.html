@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="一切随缘" />
+
+
+
+<meta name="description" content="CDN公共库是指将常用的JS库存放在CDN节点，以方便广大开发者直接调用。与将JS库存放在服务器单机上相比，CDN公共库更加稳定、高速。现在web应用都在使用JS类库，这些类库小的几十K，大的几百K，而国内网络访问速度大家都知道不是那么惬意，所以给各位开发者推荐常用JS类库的CDN缓存，这样不管客户在哪里访问你的页面，调用公共类库的速度都会为你的页面节省很多时间。">
+<meta name="keywords" content="前端">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端CDN公共库大全">
+<meta property="og:url" content="http://code.skyheng.com/post/8806.html">
+<meta property="og:site_name" content="一切随缘的技术博客">
+<meta property="og:description" content="CDN公共库是指将常用的JS库存放在CDN节点，以方便广大开发者直接调用。与将JS库存放在服务器单机上相比，CDN公共库更加稳定、高速。现在web应用都在使用JS类库，这些类库小的几十K，大的几百K，而国内网络访问速度大家都知道不是那么惬意，所以给各位开发者推荐常用JS类库的CDN缓存，这样不管客户在哪里访问你的页面，调用公共类库的速度都会为你的页面节省很多时间。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://img.skyheng.com/picture/2017/cdn.jpg">
+<meta property="og:updated_time" content="2018-03-20T14:50:32.877Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端CDN公共库大全">
+<meta name="twitter:description" content="CDN公共库是指将常用的JS库存放在CDN节点，以方便广大开发者直接调用。与将JS库存放在服务器单机上相比，CDN公共库更加稳定、高速。现在web应用都在使用JS类库，这些类库小的几十K，大的几百K，而国内网络访问速度大家都知道不是那么惬意，所以给各位开发者推荐常用JS类库的CDN缓存，这样不管客户在哪里访问你的页面，调用公共类库的速度都会为你的页面节省很多时间。">
+<meta name="twitter:image" content="http://img.skyheng.com/picture/2017/cdn.jpg">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="一切随缘的技术博客" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>前端CDN公共库大全 | 一切随缘的技术博客</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?d195b745077c1dbc09dacf43876b8f07";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">一切随缘</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">日拱一卒无有尽、功不唐捐终入海</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/pdf/">书籍</a></li>
+                        
+                            <li><a href="/toolbox/">工具箱</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:chenjh0611@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/chenjh0611" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" href="http://blog.csdn.net/skychenjh" title="CSDN"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI/">CI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/">ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centOS/">centOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css3/">css3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/database/">database</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dubbo/">dubbo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eclipse/">eclipse</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/excel/">excel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/freemarker/">freemarker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jdk/">jdk</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jrebel/">jrebel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/logback/">logback</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nexus/">nexus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/oracle/">oracle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plugin/">plugin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/powerDesigner/">powerDesigner</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rect/">rect</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scanpay/">scanpay</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shiro/">shiro</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/software/">software</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql/">sql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/table/">table</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tomcat/">tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/velocity/">velocity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vmware/">vmware</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/win10/">win10</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wxpay/">wxpay</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zooKeeper/">zooKeeper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式/">分布式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习方法/">学习方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/闲聊/">闲聊</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.skyheng.com/">MyBlog</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://theme.skyheng.com/">后台模板</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.jheng.top/">next博客</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于技术,专注于开发</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">一切随缘</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">一切随缘</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">日拱一卒无有尽、功不唐捐终入海</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/pdf/">书籍</a></li>
+                
+                    <li><a href="/toolbox/">工具箱</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:chenjh0611@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/chenjh0611" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/skychenjh" title="CSDN"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-2017-2017-07-22-前端-CDN-公共库大全" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/post/8806.html" class="article-date">
+      <time datetime="2017-07-22T09:56:22.000Z" itemprop="datePublished">2017-07-22</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      前端CDN公共库大全
+    </h1>
+  
+
+		
+		   <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">2,134字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">8分</span>
+      </span>
+    </span>
+</div>
+		
+      </header>
+      
+      <div class="article-info article-info-post">
+		
+          <br>
+          <br>
+        
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/前端/">前端</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>CDN公共库是指将常用的JS库存放在CDN节点，以方便广大开发者直接调用。与将JS库存放在服务器单机上相比，CDN公共库更加稳定、高速。现在web应用都在使用JS类库，这些类库小的几十K，<br>大的几百K，而国内网络访问速度大家都知道不是那么惬意，所以给各位开发者推荐常用JS类库的CDN缓存，这样不管客户在哪里访问你的页面，调用公共类库的速度都会为你的页面节省很多时间。<br><a id="more"></a></p>
+<h2 id="前端-CDN-公共库大全"><a href="#前端-CDN-公共库大全" class="headerlink" title="前端 CDN 公共库大全"></a>前端 CDN 公共库大全</h2><p>一般的CDN公共库都会包含全球所有最流行的开源JavaScript库，你可以在自己的网页上直接通过script标记引用这些资源。这样做不仅可以为您 节省流量，还能通过CDN加速，获得更快的访问速度。<br><img src="http://img.skyheng.com/picture/2017/cdn.jpg" alt="cdn"></p>
+<h3 id="百度CDN公共库"><a href="#百度CDN公共库" class="headerlink" title="百度CDN公共库"></a><a href="http://cdn.code.baidu.com" title="百度CDN公共库" target="_blank" rel="noopener">百度CDN公共库</a></h3><p>百度公共CDN为站长的应用程序提供稳定、可靠、高速的服务，包含全球所有最流行的开源JavaScript库。<br>地址：<a href="http://cdn.code.baidu.com" title="百度CDN公共库" target="_blank" rel="noopener">http://cdn.code.baidu.com</a><br>GIT开源库：<a href="https://github.com/Clouda-team/baiducdnstatic" title="百度公共CDNGIT开源库" target="_blank" rel="noopener">https://github.com/Clouda-team/baiducdnstatic</a><br>Ps：百度的速度目前来说应该是和新浪差不多的。不过jQuery的版本比SAE少几个，其他类库应该都差不多。</p>
+<h3 id="新浪云计算CDN公共库"><a href="#新浪云计算CDN公共库" class="headerlink" title="新浪云计算CDN公共库"></a><a href="http://lib.sinaapp.com" title="新浪云计算CDN公共库" target="_blank" rel="noopener">新浪云计算CDN公共库</a></h3><p>新浪云计算是新浪研发中心下属的部门，主要负责新浪在云计算领域的战略规划，技术研发和平台运营工作。主要产品包括 应用云平台Sina App Engine（简称SAE）。<br>SAE的CDN节点覆盖全国各大城市的多路（电信、联通、移动、教育）骨干网络，使开发者能够方便的使用高质量的CDN服务。<br>地址：<a href="http://lib.sinaapp.com" title="新浪云计算CDN公共库" target="_blank" rel="noopener">http://lib.sinaapp.com</a><br>Ps：网上有评测说新浪的速度比百度的要好。个人没感觉出来。亲测半夜的时候出现过几次加载慢的情况（不知道其他站长遇到过没有）。</p>
+<h3 id="又拍云JS库CDN服务"><a href="#又拍云JS库CDN服务" class="headerlink" title="又拍云JS库CDN服务"></a><a href="http://jscdn.upai.com" title="又拍云JS库CDN服务" target="_blank" rel="noopener">又拍云JS库CDN服务</a></h3><p>又拍云存储是杭州纬聚网络有限公司旗下项目，成立于2005年6月，前期主要为又拍网、又拍图片管家提供图片云存储／云计算服务，于2010年2月对所有用户开放使用。<br>主要专注于海量小文件的存储与分发及图片云计算领域。提供的两大核心服务：静态文件云存储、CDN加速处理。<br>地址：<a href="http://jscdn.upai.com" title="又拍云JS库CDN服务" target="_blank" rel="noopener">http://jscdn.upai.com</a><br>Ps：又拍云js库提供了常用的JavaScript库CDN服务。算是起步较早的cdn加速服务了。速度和稳定性也不错。不过js库有点少，有些前卫的js库可能不提供。</p>
+<h3 id="七牛云存储-开放静态文件CDN"><a href="#七牛云存储-开放静态文件CDN" class="headerlink" title="七牛云存储 开放静态文件CDN"></a><a href="http://www.staticfile.org" title="七牛云存储 开放静态文件CDN" target="_blank" rel="noopener">七牛云存储 开放静态文件CDN</a></h3><p>像 Google Ajax Library，Microsoft ASP.net CDN，SAE，Baidu，Upyun 等 CDN 上都免费提供的 JS 库的存储，但使用起来却都有些局限，因为他们只提供了部分 JS 库。但七牛云存储提供一个尽可能全面收录优秀开源库的仓库，并免费提供 CDN 加速服务。<br>地址：<a href="http://www.staticfile.org" title="七牛云存储 开放静态文件CDN" target="_blank" rel="noopener">http://www.staticfile.org</a><br>GIT开源库：<a href="https://github.com/staticfile/static" target="_blank" rel="noopener">https://github.com/staticfile/static</a><br>Ps：同时，开放静态文件CDN也提供开源库源接入的入口，让所有人都可以提交开源库，包括 JS、CSS、image 和 swf 等静态文件。</p>
+<h3 id="360网站卫士CDN前端公共库"><a href="#360网站卫士CDN前端公共库" class="headerlink" title="360网站卫士CDN前端公共库"></a><a href="http://libs.useso.com" title="360网站卫士CDN前端公共库" target="_blank" rel="noopener">360网站卫士CDN前端公共库</a></h3><p>托管在360众多的全国CDN节点上，覆盖电信、联通、移动等主流运营商线路，您可以在自己的网页上直接通过script标记引用这些资源，让网站访问速度瞬间提速！<br>只需替换一个域名就可以继续使用Google提供的前端公共库和免费字体库,让网站访问速度瞬间提速。<br>地址：<a href="http://libs.useso.com" title="百度CDN公共库" target="_blank" rel="noopener">http://libs.useso.com</a><br>Ps：360的步伐现在是越来越快了。各种技术和提供的服务更新的速度是飞快的。360CDN服务也是最近才推出的（貌似主要还是Google被墙了 的原因）。提供了大多数的前端js库，<br>还在自己的服务器上面缓存了Google的前端公共库和免费字体库，这个算是其他国内的cdn公共库没有的。速度和 稳定性也不错，当然相比较而且还是略逊于百度和新浪(亲测有些地方宽带线路会断线，可能也是很少部分吧)。毕竟提供服务还没多久。</p>
+<h3 id="modules-in-the-sea"><a href="#modules-in-the-sea" class="headerlink" title="modules in the sea"></a><a href="http://a.tbcdn.cn/libs" title="modules in the sea" target="_blank" rel="noopener">modules in the sea</a></h3><p>阿里提供的公共CDN库，提供的比较少，没啥好说的。<br>地址：<a href="http://a.tbcdn.cn/libs" title="modules in the sea" target="_blank" rel="noopener">http://a.tbcdn.cn/libs</a><br>GIT开源库：<a href="https://github.com/Clouda-team/baiducdnstatic" title="阿里CDNGIT开源库" target="_blank" rel="noopener">https://github.com/seajs/modules</a><br>Ps：仅提供了几个项目CDN加速，未提供递交。</p>
+<h2 id="目前国外的一些比较大的公共CDN服务"><a href="#目前国外的一些比较大的公共CDN服务" class="headerlink" title="目前国外的一些比较大的公共CDN服务"></a>目前国外的一些比较大的公共CDN服务</h2><h3 id="CDNJS静态资源CDN服务"><a href="#CDNJS静态资源CDN服务" class="headerlink" title="CDNJS静态资源CDN服务"></a><a href="http://www.cdnjs.com" title="CDNJS静态资源CDN服务" target="_blank" rel="noopener">CDNJS静态资源CDN服务</a></h3><p>CDNJS提供非常完整的 JavaScript 程式库，无论是热门或是冷门的一应俱全。若你觉得它们缺少哪些好用的函式库，也可以自行提交到网站里，通过审核后就 CDNJS 就会为你分流 js文件！<br>这项服务是结合 CloudFlare、Pingdom 与 S3Stat的，稳定性与速度自然不在话下。CDNJS提供的 JavaScript Libraries 全部列在网站首页，使用者可以直接搜索。这些程式库都有标示版本编号、标签以及原维护网站链结。<br>地址：<a href="http://www.cdnjs.com" title="CDNJS静态资源CDN服务" target="_blank" rel="noopener">http://www.cdnjs.com</a><br>GIT开源库：<a href="https://github.com/cdnjs/cdnjs" target="_blank" rel="noopener">https://github.com/cdnjs/cdnjs</a><br>Ps：CDNJS应该算是最完整的的JS库了。存储了大部分主流的 JS 库，甚至 CSS、image 和 swf，不过很多国内优秀开源库是没有的。很多国外前卫的Js库在CDNJS大都能找到。国内的速度虽然比不上其他的几个国内的CDN服务，但是相对来说 其实还可以。<br>当然你也可以使用国人提供的CDNJS国内镜像网站的又拍云路径来引用相关JS和CSS文件。<br>地址：<a href="http://www.cdnjs.cn" title="CDNJS静态资源CDN服务" target="_blank" rel="noopener">http://www.cdnjs.cn</a><br>CDNJS国内镜像托管在又拍云存储，但是各种JS或者CSS类库比又拍云自己出的JS库丰富很多,而且每天同步更新且支持https协议。</p>
+<h3 id="Google-Hosted-Libraries"><a href="#Google-Hosted-Libraries" class="headerlink" title="Google Hosted Libraries"></a><a href="https://developers.google.com/speed/libraries" title="又拍云JS库CDN服务" target="_blank" rel="noopener">Google Hosted Libraries</a></h3><p>Google出品，必属精品了。虽然最近Google全线产品被墙了，连基本的Google搜索服务都无法使用了。但是谷歌的公共CDN公共库应该是 最强大的了，像其中的前卫的各种代码类库和Google Web Font 字体库，国内几大公共CDN服务几乎都不提供支持。<br>地址：<a href="https://developers.google.com/speed/libraries" title="百度CDN公共库" target="_blank" rel="noopener">https://developers.google.com/speed/libraries</a><br>Ps：当然，Google打不开怎么办？除了使用国内的cdn库，也没有什么好办法了。如：国内cdn不提供的js库使用七牛云存储cdn加速服务、Google Fonts Open Sans字体库使用360CDN公共库代替等。<br>360CDN公共库代替：<a href="http://ajax.useso.com" title="360CDN公共库" target="_blank" rel="noopener">http://ajax.useso.com</a><br>360CDN公共库代替：<a href="http://fonts.useso.com" title="360CDN公共库" target="_blank" rel="noopener">http://fonts.useso.com</a></p>
+<h3 id="Microsoft-ASP-net-CDN"><a href="#Microsoft-ASP-net-CDN" class="headerlink" title="Microsoft ASP.net CDN"></a><a href="http://www.asp.net/ajax/cdn" title="Microsoft ASP.net CDN" target="_blank" rel="noopener">Microsoft ASP.net CDN</a></h3><p>ASP.NET开发团队推出的一个新的微软Ajax CDN（Content Delivery Network，内容分发网络）服务，该服务提供了对AJAX库（包括jQuery 和 ASP.NET AJAX）的缓存支持。该服务是免费的，不需任何注册，可用于商业性或非商业性用途。<br>地址：<a href="http://www.asp.net/ajax/cdn" title="Microsoft ASP.net CDN" target="_blank" rel="noopener">http://www.asp.net/ajaxlibrary/cdn.ashx</a><br>Ps：微软出品，自然不会太差。虽然在天朝，速度依然不会太慢（当然比不上国内的其他cdn）。</p>
+<h3 id="MaxCDN：jsDelivr"><a href="#MaxCDN：jsDelivr" class="headerlink" title="MaxCDN：jsDelivr"></a><a href="http://www.jsdelivr.com" title="MaxCDN：jsDelivr" target="_blank" rel="noopener">MaxCDN：jsDelivr</a></h3><p>MaxCDN是一家价格相对比较便宜的CDN公司，在全球分布着众多的节点。 jsDelivr是基于MaxCDN的一个免费开源的 CDN 解决方案，用于帮助开发者和站长。jsDelivr包含 JavaScript 库、jQuery 插件、CSS 框架、字体等等 Web 上常用的静态资源。<br>地址：<a href="http://www.jsdelivr.com" title="MaxCDN：jsDelivr" target="_blank" rel="noopener">http://www.jsdelivr.com</a><br>Ps：每一款CDN的节点数量都是大家所关心的，jsDelivr总共提供着13个节点。加载速度和CDNJS基本差不多，国内用户建议使用国内CDN服务最佳。大家可以自己测试看看。</p>
+<h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><p>这些CDN公共库大都各具特色。大家可以自己选择性去使用。速度和稳定性以国内的百度和新浪为最佳（当然这是个人意见）。鉴于Google已经被墙，所有关于Google的服务大家还是尽快转移阵地，使用国内的CDN公共库服务吧。<br>注：如果担心CDN地址加载失败，可以这样载入本地jquery<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">!<span class="built_in">window</span>.jQuery &amp;&amp; <span class="built_in">document</span>.write(<span class="string">'&lt;script src="js/jquery.min.js"&gt;&lt;\/script&gt;'</span>);</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/post/8806.html">前端CDN公共库大全</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">一切随缘</a></p>
+        <p><span>发布时间:</span>2017-07-22, 17:56:22</p>
+        <p><span>最后更新:</span>2018-03-20, 22:50:32</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/post/8806.html" title="前端CDN公共库大全">http://code.skyheng.com/post/8806.html</a>
+            <span class="copy-path" data-clipboard-text="原文: http://code.skyheng.com/post/8806.html　　作者: 一切随缘" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/post/55614.html">
+                    Java8 JDK1.8 API中文
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/post/25067.html">
+                    Shiro Freemarker标签的使用
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前端-CDN-公共库大全"><span class="toc-number">1.</span> <span class="toc-text">前端 CDN 公共库大全</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#百度CDN公共库"><span class="toc-number">1.1.</span> <span class="toc-text">百度CDN公共库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#新浪云计算CDN公共库"><span class="toc-number">1.2.</span> <span class="toc-text">新浪云计算CDN公共库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#又拍云JS库CDN服务"><span class="toc-number">1.3.</span> <span class="toc-text">又拍云JS库CDN服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#七牛云存储-开放静态文件CDN"><span class="toc-number">1.4.</span> <span class="toc-text">七牛云存储 开放静态文件CDN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#360网站卫士CDN前端公共库"><span class="toc-number">1.5.</span> <span class="toc-text">360网站卫士CDN前端公共库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#modules-in-the-sea"><span class="toc-number">1.6.</span> <span class="toc-text">modules in the sea</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#目前国外的一些比较大的公共CDN服务"><span class="toc-number">2.</span> <span class="toc-text">目前国外的一些比较大的公共CDN服务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CDNJS静态资源CDN服务"><span class="toc-number">2.1.</span> <span class="toc-text">CDNJS静态资源CDN服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Google-Hosted-Libraries"><span class="toc-number">2.2.</span> <span class="toc-text">Google Hosted Libraries</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Microsoft-ASP-net-CDN"><span class="toc-number">2.3.</span> <span class="toc-text">Microsoft ASP.net CDN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MaxCDN：jsDelivr"><span class="toc-number">2.4.</span> <span class="toc-text">MaxCDN：jsDelivr</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结："><span class="toc-number">3.</span> <span class="toc-text">总结：</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"前端CDN公共库大全　| 一切随缘的技术博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+    
+
+    
+    
+
+    
+        <section class="changyan" id="comments">
+    <div id="SOHUCS" sid="post/8806.html" ></div>
+    <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+        <script type="text/javascript">
+            window.changyan.api.config({
+                appid: "cyts7t2el",
+                conf: "fb4aa871793bef5899de054a3902f3eb"
+            });
+        </script>
+    </script>
+</section>
+    
+
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/post/55614.html" title="上一篇: Java8 JDK1.8 API中文">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/post/25067.html" title="下一篇: Shiro Freemarker标签的使用">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/post/36308.html">MarkdownPad2在win10上安装及破解</a></li><li class="post-list-item"><a class="post-list-link" href="/post/61360.html">关系数据库常用SQL的详细用法</a></li><li class="post-list-item"><a class="post-list-link" href="/post/5372.html">Hexo部署在阿里云服务器上</a></li><li class="post-list-item"><a class="post-list-link" href="/post/55981.html">BigDecimal的用法详解及注意事项</a></li><li class="post-list-item"><a class="post-list-link" href="/post/4240.html">Java日期时间格式化转换符</a></li><li class="post-list-item"><a class="post-list-link" href="/post/46695.html">Hexo使用过程中常见问题记录</a></li><li class="post-list-item"><a class="post-list-link" href="/post/62692.html">PowerDesigner16应用</a></li><li class="post-list-item"><a class="post-list-link" href="/post/27822.html">怎样在虚拟机上安装Ubuntu17.10系统</a></li><li class="post-list-item"><a class="post-list-link" href="/post/55614.html">Java8 JDK1.8 API中文</a></li><li class="post-list-item"><a class="post-list-link" href="/post/8806.html">前端CDN公共库大全</a></li><li class="post-list-item"><a class="post-list-link" href="/post/25067.html">Shiro Freemarker标签的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/post/50779.html">Velocity与Freemarker比较</a></li><li class="post-list-item"><a class="post-list-link" href="/post/24506.html">Logback.xml常用配置详解</a></li><li class="post-list-item"><a class="post-list-link" href="/post/61394.html">Mysql数据库优化方法,千万级数据库记录查询轻松解决</a></li><li class="post-list-item"><a class="post-list-link" href="/post/49258.html">程序员，你为什么值这么多钱？</a></li><li class="post-list-item"><a class="post-list-link" href="/post/52661.html">数据库事务的四大特性以及事务的隔离级别</a></li><li class="post-list-item"><a class="post-list-link" href="/post/32480.html">从Request中获得参数Map返回可读的Map</a></li><li class="post-list-item"><a class="post-list-link" href="/post/56296.html">Win10常用的快捷键</a></li><li class="post-list-item"><a class="post-list-link" href="/post/25267.html">ZooKeeper常用命令介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/post/50164.html">ZooKeeper的安装与设置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/4103.html">收集的国内Maven镜像地址</a></li><li class="post-list-item"><a class="post-list-link" href="/post/47539.html">Windows下git pull批处理</a></li><li class="post-list-item"><a class="post-list-link" href="/post/8298.html">Git常用的操作命令</a></li><li class="post-list-item"><a class="post-list-link" href="/post/26220.html">python安装</a></li><li class="post-list-item"><a class="post-list-link" href="/post/46664.html">实例Demo之3D-Transform立方体效果</a></li><li class="post-list-item"><a class="post-list-link" href="/post/51910.html">Redis在Linux下的安装和配置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20294.html">Tomcat7优化配置参数</a></li><li class="post-list-item"><a class="post-list-link" href="/post/56640.html">一些好的技术博客,追随牛逼的人,让自己更牛逼</a></li><li class="post-list-item"><a class="post-list-link" href="/post/37438.html">国内外知名IT科技博客（强烈推荐）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/59806.html">Eclipse常用插件安装</a></li><li class="post-list-item"><a class="post-list-link" href="/post/33906.html">Eclipse安装JRebel6.4.8热部署插件教程</a></li><li class="post-list-item"><a class="post-list-link" href="/post/8028.html">JQuery的eval解析JSON中的注意点介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/post/28651.html">关于分布式一致性的探究</a></li><li class="post-list-item"><a class="post-list-link" href="/post/5101.html">初识分布式系统</a></li><li class="post-list-item"><a class="post-list-link" href="/post/13879.html">用Excel生成和管理Markdown表格</a></li><li class="post-list-item"><a class="post-list-link" href="/post/29405.html">Hexo最常用的几个命令</a></li><li class="post-list-item"><a class="post-list-link" href="/post/52802.html">GIT的常用操作命令</a></li><li class="post-list-item"><a class="post-list-link" href="/post/31797.html">常用软件与工具整理</a></li><li class="post-list-item"><a class="post-list-link" href="/post/23662.html">Linux常用命令大全</a></li><li class="post-list-item"><a class="post-list-link" href="/post/62293.html">在一个千万级的数据库查询中，如何提高查询效率？</a></li><li class="post-list-item"><a class="post-list-link" href="/post/60804.html">VMware中CentOS设置静态IP</a></li><li class="post-list-item"><a class="post-list-link" href="/post/9311.html">Tomcat8安装和配置以及优化</a></li><li class="post-list-item"><a class="post-list-link" href="/post/65527.html">【微信支付】“刷卡支付”、“被扫支付”开发JavaDemo</a></li><li class="post-list-item"><a class="post-list-link" href="/post/30401.html">【微信支付】“刷卡支付”、“被扫支付”开发说明</a></li><li class="post-list-item"><a class="post-list-link" href="/post/60927.html">Svn密码破解，Svn密码本地找回</a></li><li class="post-list-item"><a class="post-list-link" href="/post/26924.html">Subversion在Linux下的安装与配置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/56374.html">Mysql在Linux下的安装和配置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/24125.html">Maven在Linux下的安装和配置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/7577.html">在linux下的JDK安装和配置（基于阿里云服务器CentOS 6.5）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/59363.html">Nexus在linux下的安装和配置（基于阿里云服务器CentOS 6.5）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/4365.html">我的学习归纳方法（以学习Maven为例）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/53342.html">使用Github搭建Hexo技术博客--增强教程</a></li><li class="post-list-item"><a class="post-list-link" href="/post/4103.html">使用Github搭建Hexo技术博客--安装教程</a></li><li class="post-list-item"><a class="post-list-link" href="/post/2803.html">构建工具Maven相关知识整理专题</a></li><li class="post-list-item"><a class="post-list-link" href="/post/17946.html">JAVA中重写和重载区别</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2015-2018 一切随缘
+                <span>| </span>
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备16005473号-1</a>
+                <!--|| <span>博客全站共2字</span>-->
+            </div>
+            <div class="footer-right">
+                <a>
+                    
+                        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1273088600'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1273088600%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+                    
+                </a>
+                <span>| </span>
+                Hosted by <a href="https://pages.coding.me" style="font-weight: bold" target="_blank" >Coding Pages</a>
+				<!--
+                    <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>Theme
+                    <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE
+                    <i class="fa fa-heart animated infinite pulse"></i>
+                 -->
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+	<script type="text/javascript" src="/resources/love.js"></script>
+	<script type="text/javascript" src="/resources/float.js"></script>
+	<script type="text/javascript" src="/resources/typewriter.js"></script>
+	<script type="text/javascript" color=0,104,183 opacity=1 zindex=-1 count=50 src="/resources/particle.js"></script>
+
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+  </div>
+</body>
+</html>

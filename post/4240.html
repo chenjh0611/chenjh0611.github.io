@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="一切随缘" />
+
+
+
+<meta name="description" content="Java日期时间格式化转换符">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java日期时间格式化转换符">
+<meta property="og:url" content="http://code.skyheng.com/post/4240.html">
+<meta property="og:site_name" content="一切随缘的技术博客">
+<meta property="og:description" content="Java日期时间格式化转换符">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-03-20T14:50:33.081Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java日期时间格式化转换符">
+<meta name="twitter:description" content="Java日期时间格式化转换符">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="一切随缘的技术博客" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>Java日期时间格式化转换符 | 一切随缘的技术博客</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?d195b745077c1dbc09dacf43876b8f07";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">一切随缘</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">日拱一卒无有尽、功不唐捐终入海</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/pdf/">书籍</a></li>
+                        
+                            <li><a href="/toolbox/">工具箱</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:chenjh0611@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/chenjh0611" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" href="http://blog.csdn.net/skychenjh" title="CSDN"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI/">CI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/">ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centOS/">centOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css3/">css3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/database/">database</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dubbo/">dubbo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eclipse/">eclipse</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/excel/">excel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/freemarker/">freemarker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jdk/">jdk</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jrebel/">jrebel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/logback/">logback</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nexus/">nexus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/oracle/">oracle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plugin/">plugin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/powerDesigner/">powerDesigner</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rect/">rect</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scanpay/">scanpay</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shiro/">shiro</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/software/">software</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql/">sql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/table/">table</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tomcat/">tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/velocity/">velocity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vmware/">vmware</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/win10/">win10</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wxpay/">wxpay</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zooKeeper/">zooKeeper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式/">分布式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习方法/">学习方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/闲聊/">闲聊</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.skyheng.com/">MyBlog</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://theme.skyheng.com/">后台模板</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.jheng.top/">next博客</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于技术,专注于开发</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">一切随缘</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">一切随缘</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">日拱一卒无有尽、功不唐捐终入海</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/pdf/">书籍</a></li>
+                
+                    <li><a href="/toolbox/">工具箱</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:chenjh0611@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/chenjh0611" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/skychenjh" title="CSDN"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-2018-2018-03-11-Java日期时间格式化转换符" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/post/4240.html" class="article-date">
+      <time datetime="2018-03-10T17:47:16.000Z" itemprop="datePublished">2018-03-11</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Java日期时间格式化转换符
+    </h1>
+  
+
+		
+		   <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">651字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">3分</span>
+      </span>
+    </span>
+</div>
+		
+      </header>
+      
+      <div class="article-info article-info-post">
+		
+          <br>
+          <br>
+        
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/java/">java</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>Java日期时间格式化转换符<br><a id="more"></a></p>
+<h2 id="Java-日期时间格式化转换符"><a href="#Java-日期时间格式化转换符" class="headerlink" title="Java 日期时间格式化转换符"></a>Java 日期时间格式化转换符</h2><p>在 Java 语言中，我们经常会使用 SimpleDateFormat 类来格式化一个给定的时间戳数字，如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">formDate</span><span class="params">(<span class="keyword">long</span> millis)</span> </span>&#123;</span><br><span class="line">        Calendar calendar = Calendar.getInstance();</span><br><span class="line">        calendar.setTimeInMillis(millis);</span><br><span class="line">        SimpleDateFormat sdf = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd HH:hh:mm"</span>, Locale.getDefault());</span><br><span class="line">    <span class="keyword">return</span> sdf.format(calendar.getTime());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>事实上，还有一些通用的字符串转换符来更加灵活的获取一些我们想知道的时间日期结果。比如，一个星期的第几天等。使用起来，类似这样：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">formDate</span><span class="params">(<span class="keyword">long</span> millis)</span> </span>&#123;</span><br><span class="line">        Calendar calendar = Calendar.getInstance();</span><br><span class="line">        calendar.setTimeInMillis(millis);</span><br><span class="line">        Date date = calendar.getTime();</span><br><span class="line">    <span class="keyword">return</span> String.format(Locale.US, <span class="string">"%td %tb %tY %tH:%tM %tp"</span>, date, date, date, date, date, date);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="以下是我们可能经常使用到的一些常用转换符。"><a href="#以下是我们可能经常使用到的一些常用转换符。" class="headerlink" title="以下是我们可能经常使用到的一些常用转换符。"></a>以下是我们可能经常使用到的一些常用转换符。</h3><h2 id="常用日期格式化转换符"><a href="#常用日期格式化转换符" class="headerlink" title="常用日期格式化转换符"></a>常用日期格式化转换符</h2><table>
+<thead>
+<tr>
+<th>转换符</th>
+<th>描述体</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>%te</td>
+<td>一个月中的某一天（1～31）</td>
+<td>2</td>
+</tr>
+<tr>
+<td>%tb</td>
+<td>指定语言环境的月份简称</td>
+<td>Feb（英文）、二月（中文）</td>
+</tr>
+<tr>
+<td>%tB</td>
+<td>指定语言环境的月份全称</td>
+<td>February（英文）、二月（中文）</td>
+</tr>
+<tr>
+<td>%tA</td>
+<td>指定语言环境的星期几全称</td>
+<td>Monday（英文）、星期一（中文）</td>
+</tr>
+<tr>
+<td>%ta</td>
+<td>指定语言环境的星期几简称</td>
+<td>Mon（英文）、星期一（中文）</td>
+</tr>
+<tr>
+<td>%tc</td>
+<td>包括全部日期和时间信息</td>
+<td>Mon Jan 08 06:30:04 UTC 2018</td>
+</tr>
+<tr>
+<td>%tY</td>
+<td>四位年份</td>
+<td>2018</td>
+</tr>
+<tr>
+<td>%ty</td>
+<td>两位年份</td>
+<td>18</td>
+</tr>
+<tr>
+<td>%tj</td>
+<td>一年中的第几天（001～366）</td>
+<td>008</td>
+</tr>
+<tr>
+<td>%tm</td>
+<td>月份（01～12）</td>
+<td>08</td>
+</tr>
+<tr>
+<td>%td</td>
+<td>一个月中的第几天（01～31）</td>
+<td>08</td>
+</tr>
+</tbody>
+</table>
+<h2 id="常用时间格式化转换符"><a href="#常用时间格式化转换符" class="headerlink" title="常用时间格式化转换符"></a>常用时间格式化转换符</h2><table>
+<thead>
+<tr>
+<th>转换符</th>
+<th>描述体</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>%tH</td>
+<td>2位数字的24小时制的小时（00～23）</td>
+<td>14</td>
+</tr>
+<tr>
+<td>%tI</td>
+<td>2位数字的12小时制的小时（01～12）</td>
+<td>05</td>
+</tr>
+<tr>
+<td>%tk</td>
+<td>2位数字的24小时制的小时（1～23）</td>
+<td>5</td>
+</tr>
+<tr>
+<td>%tI</td>
+<td>2位数字的12小时制的小时（1～12）</td>
+<td>10</td>
+</tr>
+<tr>
+<td>%tM</td>
+<td>2位数字的分钟（00～59））</td>
+<td>05</td>
+</tr>
+<tr>
+<td>%tS</td>
+<td>2位数字的秒数（00～60）</td>
+<td>12</td>
+</tr>
+<tr>
+<td>%tL</td>
+<td>3位数字的毫秒数（000～999）</td>
+<td>920</td>
+</tr>
+<tr>
+<td>%tN</td>
+<td>9位数字的微秒数（000000000～999999999）</td>
+<td>062000000000</td>
+</tr>
+<tr>
+<td>%tp</td>
+<td>指定语言环境下上午或下午标记</td>
+<td>下午（中文）、pm（英文）</td>
+</tr>
+<tr>
+<td>%tz</td>
+<td>相对于GMT RFC 82格式的数字时区偏移量</td>
+<td>+0800</td>
+</tr>
+<tr>
+<td>%tZ</td>
+<td>时区缩写形式的字符串</td>
+<td>CST</td>
+</tr>
+<tr>
+<td>%ts</td>
+<td>1970-01-01 00:00:00至现在经过的秒数</td>
+<td>1206426646</td>
+</tr>
+<tr>
+<td>%tQ</td>
+<td>1970-01-01 00:00:00至现在经过的毫秒数</td>
+<td>1206426737453</td>
+</tr>
+</tbody>
+</table>
+<h2 id="常用日期时间格式化组合转换符"><a href="#常用日期时间格式化组合转换符" class="headerlink" title="常用日期时间格式化组合转换符"></a>常用日期时间格式化组合转换符</h2><table>
+<thead>
+<tr>
+<th>转换符</th>
+<th>描述体</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>%tF</td>
+<td>“年-月-日”格式（4位年份）</td>
+<td>2018-01-08</td>
+</tr>
+<tr>
+<td>%tD</td>
+<td>“月/日/年”格式（2位年份）</td>
+<td>01/08/18</td>
+</tr>
+<tr>
+<td>%tr</td>
+<td>“时：分：秒 PM（AM）”格式（12小时制）</td>
+<td>15:23:50 PM</td>
+</tr>
+<tr>
+<td>%tT</td>
+<td>“时：分：秒”格式（24小时制）</td>
+<td>15:23:50</td>
+</tr>
+<tr>
+<td>%tR</td>
+<td>“时：分”格式（24小时制）</td>
+<td>15:23</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/post/4240.html">Java日期时间格式化转换符</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">一切随缘</a></p>
+        <p><span>发布时间:</span>2018-03-11, 01:47:16</p>
+        <p><span>最后更新:</span>2018-03-20, 22:50:33</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/post/4240.html" title="Java日期时间格式化转换符">http://code.skyheng.com/post/4240.html</a>
+            <span class="copy-path" data-clipboard-text="原文: http://code.skyheng.com/post/4240.html　　作者: 一切随缘" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/post/55981.html">
+                    BigDecimal的用法详解及注意事项
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/post/46695.html">
+                    Hexo使用过程中常见问题记录
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Java-日期时间格式化转换符"><span class="toc-number">1.</span> <span class="toc-text">Java 日期时间格式化转换符</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#以下是我们可能经常使用到的一些常用转换符。"><span class="toc-number">1.1.</span> <span class="toc-text">以下是我们可能经常使用到的一些常用转换符。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用日期格式化转换符"><span class="toc-number">2.</span> <span class="toc-text">常用日期格式化转换符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用时间格式化转换符"><span class="toc-number">3.</span> <span class="toc-text">常用时间格式化转换符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用日期时间格式化组合转换符"><span class="toc-number">4.</span> <span class="toc-text">常用日期时间格式化组合转换符</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Java日期时间格式化转换符　| 一切随缘的技术博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+    
+
+    
+    
+
+    
+        <section class="changyan" id="comments">
+    <div id="SOHUCS" sid="post/4240.html" ></div>
+    <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+        <script type="text/javascript">
+            window.changyan.api.config({
+                appid: "cyts7t2el",
+                conf: "fb4aa871793bef5899de054a3902f3eb"
+            });
+        </script>
+    </script>
+</section>
+    
+
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/post/55981.html" title="上一篇: BigDecimal的用法详解及注意事项">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/post/46695.html" title="下一篇: Hexo使用过程中常见问题记录">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/post/36308.html">MarkdownPad2在win10上安装及破解</a></li><li class="post-list-item"><a class="post-list-link" href="/post/61360.html">关系数据库常用SQL的详细用法</a></li><li class="post-list-item"><a class="post-list-link" href="/post/5372.html">Hexo部署在阿里云服务器上</a></li><li class="post-list-item"><a class="post-list-link" href="/post/55981.html">BigDecimal的用法详解及注意事项</a></li><li class="post-list-item"><a class="post-list-link" href="/post/4240.html">Java日期时间格式化转换符</a></li><li class="post-list-item"><a class="post-list-link" href="/post/46695.html">Hexo使用过程中常见问题记录</a></li><li class="post-list-item"><a class="post-list-link" href="/post/62692.html">PowerDesigner16应用</a></li><li class="post-list-item"><a class="post-list-link" href="/post/27822.html">怎样在虚拟机上安装Ubuntu17.10系统</a></li><li class="post-list-item"><a class="post-list-link" href="/post/55614.html">Java8 JDK1.8 API中文</a></li><li class="post-list-item"><a class="post-list-link" href="/post/8806.html">前端CDN公共库大全</a></li><li class="post-list-item"><a class="post-list-link" href="/post/25067.html">Shiro Freemarker标签的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/post/50779.html">Velocity与Freemarker比较</a></li><li class="post-list-item"><a class="post-list-link" href="/post/24506.html">Logback.xml常用配置详解</a></li><li class="post-list-item"><a class="post-list-link" href="/post/61394.html">Mysql数据库优化方法,千万级数据库记录查询轻松解决</a></li><li class="post-list-item"><a class="post-list-link" href="/post/49258.html">程序员，你为什么值这么多钱？</a></li><li class="post-list-item"><a class="post-list-link" href="/post/52661.html">数据库事务的四大特性以及事务的隔离级别</a></li><li class="post-list-item"><a class="post-list-link" href="/post/32480.html">从Request中获得参数Map返回可读的Map</a></li><li class="post-list-item"><a class="post-list-link" href="/post/56296.html">Win10常用的快捷键</a></li><li class="post-list-item"><a class="post-list-link" href="/post/25267.html">ZooKeeper常用命令介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/post/50164.html">ZooKeeper的安装与设置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/4103.html">收集的国内Maven镜像地址</a></li><li class="post-list-item"><a class="post-list-link" href="/post/47539.html">Windows下git pull批处理</a></li><li class="post-list-item"><a class="post-list-link" href="/post/8298.html">Git常用的操作命令</a></li><li class="post-list-item"><a class="post-list-link" href="/post/26220.html">python安装</a></li><li class="post-list-item"><a class="post-list-link" href="/post/46664.html">实例Demo之3D-Transform立方体效果</a></li><li class="post-list-item"><a class="post-list-link" href="/post/51910.html">Redis在Linux下的安装和配置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20294.html">Tomcat7优化配置参数</a></li><li class="post-list-item"><a class="post-list-link" href="/post/56640.html">一些好的技术博客,追随牛逼的人,让自己更牛逼</a></li><li class="post-list-item"><a class="post-list-link" href="/post/37438.html">国内外知名IT科技博客（强烈推荐）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/59806.html">Eclipse常用插件安装</a></li><li class="post-list-item"><a class="post-list-link" href="/post/33906.html">Eclipse安装JRebel6.4.8热部署插件教程</a></li><li class="post-list-item"><a class="post-list-link" href="/post/8028.html">JQuery的eval解析JSON中的注意点介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/post/28651.html">关于分布式一致性的探究</a></li><li class="post-list-item"><a class="post-list-link" href="/post/5101.html">初识分布式系统</a></li><li class="post-list-item"><a class="post-list-link" href="/post/13879.html">用Excel生成和管理Markdown表格</a></li><li class="post-list-item"><a class="post-list-link" href="/post/29405.html">Hexo最常用的几个命令</a></li><li class="post-list-item"><a class="post-list-link" href="/post/52802.html">GIT的常用操作命令</a></li><li class="post-list-item"><a class="post-list-link" href="/post/31797.html">常用软件与工具整理</a></li><li class="post-list-item"><a class="post-list-link" href="/post/23662.html">Linux常用命令大全</a></li><li class="post-list-item"><a class="post-list-link" href="/post/62293.html">在一个千万级的数据库查询中，如何提高查询效率？</a></li><li class="post-list-item"><a class="post-list-link" href="/post/60804.html">VMware中CentOS设置静态IP</a></li><li class="post-list-item"><a class="post-list-link" href="/post/9311.html">Tomcat8安装和配置以及优化</a></li><li class="post-list-item"><a class="post-list-link" href="/post/65527.html">【微信支付】“刷卡支付”、“被扫支付”开发JavaDemo</a></li><li class="post-list-item"><a class="post-list-link" href="/post/30401.html">【微信支付】“刷卡支付”、“被扫支付”开发说明</a></li><li class="post-list-item"><a class="post-list-link" href="/post/60927.html">Svn密码破解，Svn密码本地找回</a></li><li class="post-list-item"><a class="post-list-link" href="/post/26924.html">Subversion在Linux下的安装与配置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/56374.html">Mysql在Linux下的安装和配置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/24125.html">Maven在Linux下的安装和配置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/7577.html">在linux下的JDK安装和配置（基于阿里云服务器CentOS 6.5）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/59363.html">Nexus在linux下的安装和配置（基于阿里云服务器CentOS 6.5）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/4365.html">我的学习归纳方法（以学习Maven为例）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/53342.html">使用Github搭建Hexo技术博客--增强教程</a></li><li class="post-list-item"><a class="post-list-link" href="/post/4103.html">使用Github搭建Hexo技术博客--安装教程</a></li><li class="post-list-item"><a class="post-list-link" href="/post/2803.html">构建工具Maven相关知识整理专题</a></li><li class="post-list-item"><a class="post-list-link" href="/post/17946.html">JAVA中重写和重载区别</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2015-2018 一切随缘
+                <span>| </span>
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备16005473号-1</a>
+                <!--|| <span>博客全站共2字</span>-->
+            </div>
+            <div class="footer-right">
+                <a>
+                    
+                        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1273088600'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1273088600%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+                    
+                </a>
+                <span>| </span>
+                Hosted by <a href="https://pages.coding.me" style="font-weight: bold" target="_blank" >Coding Pages</a>
+				<!--
+                    <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>Theme
+                    <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE
+                    <i class="fa fa-heart animated infinite pulse"></i>
+                 -->
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+	<script type="text/javascript" src="/resources/love.js"></script>
+	<script type="text/javascript" src="/resources/float.js"></script>
+	<script type="text/javascript" src="/resources/typewriter.js"></script>
+	<script type="text/javascript" color=0,104,183 opacity=1 zindex=-1 count=50 src="/resources/particle.js"></script>
+
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+  </div>
+</body>
+</html>

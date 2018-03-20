@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="一切随缘" />
+
+
+
+<meta name="description" content="随着大型网站的各种高并发访问、海量数据处理等场景越来越多，如何实现网站的高可用、易伸缩、可扩展、安全等目标就显得越来越重要。为了解决这样一系列问题，大型网站的架构也在不断发展。提高大型网站的高可用架构，不得不提的就是分布式。本文主要简单介绍了分布式系统的概念、分布式系统的特点、常用的分布式方案以及分布式和集群的区别等。">
+<meta name="keywords" content="分布式,dubbo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初识分布式系统">
+<meta property="og:url" content="http://code.skyheng.com/post/5101.html">
+<meta property="og:site_name" content="一切随缘的技术博客">
+<meta property="og:description" content="随着大型网站的各种高并发访问、海量数据处理等场景越来越多，如何实现网站的高可用、易伸缩、可扩展、安全等目标就显得越来越重要。为了解决这样一系列问题，大型网站的架构也在不断发展。提高大型网站的高可用架构，不得不提的就是分布式。本文主要简单介绍了分布式系统的概念、分布式系统的特点、常用的分布式方案以及分布式和集群的区别等。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-03-08T15:48:24.867Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="初识分布式系统">
+<meta name="twitter:description" content="随着大型网站的各种高并发访问、海量数据处理等场景越来越多，如何实现网站的高可用、易伸缩、可扩展、安全等目标就显得越来越重要。为了解决这样一系列问题，大型网站的架构也在不断发展。提高大型网站的高可用架构，不得不提的就是分布式。本文主要简单介绍了分布式系统的概念、分布式系统的特点、常用的分布式方案以及分布式和集群的区别等。">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="一切随缘的技术博客" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>初识分布式系统 | 一切随缘的技术博客</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?d195b745077c1dbc09dacf43876b8f07";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">一切随缘</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">日拱一卒无有尽、功不唐捐终入海</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/pdf/">书籍</a></li>
+                        
+                            <li><a href="/toolbox/">工具箱</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:chenjh0611@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/chenjh0611" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" href="http://blog.csdn.net/skychenjh" title="CSDN"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI/">CI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/">ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centOS/">centOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css3/">css3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/database/">database</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dubbo/">dubbo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eclipse/">eclipse</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/excel/">excel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/freemarker/">freemarker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jdk/">jdk</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jrebel/">jrebel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/logback/">logback</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nexus/">nexus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/oracle/">oracle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plugin/">plugin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/powerDesigner/">powerDesigner</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rect/">rect</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scanpay/">scanpay</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shiro/">shiro</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/software/">software</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql/">sql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/table/">table</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tomcat/">tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/velocity/">velocity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vmware/">vmware</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/win10/">win10</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wxpay/">wxpay</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zooKeeper/">zooKeeper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式/">分布式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习方法/">学习方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/闲聊/">闲聊</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.skyheng.com/">MyBlog</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://theme.skyheng.com/">后台模板</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.jheng.top/">next博客</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于技术,专注于开发</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">一切随缘</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">一切随缘</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">日拱一卒无有尽、功不唐捐终入海</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/pdf/">书籍</a></li>
+                
+                    <li><a href="/toolbox/">工具箱</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:chenjh0611@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/chenjh0611" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/skychenjh" title="CSDN"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-2016-2016-08-08-初识分布式系统" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/post/5101.html" class="article-date">
+      <time datetime="2016-08-08T09:38:39.000Z" itemprop="datePublished">2016-08-08</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      初识分布式系统
+    </h1>
+  
+
+		
+		   <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">1,614字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">5分</span>
+      </span>
+    </span>
+</div>
+		
+      </header>
+      
+      <div class="article-info article-info-post">
+		
+          <br>
+          <br>
+        
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/分布式/">分布式</a><a class="article-category-link" href="/categories/分布式/dubbo/">dubbo</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dubbo/">dubbo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/分布式/">分布式</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>随着大型网站的各种高并发访问、海量数据处理等场景越来越多，如何实现网站的高可用、易伸缩、可扩展、安全等目标就显得越来越重要。<br>为了解决这样一系列问题，大型网站的架构也在不断发展。提高大型网站的高可用架构，不得不提的就是分布式。本文主要简单介绍了分布式系统的概念、<br>分布式系统的特点、常用的分布式方案以及分布式和集群的区别等。</p>
+<a id="more"></a>
+<h2 id="一、集中式系统"><a href="#一、集中式系统" class="headerlink" title="一、集中式系统"></a>一、集中式系统</h2><ul>
+<li>在学习分布式之前，先了解一下与之相对应的集中式系统是什么样的。</li>
+<li>集中式系统用一句话概括就是：一个主机带多个终端。终端没有数据处理能力，仅负责数据的录入和输出。而运算、存储等全部在主机上进行。现在的银行系统，大部分都是这种集中式的系统，<br>此外，在大型企业、科研单位、军队、政府等也有分布。集中式系统，主要流行于上个世纪。</li>
+</ul>
+<ul>
+<li>集中式系统的最大的特点就是部署结构非常简单，底层一般采用从IBM、HP等厂商购买到的昂贵的大型主机。因此无需考虑如何对服务进行多节点的部署，也就不用考虑各节点之间的分布式协作问题。<br>但是，由于采用单机部署。很可能带来系统大而复杂、难于维护、发生单点故障（单个点发生故障的时候会波及到整个系统或者网络，从而导致整个系统或者网络的瘫痪）、扩展性差等问题。</li>
+</ul>
+<h2 id="二、分布式系统-distributed-system"><a href="#二、分布式系统-distributed-system" class="headerlink" title="二、分布式系统(distributed system)"></a>二、分布式系统(distributed system)</h2><ul>
+<li>在《分布式系统概念与设计》一书中，对分布式系统做了如下定义：<blockquote>
+<p>分布式系统是一个硬件或软件组件分布在不同的网络计算机上，彼此之间仅仅通过消息传递进行通信和协调的系统</p>
+</blockquote>
+</li>
+<li>简单来说就是一群独立计算机集合共同对外提供服务，但是对于系统的用户来说，就像是一台计算机在提供服务一样。分布式意味着可以采用更多的普通计算机（相对于昂贵的大型机）<br>组成分布式集群对外提供服务。计算机越多，CPU、内存、存储资源等也就越多，能够处理的并发访问量也就越大。</li>
+<li>从分布式系统的概念中我们知道，各个主机之间通信和协调主要通过网络进行，所以，分布式系统中的计算机在空间上几乎没有任何限制，这些计算机可能被放在不同的机柜上，<br>也可能被部署在不同的机房中，还可能在不同的城市中，对于大型的网站甚至可能分布在不同的国家和地区。但是，无论空间上如何分布，一个标准的分布式系统应该具有以下几个主要特征：</li>
+</ul>
+<h3 id="1、分布性"><a href="#1、分布性" class="headerlink" title="1、分布性"></a>1、分布性</h3><ul>
+<li>分布式系统中的多台计算机之间在空间位置上可以随意分布，系统中的多台计算机之间没有主、从之分，即没有控制整个系统的主机，也没有受控的从机。</li>
+</ul>
+<h3 id="2、透明性"><a href="#2、透明性" class="headerlink" title="2、透明性"></a>2、透明性</h3><ul>
+<li>系统资源被所有计算机共享。每台计算机的用户不仅可以使用本机的资源，还可以使用本分布式系统中其他计算机的资源(包括CPU、文件、打印机等)。</li>
+</ul>
+<h3 id="3、同一性"><a href="#3、同一性" class="headerlink" title="3、同一性"></a>3、同一性</h3><ul>
+<li>系统中的若干台计算机可以互相协作来完成一个共同的任务，或者说一个程序可以分布在几台计算机上并行地运行。</li>
+</ul>
+<h3 id="4、通信性"><a href="#4、通信性" class="headerlink" title="4、通信性"></a>4、通信性</h3><ul>
+<li>系统中任意两台计算机都可以通过通信来交换信息。</li>
+<li>和集中式系统相比，分布式系统的性价比更高、处理能力更强、可靠性更高、也有很好的扩展性。但是，分布式在解决了网站的高并发问题的同时也带来了一些其他问题。<br>首先，分布式的必要条件就是网络，这可能对性能甚至服务能力造成一定的影响。其次，一个集群中的服务器数量越多，服务器宕机的概率也就越大。另外，由于服务在集群中分布是部署，<br>用户的请求只会落到其中一台机器上，所以，一旦处理不好就很容易产生数据一致性问题。</li>
+</ul>
+<h2 id="常用的分布式方案"><a href="#常用的分布式方案" class="headerlink" title="常用的分布式方案"></a>常用的分布式方案</h2><h3 id="1、分布式应用和服务"><a href="#1、分布式应用和服务" class="headerlink" title="1、分布式应用和服务"></a>1、分布式应用和服务</h3><ul>
+<li>将应用和服务进行分层和分割，然后将应用和服务模块进行分布式部署。这样做不仅可以提高并发访问能力、减少数据库连接和资源消耗，还能使不同应用复用共同的服务，使业务易于扩展。</li>
+</ul>
+<h3 id="2、分布式静态资源"><a href="#2、分布式静态资源" class="headerlink" title="2、分布式静态资源"></a>2、分布式静态资源</h3><ul>
+<li>对网站的静态资源如JS、CSS、图片等资源进行分布式部署可以减轻应用服务器的负载压力，提高访问速度。</li>
+</ul>
+<h3 id="3、分布式数据和存储"><a href="#3、分布式数据和存储" class="headerlink" title="3、分布式数据和存储"></a>3、分布式数据和存储</h3><ul>
+<li>大型网站常常需要处理海量数据，单台计算机往往无法提供足够的内存空间，可以对这些数据进行分布式存储。</li>
+</ul>
+<h3 id="4、分布式计算"><a href="#4、分布式计算" class="headerlink" title="4、分布式计算"></a>4、分布式计算</h3><ul>
+<li>随着计算技术的发展，有些应用需要非常巨大的计算能力才能完成，如果采用集中式计算，需要耗费相当长的时间来完成。分布式计算将该应用分解成许多小的部分，分配给多台计算机进行处理。这样可以节约整体计算时间，大大提高计算效率。</li>
+</ul>
+<h2 id="分布式与集群"><a href="#分布式与集群" class="headerlink" title="分布式与集群"></a>分布式与集群</h2><ul>
+<li>分布式（distributed）是指在多台不同的服务器中部署不同的服务模块，通过远程调用协同工作，对外提供服务。</li>
+<li>集群（cluster）是指在多台不同的服务器中部署相同应用或服务模块，构成一个集群，通过负载均衡设备对外提供服务。</li>
+</ul>
+<h2 id="资料"><a href="#资料" class="headerlink" title="资料"></a>资料</h2><ul>
+<li>注：本文转载自<a href="http://www.hollischuang.com/archives/655" target="_blank" rel="noopener">http://www.hollischuang.com/archives/655</a></li>
+<li><a href="http://www.hollischuang.com/archives/655" target="_blank" rel="noopener">http://www.hollischuang.com/archives/655</a></li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/post/5101.html">初识分布式系统</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">一切随缘</a></p>
+        <p><span>发布时间:</span>2016-08-08, 17:38:39</p>
+        <p><span>最后更新:</span>2018-03-08, 23:48:24</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/post/5101.html" title="初识分布式系统">http://code.skyheng.com/post/5101.html</a>
+            <span class="copy-path" data-clipboard-text="原文: http://code.skyheng.com/post/5101.html　　作者: 一切随缘" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/post/28651.html">
+                    关于分布式一致性的探究
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/post/13879.html">
+                    用Excel生成和管理Markdown表格
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、集中式系统"><span class="toc-number">1.</span> <span class="toc-text">一、集中式系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、分布式系统-distributed-system"><span class="toc-number">2.</span> <span class="toc-text">二、分布式系统(distributed system)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、分布性"><span class="toc-number">2.1.</span> <span class="toc-text">1、分布性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、透明性"><span class="toc-number">2.2.</span> <span class="toc-text">2、透明性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、同一性"><span class="toc-number">2.3.</span> <span class="toc-text">3、同一性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4、通信性"><span class="toc-number">2.4.</span> <span class="toc-text">4、通信性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用的分布式方案"><span class="toc-number">3.</span> <span class="toc-text">常用的分布式方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、分布式应用和服务"><span class="toc-number">3.1.</span> <span class="toc-text">1、分布式应用和服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、分布式静态资源"><span class="toc-number">3.2.</span> <span class="toc-text">2、分布式静态资源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、分布式数据和存储"><span class="toc-number">3.3.</span> <span class="toc-text">3、分布式数据和存储</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4、分布式计算"><span class="toc-number">3.4.</span> <span class="toc-text">4、分布式计算</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分布式与集群"><span class="toc-number">4.</span> <span class="toc-text">分布式与集群</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#资料"><span class="toc-number">5.</span> <span class="toc-text">资料</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"初识分布式系统　| 一切随缘的技术博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+    
+
+    
+    
+
+    
+        <section class="changyan" id="comments">
+    <div id="SOHUCS" sid="post/5101.html" ></div>
+    <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+        <script type="text/javascript">
+            window.changyan.api.config({
+                appid: "cyts7t2el",
+                conf: "fb4aa871793bef5899de054a3902f3eb"
+            });
+        </script>
+    </script>
+</section>
+    
+
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/post/28651.html" title="上一篇: 关于分布式一致性的探究">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/post/13879.html" title="下一篇: 用Excel生成和管理Markdown表格">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/post/36308.html">MarkdownPad2在win10上安装及破解</a></li><li class="post-list-item"><a class="post-list-link" href="/post/61360.html">关系数据库常用SQL的详细用法</a></li><li class="post-list-item"><a class="post-list-link" href="/post/5372.html">Hexo部署在阿里云服务器上</a></li><li class="post-list-item"><a class="post-list-link" href="/post/55981.html">BigDecimal的用法详解及注意事项</a></li><li class="post-list-item"><a class="post-list-link" href="/post/4240.html">Java日期时间格式化转换符</a></li><li class="post-list-item"><a class="post-list-link" href="/post/46695.html">Hexo使用过程中常见问题记录</a></li><li class="post-list-item"><a class="post-list-link" href="/post/62692.html">PowerDesigner16应用</a></li><li class="post-list-item"><a class="post-list-link" href="/post/27822.html">怎样在虚拟机上安装Ubuntu17.10系统</a></li><li class="post-list-item"><a class="post-list-link" href="/post/55614.html">Java8 JDK1.8 API中文</a></li><li class="post-list-item"><a class="post-list-link" href="/post/8806.html">前端CDN公共库大全</a></li><li class="post-list-item"><a class="post-list-link" href="/post/25067.html">Shiro Freemarker标签的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/post/50779.html">Velocity与Freemarker比较</a></li><li class="post-list-item"><a class="post-list-link" href="/post/24506.html">Logback.xml常用配置详解</a></li><li class="post-list-item"><a class="post-list-link" href="/post/61394.html">Mysql数据库优化方法,千万级数据库记录查询轻松解决</a></li><li class="post-list-item"><a class="post-list-link" href="/post/49258.html">程序员，你为什么值这么多钱？</a></li><li class="post-list-item"><a class="post-list-link" href="/post/52661.html">数据库事务的四大特性以及事务的隔离级别</a></li><li class="post-list-item"><a class="post-list-link" href="/post/32480.html">从Request中获得参数Map返回可读的Map</a></li><li class="post-list-item"><a class="post-list-link" href="/post/56296.html">Win10常用的快捷键</a></li><li class="post-list-item"><a class="post-list-link" href="/post/25267.html">ZooKeeper常用命令介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/post/50164.html">ZooKeeper的安装与设置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/4103.html">收集的国内Maven镜像地址</a></li><li class="post-list-item"><a class="post-list-link" href="/post/47539.html">Windows下git pull批处理</a></li><li class="post-list-item"><a class="post-list-link" href="/post/8298.html">Git常用的操作命令</a></li><li class="post-list-item"><a class="post-list-link" href="/post/26220.html">python安装</a></li><li class="post-list-item"><a class="post-list-link" href="/post/46664.html">实例Demo之3D-Transform立方体效果</a></li><li class="post-list-item"><a class="post-list-link" href="/post/51910.html">Redis在Linux下的安装和配置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20294.html">Tomcat7优化配置参数</a></li><li class="post-list-item"><a class="post-list-link" href="/post/56640.html">一些好的技术博客,追随牛逼的人,让自己更牛逼</a></li><li class="post-list-item"><a class="post-list-link" href="/post/37438.html">国内外知名IT科技博客（强烈推荐）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/59806.html">Eclipse常用插件安装</a></li><li class="post-list-item"><a class="post-list-link" href="/post/33906.html">Eclipse安装JRebel6.4.8热部署插件教程</a></li><li class="post-list-item"><a class="post-list-link" href="/post/8028.html">JQuery的eval解析JSON中的注意点介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/post/28651.html">关于分布式一致性的探究</a></li><li class="post-list-item"><a class="post-list-link" href="/post/5101.html">初识分布式系统</a></li><li class="post-list-item"><a class="post-list-link" href="/post/13879.html">用Excel生成和管理Markdown表格</a></li><li class="post-list-item"><a class="post-list-link" href="/post/29405.html">Hexo最常用的几个命令</a></li><li class="post-list-item"><a class="post-list-link" href="/post/52802.html">GIT的常用操作命令</a></li><li class="post-list-item"><a class="post-list-link" href="/post/31797.html">常用软件与工具整理</a></li><li class="post-list-item"><a class="post-list-link" href="/post/23662.html">Linux常用命令大全</a></li><li class="post-list-item"><a class="post-list-link" href="/post/62293.html">在一个千万级的数据库查询中，如何提高查询效率？</a></li><li class="post-list-item"><a class="post-list-link" href="/post/60804.html">VMware中CentOS设置静态IP</a></li><li class="post-list-item"><a class="post-list-link" href="/post/9311.html">Tomcat8安装和配置以及优化</a></li><li class="post-list-item"><a class="post-list-link" href="/post/65527.html">【微信支付】“刷卡支付”、“被扫支付”开发JavaDemo</a></li><li class="post-list-item"><a class="post-list-link" href="/post/30401.html">【微信支付】“刷卡支付”、“被扫支付”开发说明</a></li><li class="post-list-item"><a class="post-list-link" href="/post/60927.html">Svn密码破解，Svn密码本地找回</a></li><li class="post-list-item"><a class="post-list-link" href="/post/26924.html">Subversion在Linux下的安装与配置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/56374.html">Mysql在Linux下的安装和配置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/24125.html">Maven在Linux下的安装和配置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/7577.html">在linux下的JDK安装和配置（基于阿里云服务器CentOS 6.5）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/59363.html">Nexus在linux下的安装和配置（基于阿里云服务器CentOS 6.5）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/4365.html">我的学习归纳方法（以学习Maven为例）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/53342.html">使用Github搭建Hexo技术博客--增强教程</a></li><li class="post-list-item"><a class="post-list-link" href="/post/4103.html">使用Github搭建Hexo技术博客--安装教程</a></li><li class="post-list-item"><a class="post-list-link" href="/post/2803.html">构建工具Maven相关知识整理专题</a></li><li class="post-list-item"><a class="post-list-link" href="/post/17946.html">JAVA中重写和重载区别</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2015-2018 一切随缘
+                <span>| </span>
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备16005473号-1</a>
+                <!--|| <span>博客全站共2字</span>-->
+            </div>
+            <div class="footer-right">
+                <a>
+                    
+                        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1273088600'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1273088600%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+                    
+                </a>
+                <span>| </span>
+                Hosted by <a href="https://pages.coding.me" style="font-weight: bold" target="_blank" >Coding Pages</a>
+				<!--
+                    <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>Theme
+                    <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE
+                    <i class="fa fa-heart animated infinite pulse"></i>
+                 -->
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+	<script type="text/javascript" src="/resources/love.js"></script>
+	<script type="text/javascript" src="/resources/float.js"></script>
+	<script type="text/javascript" src="/resources/typewriter.js"></script>
+	<script type="text/javascript" color=0,104,183 opacity=1 zindex=-1 count=50 src="/resources/particle.js"></script>
+
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+  </div>
+</body>
+</html>

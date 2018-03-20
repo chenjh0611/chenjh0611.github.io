@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="一切随缘" />
+
+
+
+<meta name="description" content="velocity与freemarker比较">
+<meta name="keywords" content="freemarker,velocity">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Velocity与Freemarker比较">
+<meta property="og:url" content="http://code.skyheng.com/post/50779.html">
+<meta property="og:site_name" content="一切随缘的技术博客">
+<meta property="og:description" content="velocity与freemarker比较">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-03-20T14:51:22.288Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Velocity与Freemarker比较">
+<meta name="twitter:description" content="velocity与freemarker比较">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="一切随缘的技术博客" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>Velocity与Freemarker比较 | 一切随缘的技术博客</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?d195b745077c1dbc09dacf43876b8f07";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">一切随缘</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">日拱一卒无有尽、功不唐捐终入海</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/pdf/">书籍</a></li>
+                        
+                            <li><a href="/toolbox/">工具箱</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:chenjh0611@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/chenjh0611" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" href="http://blog.csdn.net/skychenjh" title="CSDN"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI/">CI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/">ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centOS/">centOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css3/">css3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/database/">database</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dubbo/">dubbo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eclipse/">eclipse</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/excel/">excel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/freemarker/">freemarker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jdk/">jdk</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jrebel/">jrebel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/logback/">logback</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nexus/">nexus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/oracle/">oracle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plugin/">plugin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/powerDesigner/">powerDesigner</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rect/">rect</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scanpay/">scanpay</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shiro/">shiro</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/software/">software</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql/">sql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/table/">table</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tomcat/">tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/velocity/">velocity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vmware/">vmware</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/win10/">win10</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wxpay/">wxpay</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zooKeeper/">zooKeeper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式/">分布式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习方法/">学习方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/闲聊/">闲聊</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.skyheng.com/">MyBlog</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://theme.skyheng.com/">后台模板</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.jheng.top/">next博客</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于技术,专注于开发</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">一切随缘</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">一切随缘</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">日拱一卒无有尽、功不唐捐终入海</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/pdf/">书籍</a></li>
+                
+                    <li><a href="/toolbox/">工具箱</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:chenjh0611@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/chenjh0611" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/skychenjh" title="CSDN"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-2017-2017-06-11-Velocity与Freemarker比较" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/post/50779.html" class="article-date">
+      <time datetime="2017-06-11T05:15:42.000Z" itemprop="datePublished">2017-06-11</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Velocity与Freemarker比较
+    </h1>
+  
+
+		
+		   <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">2,707字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">10分</span>
+      </span>
+    </span>
+</div>
+		
+      </header>
+      
+      <div class="article-info article-info-post">
+		
+          <br>
+          <br>
+        
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/velocity/">velocity</a><a class="article-category-link" href="/categories/velocity/freemarker/">freemarker</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/freemarker/">freemarker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/velocity/">velocity</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>velocity与freemarker比较</p>
+<a id="more"></a>
+<ul>
+<li>相比较 FreeMarker 而言，Velocity 更加简单、轻量级，但它的功能却没有 FreeMarker 那么强大。<br>对于大部分的应用来说，使用 FreeMarker 比 Velocity 更简单，因为 Velocity 还必须编写一些自定义的toolbox类以及一遍遍重复的编写一些比较通用的模版代码，因此也就丧失了刚开始开发时更多的宝贵时间。另外使用工具类和变通的方法在模版引擎中似乎不是一个非常有效的做法。同时，Velocity 的做法使得在Velocity的模版中大量的跟 Java 对象进行交互，这违反了简单的原则，尽管你也可以将代码转入控制器中实现。当然，如果你像使用 Velocity 一样来使用 FreeMarker ，那么 FreeMarker 也可以跟 Velocity 一样简单。</li>
+<li>Velocity 一个优于 FreeMarker 的地方在于它有很广泛的第三方支持以及一个非常庞大的用户社区，你可以通过这个社区获得到很多的帮助，相反的 FreeMarker 在这方面要差很多。当然，也有越来越多的第三方软件开始在支持 FreeMarker 。</li>
+</ul>
+<hr>
+<ul>
+<li>下面是一些 FreeMarker 能做到的，而 Velocity 做不到的功能列表（且看着）：</li>
+</ul>
+<ol>
+<li><p>日期和数字的支持<br>您可以执行运算和比较，对任意数量的类型，包括任意精度类型，而不仅仅是整数。<br>您可以比较和显示（格式化）日期/时间值。</p>
+</li>
+<li><p>国际化<br>您可以格式数字区域，各种各样的内置和自定义数字格式模式。<br>您可以格式日期地区和时区，各种各样的内置和定制的日期格式模式。<br>标识符（变量名）可以包含非英语字母一样重音字母，阿拉伯字母，汉字等</p>
+</li>
+<li><p>循环处理<br>您可以退出循环<br>您可以访问控制变量外循环机构的内部循环<br>您可以得知当前是否到了循环的结束位置</p>
+</li>
+<li><p>模版级别的数组处理<br>您可以使用[i]的语法来访问数组元素，包括原始的和非原始的指数<br>可以获取到数组的长度</p>
+</li>
+<li><p>宏定义<br>宏调用可以通过位置或名称进行参数传递<br>宏的参数可以设定默认值，在调用宏时如果没有指定该参数，则使用默认值代替<br>通过 &lt;@myMacro&gt;body<a href="&#x6d;&#x61;&#105;&#x6c;&#116;&#x6f;&#58;&#47;&#64;&#109;&#x79;&#77;&#x61;&#x63;&#114;&#x6f;">&#47;&#64;&#109;&#x79;&#77;&#x61;&#x63;&#114;&#x6f;</a> 可以支持宏的嵌套<br>可以通过文本表达的“宏的名称”来直接调用某个宏<br>宏允许先使用再定义<br>宏可以定义局部变量（新版本的Velocity也通过#local指令来实现该功能，尽管官方的文档还没有进行介绍）</p>
+</li>
+<li><p>命名空间<br>您可以使用多个名称空间的变数。当您建立“宏库”时是非常有用的 ，因为可以防止名称冲突与申请特定变量或与其他宏变量的库。</p>
+</li>
+<li><p>内置与 Java 语言无关的字符串、列表、Map 的操作方法</p>
+</li>
+<li><p>能提示模版中的拼写错误以及其他错误<br>当访问一个不存在的变量时，FreeMarker 在执行该模版时会报错，通过配置，你可以指定 FreeMarker 在碰到此类错误时是停止执行，还是忽略该错误，同时 FreeMarker 会在日志中记录此问题；<br>如果您输入错误指令的名称，FreeMarker将抛出一个异常。</p>
+</li>
+<li><p>更高级的文本输出工具<br>You can enclose a block of template in a set of tags that will cause it to apply HTML escaping or XML escaping (or any other transformation you can express as a FreeMarker expression for that matter) on all interpolations (${foo}) in the block.<br>FreeMarker has transforms, which are blocks of template that when rendered, go through a transforming filter. Built-in transforms include whitespace compressor, HTML and XML escaper. Best of all, you can implement your own transformers as well (i.e. if you generate Java source code, you can write a Java code pretty-printer transform and insert it into the template). Naturally, transforms can be nested.<br>You can explicitly flush the output writer with a built-in flush-directive.<br>You can stop the rendering with a built-in stop-directive.</p>
+</li>
+<li><p>文本处理<br>支持Java的特殊字符处理，例如\b, \t, \n, \f, \r, \”, \’, \，以及UNICODE的\xXXXX<br>除了通常的字符串，数字，和布尔常量您可以定义列表和地图文字以及内部模板</p>
+</li>
+<li><p>高级的空格清除<br>FreeMarker 将删除一些多余的空格、跳格、换行等字符，从而消除一些令人厌烦的明显多余的空格<br>FreeMarker 也提供指令来删除多于的空格</p>
+</li>
+<li><p>与其他技术的集成<br>提供 JSP 标签库以便在 JSP 中嵌入 FreeMarker 模版<br>可以直接跟 Python 对象一起工作</p>
+</li>
+<li><p>更强大的XML转换功能</p>
+</li>
+<li><p>先进的模板元程序<br>您可以捕捉到输出的任意部分范本背景变量<br>您可以任意解释的范围变量，就好像它是一个模板定义</p>
+</li>
+</ol>
+<h2 id="velocity"><a href="#velocity" class="headerlink" title="velocity"></a>velocity</h2><ul>
+<li>是较早出现的用于代替jsp的模板语言<br><strong>优点：</strong><br>1、不能编写java代码，可以实现严格的mvc分离<br>2、性能良好，据说比jsp性能还要好些<br>3、使用表达式语言，据说jsp的表达式语言就是学velocity的<br><strong>缺点：</strong><br>1、不是官方标准<br>2、用户群体和第三方标签库没有jsp多。<br>3、对jsp标签支持不够好</li>
+</ul>
+<h2 id="freemarker"><a href="#freemarker" class="headerlink" title="freemarker"></a>freemarker</h2><p><strong>优点：</strong><br>1、不能编写java代码，可以实现严格的mvc分离<br>2、性能非常不错<br>3、对jsp标签支持良好<br>4、内置大量常用功能，使用非常方便<br>5、宏定义（类似jsp标签）非常方便<br>6、使用表达式语言<br><strong>缺点：</strong><br>1、不是官方标准<br>2、用户群体和第三方标签库没有jsp多</p>
+<ul>
+<li>选择freemarker的原因：</li>
+</ul>
+<ol>
+<li>性能。velocity应该是最好的，其次是jsp，普通的页面freemarker性能最差（虽然只是几毫秒到十几毫秒的差距）。但是在复杂页面上（包含大量判断、日期金额格式化）的页面上，freemarker的性能比使用tag和el的jsp好。</li>
+<li>宏定义比jsp tag方便</li>
+<li>内置大量常用功能。比如html过滤，日期金额格式化等等，使用非常方便</li>
+<li>支持jsp标签</li>
+<li>可以实现严格的mvc分离</li>
+</ol>
+<h2 id="FreeMarker的优点和缺点"><a href="#FreeMarker的优点和缺点" class="headerlink" title="FreeMarker的优点和缺点"></a>FreeMarker的优点和缺点</h2><h3 id="一、-FreeMarker简介"><a href="#一、-FreeMarker简介" class="headerlink" title="一、 FreeMarker简介"></a>一、 FreeMarker简介</h3><ul>
+<li>FreeMarker是一个用Java语言编写的模板引擎，它基于模板来生成文本输出。<br>所谓模板，就是一份已经写好了基本内容，有着固定格式的文档，其中空出或者用占位符标识的内容，由使用者来填充，不同的使用者给出的数据是不同的。在模板中的占位符，在模板运行时，由模板引擎来解析模板，并采用动态数据替换占位符部分的内容。<br>FreeMarker与Web容器无关，即在Web运行时，它并不知道Servlet或HTTP。它不仅可以用作表现层的实现技术，而且还可以用于生成XML，JSP或Java 文等。</li>
+</ul>
+<h3 id="二、-FreeMarker的优点和缺点"><a href="#二、-FreeMarker的优点和缺点" class="headerlink" title="二、 FreeMarker的优点和缺点"></a>二、 FreeMarker的优点和缺点</h3><ul>
+<li>(一) FreeMarker的优点</li>
+</ul>
+<ol>
+<li><p>使用FreeMarker的优点之一，可以彻底的分离表现层和业务逻辑。<br>使用JSP 开发过程中在页面中大量的存在业务逻辑的代码，使得页面内容凌乱，在后期大量的修改维护过程中就变得非常困难。<br>FreeMarker根本不支持Java脚本代码。<br>FreeMarker的原理就是：模板+数据模型=输出，模板只负责数据在页面中的表现，不涉及任何的逻辑代码，而所有的逻辑都是由数据模型来处理的。用户最终看到的输出是模板和数据模型合并后创建的。</p>
+</li>
+<li><p>使用FreeMarker的优点之二，可以提高开发效率。<br>在我们以往的开发中，使用的都是JSP 页面来展示数据的，即所谓的表现层。我们都知道，JSP在第一次执行的时候需要转换成Servlet类，开发阶段进行功能调适时，需要频繁的修改JSP，每次修改都要编译和转换，那么试想一天中我们浪费在程序编译的时间有多少。相对于JSP来说，FreeMarker模板技术不存在编译和转换的问题，所以就不会存在上述问题。而且开发过程中，我们在不必在等待界面设计开发人员完成页面原形后，我们再来开发程序。</p>
+</li>
+<li><p>使用FreeMarker的优点之三，使得开发过程中的人员分工更加明确。<br>以往用JSP展现数据时，作为程序员的我们，并不熟悉界面设计技术，反之界面开发人员，也并不熟悉程序语言。对两者而言，交替性的工作本身就有难度。有时候稍有不慎，可能会将某个页面元素删除或去掉了某个程序符号，使得页面走样或程序错误，这样就需要双方相互沟通协作，解决出现的问题。有时候因为项目中的时间，任务量等因素的存在，可能这个工作就由一个人来完成，这样就可能加大某一方开发人员的工作量。<br>使用FreeMarker后，作为界面开发人员，只专心创建HTML文件、图像以及Web页面的其他可视化方面，不用理会数据；而程序开发人员则专注于系统实现，负责为页面准备要显示的数据。</p>
+</li>
+</ol>
+<ul>
+<li>(二)FreeMarker的缺点</li>
+</ul>
+<ol>
+<li>使用FreeMarker的缺点之一，应用FreeMarker模板技术，在修改模板后，可能会看到已经过期的数据。如：生成静态的HTML页面后，如果一旦模板改变，而没有及时更新模板生成的HTML页面的话，用户看到的就是过期的数据。</li>
+<li>使用FreeMarker的缺点之二，FreeMarker模板技术在应用过程中，FreeMarker中的变量必须要赋值，如果不赋值，那么就会抛出异常。想避免错误就要应用if/elseif/else 指令进行判段，如果对每一个变量都判断的话，那么则反而增加了编程的麻烦。</li>
+<li>使用FreeMarker的缺点之三，FreeMarker的map限定key必须是string，其他数据类型无法操作</li>
+<li>使用FreeMarker的缺点之四，FreeMarker不支持集群应用。为了编成的方便性，把序列化的东西都放到了Session中，如Session，request等，在开发的过程中确实方便，但如果将应用放到集群中，就会出现错误。</li>
+</ol>
+<h2 id="资料"><a href="#资料" class="headerlink" title="资料"></a>资料</h2><p><a href="http://blog.csdn.net/jediael_lu/article/details/38010279" target="_blank" rel="noopener">http://blog.csdn.net/jediael_lu/article/details/38010279</a><br><a href="http://lishumingwm163-com.iteye.com/blog/933365" target="_blank" rel="noopener">http://lishumingwm163-com.iteye.com/blog/933365</a><br><a href="http://autumnice.blog.163.com/blog/static/5552002011912102954555/" target="_blank" rel="noopener">http://autumnice.blog.163.com/blog/static/5552002011912102954555/</a></p>
+<h2 id="注"><a href="#注" class="headerlink" title="注"></a>注</h2>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/post/50779.html">Velocity与Freemarker比较</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">一切随缘</a></p>
+        <p><span>发布时间:</span>2017-06-11, 13:15:42</p>
+        <p><span>最后更新:</span>2018-03-20, 22:51:22</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/post/50779.html" title="Velocity与Freemarker比较">http://code.skyheng.com/post/50779.html</a>
+            <span class="copy-path" data-clipboard-text="原文: http://code.skyheng.com/post/50779.html　　作者: 一切随缘" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/post/25067.html">
+                    Shiro Freemarker标签的使用
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/post/24506.html">
+                    Logback.xml常用配置详解
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#velocity"><span class="toc-number">1.</span> <span class="toc-text">velocity</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#freemarker"><span class="toc-number">2.</span> <span class="toc-text">freemarker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FreeMarker的优点和缺点"><span class="toc-number">3.</span> <span class="toc-text">FreeMarker的优点和缺点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、-FreeMarker简介"><span class="toc-number">3.1.</span> <span class="toc-text">一、 FreeMarker简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、-FreeMarker的优点和缺点"><span class="toc-number">3.2.</span> <span class="toc-text">二、 FreeMarker的优点和缺点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#资料"><span class="toc-number">4.</span> <span class="toc-text">资料</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注"><span class="toc-number">5.</span> <span class="toc-text">注</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Velocity与Freemarker比较　| 一切随缘的技术博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+    
+
+    
+    
+
+    
+        <section class="changyan" id="comments">
+    <div id="SOHUCS" sid="post/50779.html" ></div>
+    <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+        <script type="text/javascript">
+            window.changyan.api.config({
+                appid: "cyts7t2el",
+                conf: "fb4aa871793bef5899de054a3902f3eb"
+            });
+        </script>
+    </script>
+</section>
+    
+
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/post/25067.html" title="上一篇: Shiro Freemarker标签的使用">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/post/24506.html" title="下一篇: Logback.xml常用配置详解">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/post/36308.html">MarkdownPad2在win10上安装及破解</a></li><li class="post-list-item"><a class="post-list-link" href="/post/61360.html">关系数据库常用SQL的详细用法</a></li><li class="post-list-item"><a class="post-list-link" href="/post/5372.html">Hexo部署在阿里云服务器上</a></li><li class="post-list-item"><a class="post-list-link" href="/post/55981.html">BigDecimal的用法详解及注意事项</a></li><li class="post-list-item"><a class="post-list-link" href="/post/4240.html">Java日期时间格式化转换符</a></li><li class="post-list-item"><a class="post-list-link" href="/post/46695.html">Hexo使用过程中常见问题记录</a></li><li class="post-list-item"><a class="post-list-link" href="/post/62692.html">PowerDesigner16应用</a></li><li class="post-list-item"><a class="post-list-link" href="/post/27822.html">怎样在虚拟机上安装Ubuntu17.10系统</a></li><li class="post-list-item"><a class="post-list-link" href="/post/55614.html">Java8 JDK1.8 API中文</a></li><li class="post-list-item"><a class="post-list-link" href="/post/8806.html">前端CDN公共库大全</a></li><li class="post-list-item"><a class="post-list-link" href="/post/25067.html">Shiro Freemarker标签的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/post/50779.html">Velocity与Freemarker比较</a></li><li class="post-list-item"><a class="post-list-link" href="/post/24506.html">Logback.xml常用配置详解</a></li><li class="post-list-item"><a class="post-list-link" href="/post/61394.html">Mysql数据库优化方法,千万级数据库记录查询轻松解决</a></li><li class="post-list-item"><a class="post-list-link" href="/post/49258.html">程序员，你为什么值这么多钱？</a></li><li class="post-list-item"><a class="post-list-link" href="/post/52661.html">数据库事务的四大特性以及事务的隔离级别</a></li><li class="post-list-item"><a class="post-list-link" href="/post/32480.html">从Request中获得参数Map返回可读的Map</a></li><li class="post-list-item"><a class="post-list-link" href="/post/56296.html">Win10常用的快捷键</a></li><li class="post-list-item"><a class="post-list-link" href="/post/25267.html">ZooKeeper常用命令介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/post/50164.html">ZooKeeper的安装与设置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/4103.html">收集的国内Maven镜像地址</a></li><li class="post-list-item"><a class="post-list-link" href="/post/47539.html">Windows下git pull批处理</a></li><li class="post-list-item"><a class="post-list-link" href="/post/8298.html">Git常用的操作命令</a></li><li class="post-list-item"><a class="post-list-link" href="/post/26220.html">python安装</a></li><li class="post-list-item"><a class="post-list-link" href="/post/46664.html">实例Demo之3D-Transform立方体效果</a></li><li class="post-list-item"><a class="post-list-link" href="/post/51910.html">Redis在Linux下的安装和配置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20294.html">Tomcat7优化配置参数</a></li><li class="post-list-item"><a class="post-list-link" href="/post/56640.html">一些好的技术博客,追随牛逼的人,让自己更牛逼</a></li><li class="post-list-item"><a class="post-list-link" href="/post/37438.html">国内外知名IT科技博客（强烈推荐）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/59806.html">Eclipse常用插件安装</a></li><li class="post-list-item"><a class="post-list-link" href="/post/33906.html">Eclipse安装JRebel6.4.8热部署插件教程</a></li><li class="post-list-item"><a class="post-list-link" href="/post/8028.html">JQuery的eval解析JSON中的注意点介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/post/28651.html">关于分布式一致性的探究</a></li><li class="post-list-item"><a class="post-list-link" href="/post/5101.html">初识分布式系统</a></li><li class="post-list-item"><a class="post-list-link" href="/post/13879.html">用Excel生成和管理Markdown表格</a></li><li class="post-list-item"><a class="post-list-link" href="/post/29405.html">Hexo最常用的几个命令</a></li><li class="post-list-item"><a class="post-list-link" href="/post/52802.html">GIT的常用操作命令</a></li><li class="post-list-item"><a class="post-list-link" href="/post/31797.html">常用软件与工具整理</a></li><li class="post-list-item"><a class="post-list-link" href="/post/23662.html">Linux常用命令大全</a></li><li class="post-list-item"><a class="post-list-link" href="/post/62293.html">在一个千万级的数据库查询中，如何提高查询效率？</a></li><li class="post-list-item"><a class="post-list-link" href="/post/60804.html">VMware中CentOS设置静态IP</a></li><li class="post-list-item"><a class="post-list-link" href="/post/9311.html">Tomcat8安装和配置以及优化</a></li><li class="post-list-item"><a class="post-list-link" href="/post/65527.html">【微信支付】“刷卡支付”、“被扫支付”开发JavaDemo</a></li><li class="post-list-item"><a class="post-list-link" href="/post/30401.html">【微信支付】“刷卡支付”、“被扫支付”开发说明</a></li><li class="post-list-item"><a class="post-list-link" href="/post/60927.html">Svn密码破解，Svn密码本地找回</a></li><li class="post-list-item"><a class="post-list-link" href="/post/26924.html">Subversion在Linux下的安装与配置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/56374.html">Mysql在Linux下的安装和配置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/24125.html">Maven在Linux下的安装和配置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/7577.html">在linux下的JDK安装和配置（基于阿里云服务器CentOS 6.5）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/59363.html">Nexus在linux下的安装和配置（基于阿里云服务器CentOS 6.5）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/4365.html">我的学习归纳方法（以学习Maven为例）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/53342.html">使用Github搭建Hexo技术博客--增强教程</a></li><li class="post-list-item"><a class="post-list-link" href="/post/4103.html">使用Github搭建Hexo技术博客--安装教程</a></li><li class="post-list-item"><a class="post-list-link" href="/post/2803.html">构建工具Maven相关知识整理专题</a></li><li class="post-list-item"><a class="post-list-link" href="/post/17946.html">JAVA中重写和重载区别</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2015-2018 一切随缘
+                <span>| </span>
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备16005473号-1</a>
+                <!--|| <span>博客全站共2字</span>-->
+            </div>
+            <div class="footer-right">
+                <a>
+                    
+                        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1273088600'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1273088600%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+                    
+                </a>
+                <span>| </span>
+                Hosted by <a href="https://pages.coding.me" style="font-weight: bold" target="_blank" >Coding Pages</a>
+				<!--
+                    <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>Theme
+                    <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE
+                    <i class="fa fa-heart animated infinite pulse"></i>
+                 -->
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+	<script type="text/javascript" src="/resources/love.js"></script>
+	<script type="text/javascript" src="/resources/float.js"></script>
+	<script type="text/javascript" src="/resources/typewriter.js"></script>
+	<script type="text/javascript" color=0,104,183 opacity=1 zindex=-1 count=50 src="/resources/particle.js"></script>
+
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+  </div>
+</body>
+</html>

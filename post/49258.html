@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="一切随缘" />
+
+
+
+<meta name="description" content="听说一段时间不加薪，人就会开始思考起和工资有关的问题。消费水平又提升了，能力也进步了，经验也更多了，怎么还没涨工资呢？">
+<meta name="keywords" content="随笔,闲聊">
+<meta property="og:type" content="article">
+<meta property="og:title" content="程序员，你为什么值这么多钱？">
+<meta property="og:url" content="http://code.skyheng.com/post/49258.html">
+<meta property="og:site_name" content="一切随缘的技术博客">
+<meta property="og:description" content="听说一段时间不加薪，人就会开始思考起和工资有关的问题。消费水平又提升了，能力也进步了，经验也更多了，怎么还没涨工资呢？">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://img.skyheng.com/why-programer-deserve-so-much-money.jpg">
+<meta property="og:updated_time" content="2018-03-20T14:50:32.862Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="程序员，你为什么值这么多钱？">
+<meta name="twitter:description" content="听说一段时间不加薪，人就会开始思考起和工资有关的问题。消费水平又提升了，能力也进步了，经验也更多了，怎么还没涨工资呢？">
+<meta name="twitter:image" content="http://img.skyheng.com/why-programer-deserve-so-much-money.jpg">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="一切随缘的技术博客" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>程序员，你为什么值这么多钱？ | 一切随缘的技术博客</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?d195b745077c1dbc09dacf43876b8f07";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">一切随缘</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">日拱一卒无有尽、功不唐捐终入海</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/pdf/">书籍</a></li>
+                        
+                            <li><a href="/toolbox/">工具箱</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:chenjh0611@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/chenjh0611" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" href="http://blog.csdn.net/skychenjh" title="CSDN"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI/">CI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/">ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centOS/">centOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css3/">css3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/database/">database</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dubbo/">dubbo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eclipse/">eclipse</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/excel/">excel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/freemarker/">freemarker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jdk/">jdk</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jrebel/">jrebel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/logback/">logback</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nexus/">nexus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/oracle/">oracle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plugin/">plugin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/powerDesigner/">powerDesigner</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rect/">rect</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scanpay/">scanpay</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shiro/">shiro</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/software/">software</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql/">sql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/table/">table</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tomcat/">tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/velocity/">velocity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vmware/">vmware</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/win10/">win10</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wxpay/">wxpay</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zooKeeper/">zooKeeper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式/">分布式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习方法/">学习方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/闲聊/">闲聊</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.skyheng.com/">MyBlog</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://theme.skyheng.com/">后台模板</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.jheng.top/">next博客</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于技术,专注于开发</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">一切随缘</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">一切随缘</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">日拱一卒无有尽、功不唐捐终入海</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/pdf/">书籍</a></li>
+                
+                    <li><a href="/toolbox/">工具箱</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:chenjh0611@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/chenjh0611" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/skychenjh" title="CSDN"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-2017-2017-03-12-程序员你为什么值这么多钱" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/post/49258.html" class="article-date">
+      <time datetime="2017-03-12T14:28:37.000Z" itemprop="datePublished">2017-03-12</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      程序员，你为什么值这么多钱？
+    </h1>
+  
+
+		
+		   <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">3,327字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">11分</span>
+      </span>
+    </span>
+</div>
+		
+      </header>
+      
+      <div class="article-info article-info-post">
+		
+          <br>
+          <br>
+        
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/随笔/">随笔</a><a class="article-category-link" href="/categories/随笔/闲聊/">闲聊</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/闲聊/">闲聊</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>听说一段时间不加薪，人就会开始思考起和工资有关的问题。消费水平又提升了，能力也进步了，经验也更多了，怎么还没涨工资呢？</p>
+<a id="more"></a>
+<p><img src="http://img.skyheng.com/why-programer-deserve-so-much-money.jpg" alt=""></p>
+<p>近两年，有了点余钱就开始考虑起投资来，比如：投资股票首先需要判断的就是关于公司价值和价格的关系。回到个人身上，似乎工资也就是个人价值在市场上的一个价格。那我们的工资是如何被定义或确定的？</p>
+<p>因为我的程序员职业背景，下面就以这个职业为例来分析下这个问题。</p>
+<h3 id="表象与实质"><a href="#表象与实质" class="headerlink" title="表象与实质"></a>表象与实质</h3><p>工资的高低给我们的感觉似乎和你的技能、经验呈一个正比关系。毕竟每次找工作面试的时候，考察的都是候选人的技能、经验相关水平，然后给予一个相应的级别，最后确定一个工资范围。而且一般有正规工资体系的公司，都会按照专业水平划分能力级别，以此对应不同的工资等级。</p>
+<p>这个对应关系是我们能观察到的一个现象，且有切身的体会。所以很直觉的就会把工资高低和我们的技能水平、经验值关联起来。工作初期的很长那么一段时间内我都是这么以为的。</p>
+<p>因而，当刚工作了两三年后，技能水平迅猛提升、经验值飞速增长，这个阶段属于<a href="http://mp.weixin.qq.com/s?__biz=MzAxMTEyOTQ5OQ==&amp;mid=2650610717&amp;idx=1&amp;sn=f23d1afadab0c22249eab5f332cd0677&amp;chksm=834c7be9b43bf2ff13e168b25b319348da2f47d9df358721971b47f227322ee293551a6fba6c" target="_blank" rel="noopener">《两种增长类型》</a>中的对数增长初期。上升曲线特别陡峭，而工资的增长呢，则属于指数增长的初期，几乎感觉不到增长，自我感觉是技能和经验已经翻倍，但工资似乎还在原地或就涨了 20%。</p>
+<p>其中有个例外就是校招，校招刚毕业的同学的工资有可能比毕业工作了两三年的同学更高，出现倒挂现象。这在大公司的校招比较常见，这里决定工资高低的，和经验技能无关，只和公司的人才储备、市场竞争、品牌宣传有关。</p>
+<p>所以，工资和技能经验的直观关系仅仅是一个表象，那么它的实质是什么呢？曾经读到刘润的一篇文章，其中写道：</p>
+<blockquote>
+<p>工资不是用来支付给技能的，不要以为技能越高、工资自然应该越高。<br>工资是用来支付给责任的，责任越大，工资越高。<br>涨工资，是因为承担了更大的责任。</p>
+</blockquote>
+<p>上面所说正是工资的实质。所以，站在公司的角度，它会设计很多不同的岗位，有管理岗、有各种专业系列岗，而每个岗位又对应不同的职责。而岗位职责对技能和经验的要求决定了该岗位的工资范围，也决定了整个公司的人力成本范围。</p>
+<p>搞清楚了工资的实质，就明白涨工资是怎么回事了。涨工资，一种是岗位职责工资范围内的调节，毕竟如果长时间不涨，也不利于人员稳定。另一种是，升级到更高级别岗位，这种除了当下领到的工资涨了，而潜在的可涨的工资范围也提高了。所以，有时你的技能提升后，但公司业务发展没那么快，不能提供更高级别的岗位职责，工资也就涨不上去了。</p>
+<p>另一个误解是，工资跟我的表现有关。今年工作很努力，表现很好，年底了公司业绩也很好，就会预期涨工资。但前面说了工资是支付给责任的，不取决于你的表现。这种情况一般通过发奖金来奖励突出的业绩，这属于短期激励，当然也有公司会在岗位职责工资范围内适当调节提升以保持长期激励。</p>
+<p>对于管理岗位，因为经理人不属于个人贡献者，所以其工资的一部分通常和团队绩效绑定，称为“绩效奖金”。这个奖金一般在管理岗的全部薪酬中的百分比会随着薪酬的增加而增加，比如：高层可能占到 50%，而中层占到 20%-30%。前 Intel CEO 安迪·格鲁夫说过：</p>
+<blockquote>
+<p>每一份工作所包含的最大价值都是有限的，不管一个人在这个职位上待了多久，最后总会达到薪资的上限。</p>
+</blockquote>
+<p>这个上限就是岗位工资范围的天花板。而外部市场会提供一些工资立即涨 50% 甚至翻倍的机会。面对这种机会时，先不要自大的以为你的价值被低估了，心想你看外面市场给了翻倍的价格。很可能是这样的，外部公司出现了岗位空缺，考虑到公司业务正快速发展的时间和市场机会成本，所以会开出一个高于一般市场价格的工资水平来迅速补缺。另外，空缺的岗位职责实际可能比你在当前公司的职责更大，你还要考虑自己能否承担得起。别通过了面试，最后却过不了试用期，仅领了三个月或半年的翻倍工资，实际是得不偿失的。</p>
+<p>认清自己，认清工资的本质。</p>
+<h3 id="价值与价格"><a href="#价值与价格" class="headerlink" title="价值与价格"></a>价值与价格</h3><p>程序员提供的是软件开发这种技术服务，而为了提供这种服务需要相当长时间的知识、技能和经验的积累。获得具备提供这类服务所需的学习和实践的时间构成了我们的「技能成本」，这形成了价值的一部分。</p>
+<p>而公司支付给程序员的工资就是提供技术服务的市场零售价。既然提到了「市场零售价」这个概念，想一想，市场上有没有同类的，成本差距不大的商品，零售价却可以差距巨大，这是为什么？</p>
+<p>我想到的是：女士皮包。曾经看到过一个案例：</p>
+<blockquote>
+<p>北京新光天地的某著名奢侈品专卖店遭遇盗窃，据说一个零售价好几万的包包被偷了。店长报警，但最终警方并没有刑事立案，因为那个包包的成本进价不过几百块钱。</p>
+</blockquote>
+<p>而在程序员提供技术服务的市场上也存在类似情况，技能经验水平差不多，但工资（零售价）差别巨大的个体。思考下包包的例子就明白了，奢侈品包包除了材料成本，还有什么成本？客户之所以要买这个奢侈品包包，最大的成本不在材料，而是在客户的头脑中建立起关于这个包包的品牌信息并形成一种对客户有独特价值的认知，这属于另一种成本：「传递成本」。</p>
+<p><strong>那么，程序员也有两个成本：</strong></p>
+<ul>
+<li><p><strong>技能成本：专注于提供技术和服务本身所占用的时间和注意力。</strong></p>
+</li>
+<li><p><strong>传递成本：让你潜在的“客户”知道你所能提供的技术和服务的价值占用的时间和注意力。</strong></p>
+</li>
+</ul>
+<p>这里有个案例很形象的说明两者的关系：</p>
+<blockquote>
+<p>2003 年，一群海洋科学家历时三年，花费了三百万美元研究经费，完成了一份关于美国海岸环境状况的报告。这份报告反映了巨大的环境问题，可以说是触目惊心，所以参与研究的科学家都认为此报告一出必然石破天惊，成为每晚电视新闻主题，登上《时代周刊》的封面，等着被记者采访轰炸。结果除了纽约时报在二十二版给了个报道，报告几乎没有引起任何反响，这件事就这么结束了。</p>
+</blockquote>
+<p>花费了三百万美元研究经费，但仅有 3% 用于宣传，所以毫无影响力。这个案例之中，97% 的研究经费相当于「技能成本」，而用于宣传的 3% 相当于「传递成本」。当二者差距悬殊时，即使很有价值的东西也很难被市场所知晓，无法实现价值最大化。传递价值也需要成本，而且成本不低，正所谓酒香也怕巷子深。</p>
+<p>所以，有人总是感觉自己被低估，因为他正巧知道了另一个和自己技术差不多的人，似乎只是人际关系更好反而获得的零售价更高。而程序员这类技术人员倾向于高估自身的价值，而认为市场低估了自己的价格，往往是因为对传递价值部分的成本没有足够的认识。</p>
+<p>这两个成本最终都会成为你价值的一部分，而且市场上确实会为此埋单。两个技能水平相当的程序员，一个在市场上默默无闻，一个在市场上拥有相当的影响力并占据了潜在客户的头脑。当后者要去市场上出售时，零售价通常会更高。</p>
+<p>搞清楚了价值的两个成本，就能很好的理解其价格了。思考下，为什么程序员在一线城市的人力和生活成本高居不下，企业还是要在一线城市最贵的写字楼扎堆？</p>
+<p>我的理解就是这两个成本的原因。程序员的技能成本大量依赖一线城市的高校教育资源。而程序员群体的普遍特性是忽视传递成本，那么企业只好在其扎堆的地方以最小化传递成本。因为考虑市场的时间和机会成本足以覆盖一线城市相对二三线城市的人力成本差价的。</p>
+<p>市场上的商品有两种销售方式：</p>
+<ul>
+<li><p>卖的更多：大型卖场，薄利多销。</p>
+</li>
+<li><p>卖的更贵：奢侈品，相对成本一百倍的毛利。</p>
+</li>
+</ul>
+<p>程序员提供的技术服务因为无法卖的更多，所以只有一种选择，像奢侈品一样卖的更贵，前提是学会像奢侈品牌一样思考。</p>
+<h3 id="发展与变化"><a href="#发展与变化" class="headerlink" title="发展与变化"></a>发展与变化</h3><p>有时价值没变化，但工资也可能会一直涨。从现在起你即使停止技能增长，只是维持技能不被市场淘汰。在可预见的未来十多年，你的工资还会翻好几倍。这有两个原因：</p>
+<ol>
+<li><p>货币是保持贬值趋势的</p>
+</li>
+<li><p>人口抚养比变化</p>
+</li>
+</ol>
+<p>人口抚养比，是一个国家非劳动的人口占总人口的比率。来自国家信息中心的数据，2011 年是中国人口红利发生转折的一年，从这年开始，总抚养比由降转升，2011 年为 34.4%，2012 年为 34.9%。这是劳动年龄人口相当长时期第一次出现了绝对下降，这意味着中国 15 岁以上不满 60 周岁的劳动年龄人口，在 2030 年以前将稳步地有所减少，中国已经面临“人口红利”逐步消退的压力。</p>
+<p>简单说，就是 2016 年，14 亿人有 5 亿无法工作，人口抚养比 5/14=35.7%。如果 60 岁退休政策不变的话，2030 年大概会反过来，5 亿人工作养 9 亿无法工作（未成年、退休）的人。按这个趋势和经济规律，好消息是劳动力供给减少价格自然会上升；坏消息是，劳动强度和压力会更大，毕竟一个劳动人口差不多要养活两个非劳动人口。</p>
+<p>另外一个值得关注的可能就是人工智能的发展，需要多少年，对人的替代因素能达到一个不可忽视的比例？这一点暂时只能且行且看吧。</p>
+<p>…</p>
+<p>关于工资，我们从表象到本质，从价格到价值，从当下到未来逐步看清了其中的真实。那么就只需客观面对这个真实，按照经济规律行事，理解市场定价原则。再积极一些，尽可能高效率的提高个人价值产出率，但也要认识到工资的“玻璃天花板”。</p>
+<p>还记得前面提及的<a href="http://mp.weixin.qq.com/s?__biz=MzAxMTEyOTQ5OQ==&amp;mid=2650610717&amp;idx=1&amp;sn=f23d1afadab0c22249eab5f332cd0677&amp;chksm=834c7be9b43bf2ff13e168b25b319348da2f47d9df358721971b47f227322ee293551a6fba6c" target="_blank" rel="noopener">《两种增长类型》</a>吗？不幸的是工资增长符合对数曲线，但价值增长是可以有办法走指数曲线的，跨过了指数增长的拐点再兑现价值，收入就会突破工资增长的天花板。</p>
+<p>至于如何做？还没有清晰的思考认知，倒是觉得和菜头这句话很有道理：</p>
+<blockquote>
+<p>因为只有真正认识你价值的人，最终才会成为你价值的一部分。</p>
+</blockquote>
+<p>当然，如果你还在对数增长的陡峭期，那么就简单了，先让工资增长到天花板附近吧。</p>
+<hr>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/post/49258.html">程序员，你为什么值这么多钱？</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">一切随缘</a></p>
+        <p><span>发布时间:</span>2017-03-12, 22:28:37</p>
+        <p><span>最后更新:</span>2018-03-20, 22:50:32</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/post/49258.html" title="程序员，你为什么值这么多钱？">http://code.skyheng.com/post/49258.html</a>
+            <span class="copy-path" data-clipboard-text="原文: http://code.skyheng.com/post/49258.html　　作者: 一切随缘" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/post/61394.html">
+                    Mysql数据库优化方法,千万级数据库记录查询轻松解决
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/post/52661.html">
+                    数据库事务的四大特性以及事务的隔离级别
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#表象与实质"><span class="toc-number">1.</span> <span class="toc-text">表象与实质</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#价值与价格"><span class="toc-number">2.</span> <span class="toc-text">价值与价格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#发展与变化"><span class="toc-number">3.</span> <span class="toc-text">发展与变化</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"程序员，你为什么值这么多钱？　| 一切随缘的技术博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+    
+
+    
+    
+
+    
+        <section class="changyan" id="comments">
+    <div id="SOHUCS" sid="post/49258.html" ></div>
+    <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+        <script type="text/javascript">
+            window.changyan.api.config({
+                appid: "cyts7t2el",
+                conf: "fb4aa871793bef5899de054a3902f3eb"
+            });
+        </script>
+    </script>
+</section>
+    
+
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/post/61394.html" title="上一篇: Mysql数据库优化方法,千万级数据库记录查询轻松解决">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/post/52661.html" title="下一篇: 数据库事务的四大特性以及事务的隔离级别">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/post/36308.html">MarkdownPad2在win10上安装及破解</a></li><li class="post-list-item"><a class="post-list-link" href="/post/61360.html">关系数据库常用SQL的详细用法</a></li><li class="post-list-item"><a class="post-list-link" href="/post/5372.html">Hexo部署在阿里云服务器上</a></li><li class="post-list-item"><a class="post-list-link" href="/post/55981.html">BigDecimal的用法详解及注意事项</a></li><li class="post-list-item"><a class="post-list-link" href="/post/4240.html">Java日期时间格式化转换符</a></li><li class="post-list-item"><a class="post-list-link" href="/post/46695.html">Hexo使用过程中常见问题记录</a></li><li class="post-list-item"><a class="post-list-link" href="/post/62692.html">PowerDesigner16应用</a></li><li class="post-list-item"><a class="post-list-link" href="/post/27822.html">怎样在虚拟机上安装Ubuntu17.10系统</a></li><li class="post-list-item"><a class="post-list-link" href="/post/55614.html">Java8 JDK1.8 API中文</a></li><li class="post-list-item"><a class="post-list-link" href="/post/8806.html">前端CDN公共库大全</a></li><li class="post-list-item"><a class="post-list-link" href="/post/25067.html">Shiro Freemarker标签的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/post/50779.html">Velocity与Freemarker比较</a></li><li class="post-list-item"><a class="post-list-link" href="/post/24506.html">Logback.xml常用配置详解</a></li><li class="post-list-item"><a class="post-list-link" href="/post/61394.html">Mysql数据库优化方法,千万级数据库记录查询轻松解决</a></li><li class="post-list-item"><a class="post-list-link" href="/post/49258.html">程序员，你为什么值这么多钱？</a></li><li class="post-list-item"><a class="post-list-link" href="/post/52661.html">数据库事务的四大特性以及事务的隔离级别</a></li><li class="post-list-item"><a class="post-list-link" href="/post/32480.html">从Request中获得参数Map返回可读的Map</a></li><li class="post-list-item"><a class="post-list-link" href="/post/56296.html">Win10常用的快捷键</a></li><li class="post-list-item"><a class="post-list-link" href="/post/25267.html">ZooKeeper常用命令介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/post/50164.html">ZooKeeper的安装与设置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/4103.html">收集的国内Maven镜像地址</a></li><li class="post-list-item"><a class="post-list-link" href="/post/47539.html">Windows下git pull批处理</a></li><li class="post-list-item"><a class="post-list-link" href="/post/8298.html">Git常用的操作命令</a></li><li class="post-list-item"><a class="post-list-link" href="/post/26220.html">python安装</a></li><li class="post-list-item"><a class="post-list-link" href="/post/46664.html">实例Demo之3D-Transform立方体效果</a></li><li class="post-list-item"><a class="post-list-link" href="/post/51910.html">Redis在Linux下的安装和配置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20294.html">Tomcat7优化配置参数</a></li><li class="post-list-item"><a class="post-list-link" href="/post/56640.html">一些好的技术博客,追随牛逼的人,让自己更牛逼</a></li><li class="post-list-item"><a class="post-list-link" href="/post/37438.html">国内外知名IT科技博客（强烈推荐）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/59806.html">Eclipse常用插件安装</a></li><li class="post-list-item"><a class="post-list-link" href="/post/33906.html">Eclipse安装JRebel6.4.8热部署插件教程</a></li><li class="post-list-item"><a class="post-list-link" href="/post/8028.html">JQuery的eval解析JSON中的注意点介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/post/28651.html">关于分布式一致性的探究</a></li><li class="post-list-item"><a class="post-list-link" href="/post/5101.html">初识分布式系统</a></li><li class="post-list-item"><a class="post-list-link" href="/post/13879.html">用Excel生成和管理Markdown表格</a></li><li class="post-list-item"><a class="post-list-link" href="/post/29405.html">Hexo最常用的几个命令</a></li><li class="post-list-item"><a class="post-list-link" href="/post/52802.html">GIT的常用操作命令</a></li><li class="post-list-item"><a class="post-list-link" href="/post/31797.html">常用软件与工具整理</a></li><li class="post-list-item"><a class="post-list-link" href="/post/23662.html">Linux常用命令大全</a></li><li class="post-list-item"><a class="post-list-link" href="/post/62293.html">在一个千万级的数据库查询中，如何提高查询效率？</a></li><li class="post-list-item"><a class="post-list-link" href="/post/60804.html">VMware中CentOS设置静态IP</a></li><li class="post-list-item"><a class="post-list-link" href="/post/9311.html">Tomcat8安装和配置以及优化</a></li><li class="post-list-item"><a class="post-list-link" href="/post/65527.html">【微信支付】“刷卡支付”、“被扫支付”开发JavaDemo</a></li><li class="post-list-item"><a class="post-list-link" href="/post/30401.html">【微信支付】“刷卡支付”、“被扫支付”开发说明</a></li><li class="post-list-item"><a class="post-list-link" href="/post/60927.html">Svn密码破解，Svn密码本地找回</a></li><li class="post-list-item"><a class="post-list-link" href="/post/26924.html">Subversion在Linux下的安装与配置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/56374.html">Mysql在Linux下的安装和配置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/24125.html">Maven在Linux下的安装和配置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/7577.html">在linux下的JDK安装和配置（基于阿里云服务器CentOS 6.5）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/59363.html">Nexus在linux下的安装和配置（基于阿里云服务器CentOS 6.5）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/4365.html">我的学习归纳方法（以学习Maven为例）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/53342.html">使用Github搭建Hexo技术博客--增强教程</a></li><li class="post-list-item"><a class="post-list-link" href="/post/4103.html">使用Github搭建Hexo技术博客--安装教程</a></li><li class="post-list-item"><a class="post-list-link" href="/post/2803.html">构建工具Maven相关知识整理专题</a></li><li class="post-list-item"><a class="post-list-link" href="/post/17946.html">JAVA中重写和重载区别</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2015-2018 一切随缘
+                <span>| </span>
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备16005473号-1</a>
+                <!--|| <span>博客全站共2字</span>-->
+            </div>
+            <div class="footer-right">
+                <a>
+                    
+                        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1273088600'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1273088600%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+                    
+                </a>
+                <span>| </span>
+                Hosted by <a href="https://pages.coding.me" style="font-weight: bold" target="_blank" >Coding Pages</a>
+				<!--
+                    <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>Theme
+                    <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE
+                    <i class="fa fa-heart animated infinite pulse"></i>
+                 -->
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+	<script type="text/javascript" src="/resources/love.js"></script>
+	<script type="text/javascript" src="/resources/float.js"></script>
+	<script type="text/javascript" src="/resources/typewriter.js"></script>
+	<script type="text/javascript" color=0,104,183 opacity=1 zindex=-1 count=50 src="/resources/particle.js"></script>
+
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+  </div>
+</body>
+</html>

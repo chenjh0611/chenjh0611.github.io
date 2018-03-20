@@ -1,0 +1,11 @@
+User-Agent: *
+Allow: /
+Disallow: /background
+Disallow: /css
+Disallow: /fancybox
+Disallow: /font-awesome
+Disallow: /img
+Disallow: /js
+Disallow: /resources
+Sitemap: http://code.skyheng.com/sitemap.xml
+Sitemap: http://code.skyheng.com/baidusitemap.xml

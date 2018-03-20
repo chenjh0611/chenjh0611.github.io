@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="一切随缘" />
+
+
+
+<meta name="description" content="记录一些大牛的博客及技术文章，宁可十年不将军,不可一日不拱卒，所以勤奋学习技术，跟随牛逼的人脚步“忍辱负屈”，要成为一名大牛，养兵10年，有朝一日定当所向披靡，使旁人闻风丧胆，你都不去逼下自己，怎么会知道自己有多厉害，要定个小目标，例如先写写博客。">
+<meta name="keywords" content="学习方法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一些好的技术博客,追随牛逼的人,让自己更牛逼">
+<meta property="og:url" content="http://code.skyheng.com/post/56640.html">
+<meta property="og:site_name" content="一切随缘的技术博客">
+<meta property="og:description" content="记录一些大牛的博客及技术文章，宁可十年不将军,不可一日不拱卒，所以勤奋学习技术，跟随牛逼的人脚步“忍辱负屈”，要成为一名大牛，养兵10年，有朝一日定当所向披靡，使旁人闻风丧胆，你都不去逼下自己，怎么会知道自己有多厉害，要定个小目标，例如先写写博客。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-03-20T14:50:32.502Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一些好的技术博客,追随牛逼的人,让自己更牛逼">
+<meta name="twitter:description" content="记录一些大牛的博客及技术文章，宁可十年不将军,不可一日不拱卒，所以勤奋学习技术，跟随牛逼的人脚步“忍辱负屈”，要成为一名大牛，养兵10年，有朝一日定当所向披靡，使旁人闻风丧胆，你都不去逼下自己，怎么会知道自己有多厉害，要定个小目标，例如先写写博客。">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="一切随缘的技术博客" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>一些好的技术博客,追随牛逼的人,让自己更牛逼 | 一切随缘的技术博客</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?d195b745077c1dbc09dacf43876b8f07";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">一切随缘</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">日拱一卒无有尽、功不唐捐终入海</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/pdf/">书籍</a></li>
+                        
+                            <li><a href="/toolbox/">工具箱</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:chenjh0611@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/chenjh0611" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" href="http://blog.csdn.net/skychenjh" title="CSDN"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI/">CI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/">ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centOS/">centOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css3/">css3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/database/">database</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dubbo/">dubbo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eclipse/">eclipse</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/excel/">excel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/freemarker/">freemarker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jdk/">jdk</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jrebel/">jrebel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/logback/">logback</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nexus/">nexus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/oracle/">oracle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plugin/">plugin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/powerDesigner/">powerDesigner</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rect/">rect</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scanpay/">scanpay</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shiro/">shiro</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/software/">software</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql/">sql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/table/">table</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tomcat/">tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/velocity/">velocity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vmware/">vmware</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/win10/">win10</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wxpay/">wxpay</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zooKeeper/">zooKeeper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式/">分布式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习方法/">学习方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/闲聊/">闲聊</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.skyheng.com/">MyBlog</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://theme.skyheng.com/">后台模板</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.jheng.top/">next博客</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于技术,专注于开发</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">一切随缘</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">一切随缘</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">日拱一卒无有尽、功不唐捐终入海</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/pdf/">书籍</a></li>
+                
+                    <li><a href="/toolbox/">工具箱</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:chenjh0611@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/chenjh0611" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/skychenjh" title="CSDN"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-2016-2016-09-18-一些好的技术博客" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/post/56640.html" class="article-date">
+      <time datetime="2016-09-18T03:23:12.000Z" itemprop="datePublished">2016-09-18</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      一些好的技术博客,追随牛逼的人,让自己更牛逼
+    </h1>
+  
+
+		
+		   <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">2,178字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">10分</span>
+      </span>
+    </span>
+</div>
+		
+      </header>
+      
+      <div class="article-info article-info-post">
+		
+          <br>
+          <br>
+        
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/学习方法/">学习方法</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习方法/">学习方法</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>记录一些大牛的博客及技术文章，宁可十年不将军,不可一日不拱卒，所以勤奋学习技术，跟随牛逼的人脚步“忍辱负屈”，要成为一名大牛，养兵10年，有朝一日定当所向披靡，使旁人闻风丧胆，你都不去逼下自己，怎么会知道自己有多厉害，要定个小目标，例如先写写博客。</p>
+<a id="more"></a>
+<h2 id="心诉"><a href="#心诉" class="headerlink" title="心诉"></a>心诉</h2><p>一个人不可能一下子成功，更不可能一步登天，所有成功与荣耀的背后是无尽的心酸。所以要想有多大的成功，那么在背后你一定要付出千倍百倍的努力才可以。我们没有理由去羡慕别人，因为同样的事你也可以做到，只不过你从一开始就没有尝试，没有努力，那么你又凭什么羡慕嫉妒别人。<br>当然，当一个人取得成功时，你会嫉妒是可以原谅的，毕竟我们不是圣人，当面对一个强大的人的时候，我们本能的会有害怕.嫉妒.这都是正常的，但如果你想要成功，光有嫉妒是不行的，是没有用的。那只会让你沉在无边的不甘中。正确的做法就是付出更多的努力，拼命地追赶那个让你嫉妒的人，<br>最后你才有可能获得成功。世上没有什么不可能，不要找借口，任何借口都不行，如果你真的这么做，不要说别人，自己也会鄙视自己。相信自己，以前进为目标，以成功为坐标，永不止步的前进。终有一天，你不会再羡慕别人，只会让别人羡慕你。</p>
+<h1 id="一、技术网站"><a href="#一、技术网站" class="headerlink" title="一、技术网站"></a>一、技术网站</h1><p>腾讯Web前端团队：<a href="http://www.alloyteam.com/" target="_blank" rel="noopener">http://www.alloyteam.com/</a></p>
+<h1 id="二、技术博客"><a href="#二、技术博客" class="headerlink" title="二、技术博客"></a>二、技术博客</h1><h2 id="BAT等技术团队博客"><a href="#BAT等技术团队博客" class="headerlink" title="BAT等技术团队博客"></a>BAT等技术团队博客</h2><ul>
+<li>阿里中间件团队博客: 地址：<a href="http://jm.taobao.org/" target="_blank" rel="noopener">http://jm.taobao.org/</a></li>
+<li>淘宝前端团队：地址：<a href="http://www.taobaofed.org/" target="_blank" rel="noopener">http://www.taobaofed.org/</a></li>
+<li></li>
+<li>美团技术团队博客：     地址： <a href="http://tech.meituan.com/" target="_blank" rel="noopener">http://tech.meituan.com/</a></li>
+<li>腾讯社交用户体验设计(ISUX)    地址：<a href="http://isux.tencent.com/" target="_blank" rel="noopener">http://isux.tencent.com/</a></li>
+<li>京东设计中心    地址：<a href="http://jdc.jd.com" target="_blank" rel="noopener">http://jdc.jd.com</a></li>
+<li>QQ游戏设计中心    地址：<a href="http://gdc.qq.com" target="_blank" rel="noopener">http://gdc.qq.com</a></li>
+<li>百度搜索用户体验中心    地址：<a href="http://ued.baidu.com/" target="_blank" rel="noopener">http://ued.baidu.com/</a></li>
+<li>一淘UX    地址：<a href="http://ux.etao.com" target="_blank" rel="noopener">http://ux.etao.com</a></li>
+<li>腾讯CDC    地址：<a href="http://cdc.tencent.com" target="_blank" rel="noopener">http://cdc.tencent.com</a></li>
+<li>腾讯ISUX    地址：<a href="http://isux.tencent.com" target="_blank" rel="noopener">http://isux.tencent.com</a></li>
+<li>腾讯MXD移动互联网设计中心    地址：<a href="http://mxd.tencent.com" target="_blank" rel="noopener">http://mxd.tencent.com</a></li>
+<li>UXDC 2011体验设计峰会    地址：<a href="http://www.uxdc.org" target="_blank" rel="noopener">http://www.uxdc.org</a></li>
+<li>视觉同盟    地址：<a href="http://www.visionunion.com" target="_blank" rel="noopener">http://www.visionunion.com</a></li>
+<li>Tencent TG ideas    地址：<a href="http://tgideas.qq.com" target="_blank" rel="noopener">http://tgideas.qq.com</a></li>
+<li>Tencent AlloyTeam    地址：<a href="http://www.alloyteam.com" target="_blank" rel="noopener">http://www.alloyteam.com</a></li>
+<li>QQ客户端团队博客    地址：<a href="http://impd.tencent.com/" target="_blank" rel="noopener">http://impd.tencent.com/</a></li>
+<li>阿里巴巴（中文站）UED    地址：<a href="http://www.aliued.cn" target="_blank" rel="noopener">http://www.aliued.cn</a></li>
+<li>支付宝官方Blog    地址：<a href="http://blog.alipay.com" target="_blank" rel="noopener">http://blog.alipay.com</a> （不过进去是支付宝）</li>
+<li>Taobao UED    地址：<a href="http://ued.taobao.com/blog/" target="_blank" rel="noopener">http://ued.taobao.com/blog/</a></li>
+<li>阿里巴巴国际站UED    地址：<a href="http://www.aliued.com" target="_blank" rel="noopener">http://www.aliued.com</a></li>
+<li>百度MUX    地址：<a href="http://mux.baidu.com" target="_blank" rel="noopener">http://mux.baidu.com</a></li>
+<li>微博UDC    地址：<a href="http://udc.weibo.com" target="_blank" rel="noopener">http://udc.weibo.com</a></li>
+<li>搜狗UED    地址：<a href="http://ued.sogou.com" target="_blank" rel="noopener">http://ued.sogou.com</a></li>
+<li>搜狐MUED    地址：<a href="http://mued.sohu.com" target="_blank" rel="noopener">http://mued.sohu.com</a></li>
+<li>搜狐畅游VC 地址：<a href="http://vc.changyou.com/index.shtml" target="_blank" rel="noopener">http://vc.changyou.com/index.shtml</a></li>
+<li>网易用户体验设计中心    地址：<a href="http://uedc.163.com/" target="_blank" rel="noopener">http://uedc.163.com/</a></li>
+</ul>
+<h3 id="taobao"><a href="#taobao" class="headerlink" title="taobao"></a>taobao</h3><ul>
+<li>测试团队：<a href="http://www.taobaotesting.com/" target="_blank" rel="noopener">http://www.taobaotesting.com/</a></li>
+<li>淘宝UED团队：<a href="http://ued.taobao.org/blog/" target="_blank" rel="noopener">http://ued.taobao.org/blog/</a></li>
+<li>阿里妈妈UED团队：<a href="http://ued.alimama.com/" target="_blank" rel="noopener">http://ued.alimama.com/</a></li>
+<li>阿里数据平台：<a href="http://www.alidata.org/archives" target="_blank" rel="noopener">http://www.alidata.org/archives</a></li>
+<li>阿里巴巴数据库团队：<a href="http://www.taobaodba.com/" target="_blank" rel="noopener">http://www.taobaodba.com/</a></li>
+<li>阿里中间件团队：<a href="http://jm.taobao.org/" target="_blank" rel="noopener">http://jm.taobao.org/</a></li>
+</ul>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ul>
+<li>专注于分布式存储&amp;计算技术及其应用: <a href="http://www.nosqlnotes.net/" target="_blank" rel="noopener">http://www.nosqlnotes.net/</a></li>
+</ul>
+<h2 id="csdn"><a href="#csdn" class="headerlink" title="csdn"></a>csdn</h2><p>博客名称：java爸爸的专栏<br>博客地址：<a href="http://blog.csdn.net/javadaddy/" target="_blank" rel="noopener">http://blog.csdn.net/javadaddy/</a></p>
+<p>博客名称：曹胜欢<br>博客地址：<a href="http://blog.csdn.net/csh624366188" target="_blank" rel="noopener">http://blog.csdn.net/csh624366188</a></p>
+<p>博客名称：borntofight<br>博客地址：<a href="http://blog.csdn.net/tengdazhang770960436" target="_blank" rel="noopener">http://blog.csdn.net/tengdazhang770960436</a></p>
+<h2 id="sina"><a href="#sina" class="headerlink" title="sina"></a>sina</h2><p>博客名称：最后的战役的博客<br>博客地址：<a href="http://blog.sina.com.cn/learnwar/" target="_blank" rel="noopener">http://blog.sina.com.cn/learnwar/</a></p>
+<h2 id="iteye"><a href="#iteye" class="headerlink" title="iteye"></a>iteye</h2><p>博客名称：赵磊的博客<br>博客地址：<a href="http://elf8848.iteye.com/" target="_blank" rel="noopener">http://elf8848.iteye.com/</a></p>
+<h2 id="优秀blog"><a href="#优秀blog" class="headerlink" title="优秀blog"></a>优秀blog</h2><p>Sina App Engine Blog：</p>
+<p>并发编程网：</p>
+<p>结构之法 算法之道：</p>
+<p>dokuWiki示例：</p>
+<p>服务器运维架构|Linux运维|云计算大数据：<a href="http://www.ha97.com" target="_blank" rel="noopener">http://www.ha97.com</a></p>
+<p>jQuery EasyUI 中文API教程</p>
+<h1 id="三、技术文章"><a href="#三、技术文章" class="headerlink" title="三、技术文章"></a>三、技术文章</h1><h2 id="网络通信"><a href="#网络通信" class="headerlink" title="网络通信"></a>网络通信</h2><p>MINA,xSocket同样的性能缺陷及陷阱,Grizzly better<br><a href="http://www.blogjava.net/adapterofcoms/articles/314560.html" target="_blank" rel="noopener">http://www.blogjava.net/adapterofcoms/articles/314560.html</a></p>
+<p>Java连接池评估报告<br><a href="http://duzc2.iteye.com/blog/pdf" target="_blank" rel="noopener">http://duzc2.iteye.com/blog/pdf</a></p>
+<p>mina vs. yanf4j 性能比较—庄周梦蝶<br><a href="http://www.blogjava.net/killme2008/archive/2009/06/26/284342.html" target="_blank" rel="noopener">http://www.blogjava.net/killme2008/archive/2009/06/26/284342.html</a></p>
+<p>Grizzly和Netty以及Mina简单性能对比—阿里梁飞<br><a href="http://javatar.iteye.com/blog/1126171" target="_blank" rel="noopener">http://javatar.iteye.com/blog/1126171</a></p>
+<p>HTTPS的七个误解<br><a href="http://ijavagos.iteye.com/blog/916029" target="_blank" rel="noopener">http://ijavagos.iteye.com/blog/916029</a></p>
+<p>动态代理方案性能对比—阿里梁飞<br><a href="http://javatar.iteye.com/blog/814426" target="_blank" rel="noopener">http://javatar.iteye.com/blog/814426</a></p>
+<h2 id="安全"><a href="#安全" class="headerlink" title="安全"></a>安全</h2><p>浅谈CSRF攻击方式<br><a href="http://www.cnblogs.com/hyddd/archive/2009/04/09/1432744.html" target="_blank" rel="noopener">http://www.cnblogs.com/hyddd/archive/2009/04/09/1432744.html</a></p>
+<p>一次被黑经历与反思<br><a href="http://hoodlum.blog.51cto.com/4075497/890405/" target="_blank" rel="noopener">http://hoodlum.blog.51cto.com/4075497/890405/</a></p>
+<h2 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h2><p>iteye中关于shiro的博客列表<br><a href="http://www.iteye.com/blogs/tag/shiro" target="_blank" rel="noopener">http://www.iteye.com/blogs/tag/shiro</a></p>
+<p>让Apache Shiro保护你的应用<br><a href="http://www.infoq.com/cn/articles/apache-shiro" target="_blank" rel="noopener">http://www.infoq.com/cn/articles/apache-shiro</a></p>
+<p>将 Shiro 作为应用的权限基础<br><a href="http://www.ibm.com/developerworks/cn/opensource/os-cn-shiro/" target="_blank" rel="noopener">http://www.ibm.com/developerworks/cn/opensource/os-cn-shiro/</a></p>
+<p>Spring 3.x企业实用开发实战<br><a href="http://www.iteye.com/blogs/subjects/Spring_3" target="_blank" rel="noopener">http://www.iteye.com/blogs/subjects/Spring_3</a> .</p>
+<p>Hibernate4实战最佳实践<br><a href="http://jenmhdn.iteye.com/blog/1627262" target="_blank" rel="noopener">http://jenmhdn.iteye.com/blog/1627262</a></p>
+<p>加速你的Hibernate引擎（上）(InfoQ)<br><a href="http://www.infoq.com/cn/articles/hibernate_tuning" target="_blank" rel="noopener">http://www.infoq.com/cn/articles/hibernate_tuning</a></p>
+<p>加速你的Hibernate引擎（下）(InfoQ)<br><a href="http://www.infoq.com/cn/articles/hibernate_tuning-ii" target="_blank" rel="noopener">http://www.infoq.com/cn/articles/hibernate_tuning-ii</a></p>
+<p>JdbcTemplate学习笔记<br><a href="http://www.iteye.com/topic/53526" target="_blank" rel="noopener">http://www.iteye.com/topic/53526</a></p>
+<p>Spring 事务管理高级应用难点剖析: 第 1 部分<br><a href="http://www.ibm.com/developerworks/cn/java/j-lo-spring-ts1/index.html?ca=drs" target="_blank" rel="noopener">http://www.ibm.com/developerworks/cn/java/j-lo-spring-ts1/index.html?ca=drs</a></p>
+<p>Spring 事务管理高级应用难点剖析: 第 2 部分<br><a href="http://www.ibm.com/developerworks/cn/java/j-lo-spring-ts2/index.html?ca=dat-cn-0325" target="_blank" rel="noopener">http://www.ibm.com/developerworks/cn/java/j-lo-spring-ts2/index.html?ca=dat-cn-0325</a></p>
+<p>Spring 事务管理高级应用难点剖析: 第 3 部分<br><a href="http://www.ibm.com/developerworks/cn/java/j-lo-spring-ts3/index.html?ca=drs" target="_blank" rel="noopener">http://www.ibm.com/developerworks/cn/java/j-lo-spring-ts3/index.html?ca=drs</a></p>
+<p>Spring 让 LOB 数据操作变得简单易行<br><a href="http://www.ibm.com/developerworks/cn/java/j-lo-spring-lob/index.html?ca=drs-cn" target="_blank" rel="noopener">http://www.ibm.com/developerworks/cn/java/j-lo-spring-lob/index.html?ca=drs-cn</a></p>
+<h2 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h2><p>企业级WebLogic实战揭秘（连载，有PDF文档，18章已发布）<br><a href="http://www.iteye.com/topic/1112292" target="_blank" rel="noopener">http://www.iteye.com/topic/1112292</a></p>
+<p>应用 WebSphere MQ V6 来构建企业信息总线的行业示例<br><a href="http://www.ibm.com/developerworks/cn/websphere/library/techarticles/0803_wangql/?S_TACT=105AGX52&amp;S_CMP=NL&amp;ca=dnl-cn-04022008" target="_blank" rel="noopener">http://www.ibm.com/developerworks/cn/websphere/library/techarticles/0803_wangql/?S_TACT=105AGX52&amp;S_CMP=NL&amp;ca=dnl-cn-04022008</a></p>
+<h2 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h2><p>ibm dw上的“java多线程与并发编程专题”<br><a href="https://www.ibm.com/developerworks/cn/java/j-concurrent/" target="_blank" rel="noopener">https://www.ibm.com/developerworks/cn/java/j-concurrent/</a></p>
+<p>一个博客文章总结 java多线程编程总结<br><a href="http://lavasoft.blog.51cto.com/62575/27069/" target="_blank" rel="noopener">http://lavasoft.blog.51cto.com/62575/27069/</a></p>
+<p>ThreadLocal与synchronized在解决多线程并发访问时的区别<br><a href="http://271072008-qq-com.iteye.com/blog/1086373" target="_blank" rel="noopener">http://271072008-qq-com.iteye.com/blog/1086373</a></p>
+<h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><p>Apache Commons工具集简介<br><a href="http://www.cnblogs.com/jackyrong/archive/2006/10/15/529599.html" target="_blank" rel="noopener">http://www.cnblogs.com/jackyrong/archive/2006/10/15/529599.html</a></p>
+<p>spring里的工具类,摘自spring3.0.5版本<br><a href="http://wen66.iteye.com/blog/830719" target="_blank" rel="noopener">http://wen66.iteye.com/blog/830719</a></p>
+<p>——————————XXXX——————————<br>IE浏览器下同一网页多图片显示的瓶颈与优化[原创]<br><a href="http://blog.s135.com/post/332/" target="_blank" rel="noopener">http://blog.s135.com/post/332/</a></p>
+<p>MAC下安装与配置MySQL<br><a href="http://www.cnblogs.com/macro-cheng/archive/2011/10/25/mysql-001.html" target="_blank" rel="noopener">http://www.cnblogs.com/macro-cheng/archive/2011/10/25/mysql-001.html</a></p>
+<h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><p>人人网移动开发架构<br><a href="http://www.infoq.com/cn/articles/renren-mobile-arch" target="_blank" rel="noopener">http://www.infoq.com/cn/articles/renren-mobile-arch</a></p>
+<p>2010年InfoQ中文站高性能架构内容回顾：在路上<br><a href="http://www.infoq.com/cn/news/2011/01/infoq-2010-high-performance-sum" target="_blank" rel="noopener">http://www.infoq.com/cn/news/2011/01/infoq-2010-high-performance-sum</a></p>
+<p>百万级访问量网站的技术准备工作 (InfoQ)<br><a href="http://www.infoq.com/cn/articles/lzy-million-visits-site-technical-preparations" target="_blank" rel="noopener">http://www.infoq.com/cn/articles/lzy-million-visits-site-technical-preparations</a></p>
+<p>Java深度历险（一）——Java字节代码的操纵 (InfoQ)<br><a href="http://www.infoq.com/cn/articles/cf-java-byte-code" target="_blank" rel="noopener">http://www.infoq.com/cn/articles/cf-java-byte-code</a></p>
+<p>又拍网的网站技术架构<br><a href="http://www.dbanotes.net/arch/yupoo_arch.html" target="_blank" rel="noopener">http://www.dbanotes.net/arch/yupoo_arch.html</a></p>
+<p>又拍网架构中的分库设计<br><a href="http://www.infoq.com/cn/articles/yupoo-partition-database" target="_blank" rel="noopener">http://www.infoq.com/cn/articles/yupoo-partition-database</a></p>
+<p>豆瓣网技术架构变迁<br><a href="http://www.infoq.com/cn/presentations/hongqn-douban" target="_blank" rel="noopener">http://www.infoq.com/cn/presentations/hongqn-douban</a></p>
+<p>豆瓣网架构-国内python语言网站的王者之路<br><a href="http://www.bopor.com/?p=661" target="_blank" rel="noopener">http://www.bopor.com/?p=661</a></p>
+<p>大型网站架构演变和知识体系<br><a href="http://www.blogjava.net/BlueDavy/archive/2008/09/03/226749.html" target="_blank" rel="noopener">http://www.blogjava.net/BlueDavy/archive/2008/09/03/226749.html</a></p>
+<p>JSON 入门指南 (廖 雪峰 , 撰稿人) IBM<br><a href="http://www.ibm.com/developerworks/cn/web/wa-lo-json/" target="_blank" rel="noopener">http://www.ibm.com/developerworks/cn/web/wa-lo-json/</a></p>
+<p>网站架构收集(csdn)<br><a href="http://blog.csdn.net/Damon_King/archive/2008/06/06/2517554.aspx" target="_blank" rel="noopener">http://blog.csdn.net/Damon_King/archive/2008/06/06/2517554.aspx</a></p>
+<p>Spring操作blob和clob<br><a href="http://hi.baidu.com/sunjoe/blog/item/10251a33ae4871fd1a4cff33.html" target="_blank" rel="noopener">http://hi.baidu.com/sunjoe/blog/item/10251a33ae4871fd1a4cff33.html</a></p>
+<p>调查：您的开发团队用什么项目管理软件<br><a href="http://www.cnblogs.com/cmt/archive/2011/01/10/1931861.html" target="_blank" rel="noopener">http://www.cnblogs.com/cmt/archive/2011/01/10/1931861.html</a></p>
+<p>企业服务总线解决方案剖析，第 1 部分: 企业服务总线的基本概念<br><a href="http://www.ibm.com/developerworks/cn/webservices/ws-esb1/" target="_blank" rel="noopener">http://www.ibm.com/developerworks/cn/webservices/ws-esb1/</a></p>
+<h2 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h2><p>JQuery 使用讲课PDF<br><a href="http://wenku.baidu.com/view/3a3637ebe009581b6bd9eb76.html" target="_blank" rel="noopener">http://wenku.baidu.com/view/3a3637ebe009581b6bd9eb76.html</a></p>
+<p>web前端技术——几个比较有用的Js库<br><a href="http://home.koudai.me/space-54-do-blog-id-5713.html" target="_blank" rel="noopener">http://home.koudai.me/space-54-do-blog-id-5713.html</a></p>
+<p>Google Web Toolkit 入门<br><a href="http://www.ibm.com/developerworks/cn/java/j-lo-gwt-intro/index.html" target="_blank" rel="noopener">http://www.ibm.com/developerworks/cn/java/j-lo-gwt-intro/index.html</a></p>
+<p>欢迎讨论 GWT , GWT-EXT , MyGWT 等的比较–我的个人看法<br><a href="http://www.iteye.com/topic/168967" target="_blank" rel="noopener">http://www.iteye.com/topic/168967</a></p>
+<h2 id="J2EE"><a href="#J2EE" class="headerlink" title="J2EE"></a>J2EE</h2><p>JDBC 3.0 有什么新特性<br><a href="http://www.ibm.com/developerworks/cn/java/j-jdbcnew/" target="_blank" rel="noopener">http://www.ibm.com/developerworks/cn/java/j-jdbcnew/</a></p>
+<p>Servlet 3.0 实战：异步 Servlet 与 Comet 风格应用程序 IBM<br><a href="http://www.ibm.com/developerworks/cn/java/j-lo-comet/index.html" target="_blank" rel="noopener">http://www.ibm.com/developerworks/cn/java/j-lo-comet/index.html</a></p>
+<p>JSP/Servlet 中的汉字编码问题 IBM<br><a href="http://www.ibm.com/developerworks/cn/java/jsp_dbcsz/index.html" target="_blank" rel="noopener">http://www.ibm.com/developerworks/cn/java/jsp_dbcsz/index.html</a></p>
+<p>JavaScript 中的函数式编程实践 IBM<br><a href="http://www.ibm.com/developerworks/cn/web/1006_qiujt_jsfunctional/index.html" target="_blank" rel="noopener">http://www.ibm.com/developerworks/cn/web/1006_qiujt_jsfunctional/index.html</a></p>
+<p>web.xml 中的listener、 filter、servlet 加载顺序及其详解1<br><a href="http://apps.hi.baidu.com/share/detail/33614288" target="_blank" rel="noopener">http://apps.hi.baidu.com/share/detail/33614288</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/post/56640.html">一些好的技术博客,追随牛逼的人,让自己更牛逼</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">一切随缘</a></p>
+        <p><span>发布时间:</span>2016-09-18, 11:23:12</p>
+        <p><span>最后更新:</span>2018-03-20, 22:50:32</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/post/56640.html" title="一些好的技术博客,追随牛逼的人,让自己更牛逼">http://code.skyheng.com/post/56640.html</a>
+            <span class="copy-path" data-clipboard-text="原文: http://code.skyheng.com/post/56640.html　　作者: 一切随缘" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/post/20294.html">
+                    Tomcat7优化配置参数
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/post/37438.html">
+                    国内外知名IT科技博客（强烈推荐）
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#心诉"><span class="toc-number">1.</span> <span class="toc-text">心诉</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#一、技术网站"><span class="toc-number"></span> <span class="toc-text">一、技术网站</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、技术博客"><span class="toc-number"></span> <span class="toc-text">二、技术博客</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#BAT等技术团队博客"><span class="toc-number">1.</span> <span class="toc-text">BAT等技术团队博客</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#taobao"><span class="toc-number">1.1.</span> <span class="toc-text">taobao</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他"><span class="toc-number">1.2.</span> <span class="toc-text">其他</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#csdn"><span class="toc-number">2.</span> <span class="toc-text">csdn</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sina"><span class="toc-number">3.</span> <span class="toc-text">sina</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iteye"><span class="toc-number">4.</span> <span class="toc-text">iteye</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#优秀blog"><span class="toc-number">5.</span> <span class="toc-text">优秀blog</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、技术文章"><span class="toc-number"></span> <span class="toc-text">三、技术文章</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#网络通信"><span class="toc-number">1.</span> <span class="toc-text">网络通信</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安全"><span class="toc-number">2.</span> <span class="toc-text">安全</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#框架"><span class="toc-number">3.</span> <span class="toc-text">框架</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#中间件"><span class="toc-number">4.</span> <span class="toc-text">中间件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多线程"><span class="toc-number">5.</span> <span class="toc-text">多线程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工具"><span class="toc-number">6.</span> <span class="toc-text">工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#架构"><span class="toc-number">7.</span> <span class="toc-text">架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript"><span class="toc-number">8.</span> <span class="toc-text">JavaScript</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#J2EE"><span class="toc-number">9.</span> <span class="toc-text">J2EE</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"一些好的技术博客,追随牛逼的人,让自己更牛逼　| 一切随缘的技术博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+    
+
+    
+    
+
+    
+        <section class="changyan" id="comments">
+    <div id="SOHUCS" sid="post/56640.html" ></div>
+    <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+        <script type="text/javascript">
+            window.changyan.api.config({
+                appid: "cyts7t2el",
+                conf: "fb4aa871793bef5899de054a3902f3eb"
+            });
+        </script>
+    </script>
+</section>
+    
+
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/post/20294.html" title="上一篇: Tomcat7优化配置参数">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/post/37438.html" title="下一篇: 国内外知名IT科技博客（强烈推荐）">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/post/36308.html">MarkdownPad2在win10上安装及破解</a></li><li class="post-list-item"><a class="post-list-link" href="/post/61360.html">关系数据库常用SQL的详细用法</a></li><li class="post-list-item"><a class="post-list-link" href="/post/5372.html">Hexo部署在阿里云服务器上</a></li><li class="post-list-item"><a class="post-list-link" href="/post/55981.html">BigDecimal的用法详解及注意事项</a></li><li class="post-list-item"><a class="post-list-link" href="/post/4240.html">Java日期时间格式化转换符</a></li><li class="post-list-item"><a class="post-list-link" href="/post/46695.html">Hexo使用过程中常见问题记录</a></li><li class="post-list-item"><a class="post-list-link" href="/post/62692.html">PowerDesigner16应用</a></li><li class="post-list-item"><a class="post-list-link" href="/post/27822.html">怎样在虚拟机上安装Ubuntu17.10系统</a></li><li class="post-list-item"><a class="post-list-link" href="/post/55614.html">Java8 JDK1.8 API中文</a></li><li class="post-list-item"><a class="post-list-link" href="/post/8806.html">前端CDN公共库大全</a></li><li class="post-list-item"><a class="post-list-link" href="/post/25067.html">Shiro Freemarker标签的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/post/50779.html">Velocity与Freemarker比较</a></li><li class="post-list-item"><a class="post-list-link" href="/post/24506.html">Logback.xml常用配置详解</a></li><li class="post-list-item"><a class="post-list-link" href="/post/61394.html">Mysql数据库优化方法,千万级数据库记录查询轻松解决</a></li><li class="post-list-item"><a class="post-list-link" href="/post/49258.html">程序员，你为什么值这么多钱？</a></li><li class="post-list-item"><a class="post-list-link" href="/post/52661.html">数据库事务的四大特性以及事务的隔离级别</a></li><li class="post-list-item"><a class="post-list-link" href="/post/32480.html">从Request中获得参数Map返回可读的Map</a></li><li class="post-list-item"><a class="post-list-link" href="/post/56296.html">Win10常用的快捷键</a></li><li class="post-list-item"><a class="post-list-link" href="/post/25267.html">ZooKeeper常用命令介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/post/50164.html">ZooKeeper的安装与设置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/4103.html">收集的国内Maven镜像地址</a></li><li class="post-list-item"><a class="post-list-link" href="/post/47539.html">Windows下git pull批处理</a></li><li class="post-list-item"><a class="post-list-link" href="/post/8298.html">Git常用的操作命令</a></li><li class="post-list-item"><a class="post-list-link" href="/post/26220.html">python安装</a></li><li class="post-list-item"><a class="post-list-link" href="/post/46664.html">实例Demo之3D-Transform立方体效果</a></li><li class="post-list-item"><a class="post-list-link" href="/post/51910.html">Redis在Linux下的安装和配置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20294.html">Tomcat7优化配置参数</a></li><li class="post-list-item"><a class="post-list-link" href="/post/56640.html">一些好的技术博客,追随牛逼的人,让自己更牛逼</a></li><li class="post-list-item"><a class="post-list-link" href="/post/37438.html">国内外知名IT科技博客（强烈推荐）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/59806.html">Eclipse常用插件安装</a></li><li class="post-list-item"><a class="post-list-link" href="/post/33906.html">Eclipse安装JRebel6.4.8热部署插件教程</a></li><li class="post-list-item"><a class="post-list-link" href="/post/8028.html">JQuery的eval解析JSON中的注意点介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/post/28651.html">关于分布式一致性的探究</a></li><li class="post-list-item"><a class="post-list-link" href="/post/5101.html">初识分布式系统</a></li><li class="post-list-item"><a class="post-list-link" href="/post/13879.html">用Excel生成和管理Markdown表格</a></li><li class="post-list-item"><a class="post-list-link" href="/post/29405.html">Hexo最常用的几个命令</a></li><li class="post-list-item"><a class="post-list-link" href="/post/52802.html">GIT的常用操作命令</a></li><li class="post-list-item"><a class="post-list-link" href="/post/31797.html">常用软件与工具整理</a></li><li class="post-list-item"><a class="post-list-link" href="/post/23662.html">Linux常用命令大全</a></li><li class="post-list-item"><a class="post-list-link" href="/post/62293.html">在一个千万级的数据库查询中，如何提高查询效率？</a></li><li class="post-list-item"><a class="post-list-link" href="/post/60804.html">VMware中CentOS设置静态IP</a></li><li class="post-list-item"><a class="post-list-link" href="/post/9311.html">Tomcat8安装和配置以及优化</a></li><li class="post-list-item"><a class="post-list-link" href="/post/65527.html">【微信支付】“刷卡支付”、“被扫支付”开发JavaDemo</a></li><li class="post-list-item"><a class="post-list-link" href="/post/30401.html">【微信支付】“刷卡支付”、“被扫支付”开发说明</a></li><li class="post-list-item"><a class="post-list-link" href="/post/60927.html">Svn密码破解，Svn密码本地找回</a></li><li class="post-list-item"><a class="post-list-link" href="/post/26924.html">Subversion在Linux下的安装与配置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/56374.html">Mysql在Linux下的安装和配置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/24125.html">Maven在Linux下的安装和配置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/7577.html">在linux下的JDK安装和配置（基于阿里云服务器CentOS 6.5）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/59363.html">Nexus在linux下的安装和配置（基于阿里云服务器CentOS 6.5）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/4365.html">我的学习归纳方法（以学习Maven为例）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/53342.html">使用Github搭建Hexo技术博客--增强教程</a></li><li class="post-list-item"><a class="post-list-link" href="/post/4103.html">使用Github搭建Hexo技术博客--安装教程</a></li><li class="post-list-item"><a class="post-list-link" href="/post/2803.html">构建工具Maven相关知识整理专题</a></li><li class="post-list-item"><a class="post-list-link" href="/post/17946.html">JAVA中重写和重载区别</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2015-2018 一切随缘
+                <span>| </span>
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备16005473号-1</a>
+                <!--|| <span>博客全站共2字</span>-->
+            </div>
+            <div class="footer-right">
+                <a>
+                    
+                        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1273088600'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1273088600%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+                    
+                </a>
+                <span>| </span>
+                Hosted by <a href="https://pages.coding.me" style="font-weight: bold" target="_blank" >Coding Pages</a>
+				<!--
+                    <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>Theme
+                    <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE
+                    <i class="fa fa-heart animated infinite pulse"></i>
+                 -->
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+	<script type="text/javascript" src="/resources/love.js"></script>
+	<script type="text/javascript" src="/resources/float.js"></script>
+	<script type="text/javascript" src="/resources/typewriter.js"></script>
+	<script type="text/javascript" color=0,104,183 opacity=1 zindex=-1 count=50 src="/resources/particle.js"></script>
+
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+  </div>
+</body>
+</html>

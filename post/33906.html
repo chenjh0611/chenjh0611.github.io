@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="一切随缘" />
+
+
+
+<meta name="description" content="我们用eclipse开发时经常遇到一个麻烦的问题是修改类文件后需重启tomcat才能生效，即使使用一些tomcat插件，有时修改了方法名或添加了类，也需要重启。使用获得jolt大奖的作品jrebel，就能轻松实现 jvm热部署，Rebel 可快速实现Tomcat的热部署，最为强大的是支持Spring注解的热部署，这样就能节省大量的服务器重启时间，提高了个人开发效率。JRebel支持Eclipse和">
+<meta name="keywords" content="eclipse,jrebel">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Eclipse安装JRebel6.4.8热部署插件教程">
+<meta property="og:url" content="http://code.skyheng.com/post/33906.html">
+<meta property="og:site_name" content="一切随缘的技术博客">
+<meta property="og:description" content="我们用eclipse开发时经常遇到一个麻烦的问题是修改类文件后需重启tomcat才能生效，即使使用一些tomcat插件，有时修改了方法名或添加了类，也需要重启。使用获得jolt大奖的作品jrebel，就能轻松实现 jvm热部署，Rebel 可快速实现Tomcat的热部署，最为强大的是支持Spring注解的热部署，这样就能节省大量的服务器重启时间，提高了个人开发效率。JRebel支持Eclipse和">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://img.skyheng.com/picture/2016/jrebel/jrebel.png">
+<meta property="og:image" content="http://img.skyheng.com/picture/2016/jrebel/jrebel-modules.png">
+<meta property="og:image" content="http://img.skyheng.com/picture/2016/jrebel/run-jrebel.png">
+<meta property="og:image" content="http://img.skyheng.com/picture/2016/jrebel/run-configurations.png">
+<meta property="og:image" content="http://img.skyheng.com/picture/2016/jrebel/jrebel-setting.png">
+<meta property="og:image" content="http://img.skyheng.com/picture/2016/jrebel/jrebel-configuration.png">
+<meta property="og:image" content="http://img.skyheng.com/picture/2016/jrebel/tomcat-setting.png">
+<meta property="og:image" content="http://img.skyheng.com/picture/2016/jrebel/arguments-setting.png">
+<meta property="og:updated_time" content="2018-03-20T14:51:22.257Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Eclipse安装JRebel6.4.8热部署插件教程">
+<meta name="twitter:description" content="我们用eclipse开发时经常遇到一个麻烦的问题是修改类文件后需重启tomcat才能生效，即使使用一些tomcat插件，有时修改了方法名或添加了类，也需要重启。使用获得jolt大奖的作品jrebel，就能轻松实现 jvm热部署，Rebel 可快速实现Tomcat的热部署，最为强大的是支持Spring注解的热部署，这样就能节省大量的服务器重启时间，提高了个人开发效率。JRebel支持Eclipse和">
+<meta name="twitter:image" content="http://img.skyheng.com/picture/2016/jrebel/jrebel.png">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="一切随缘的技术博客" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>Eclipse安装JRebel6.4.8热部署插件教程 | 一切随缘的技术博客</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?d195b745077c1dbc09dacf43876b8f07";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">一切随缘</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">日拱一卒无有尽、功不唐捐终入海</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/pdf/">书籍</a></li>
+                        
+                            <li><a href="/toolbox/">工具箱</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:chenjh0611@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/chenjh0611" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" href="http://blog.csdn.net/skychenjh" title="CSDN"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI/">CI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/">ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centOS/">centOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css3/">css3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/database/">database</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dubbo/">dubbo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eclipse/">eclipse</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/excel/">excel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/freemarker/">freemarker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jdk/">jdk</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jrebel/">jrebel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/logback/">logback</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nexus/">nexus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/oracle/">oracle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plugin/">plugin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/powerDesigner/">powerDesigner</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rect/">rect</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scanpay/">scanpay</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shiro/">shiro</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/software/">software</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql/">sql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/table/">table</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tomcat/">tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/velocity/">velocity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vmware/">vmware</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/win10/">win10</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wxpay/">wxpay</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zooKeeper/">zooKeeper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式/">分布式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习方法/">学习方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/闲聊/">闲聊</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.skyheng.com/">MyBlog</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://theme.skyheng.com/">后台模板</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.jheng.top/">next博客</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于技术,专注于开发</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">一切随缘</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">一切随缘</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">日拱一卒无有尽、功不唐捐终入海</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/pdf/">书籍</a></li>
+                
+                    <li><a href="/toolbox/">工具箱</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:chenjh0611@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/chenjh0611" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/skychenjh" title="CSDN"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-2016-2016-08-25-Eclipse安装JRebel6-4-8热部署插件教程" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/post/33906.html" class="article-date">
+      <time datetime="2016-08-25T15:19:19.000Z" itemprop="datePublished">2016-08-25</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Eclipse安装JRebel6.4.8热部署插件教程
+    </h1>
+  
+
+		
+		   <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">2,501字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">11分</span>
+      </span>
+    </span>
+</div>
+		
+      </header>
+      
+      <div class="article-info article-info-post">
+		
+          <br>
+          <br>
+        
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/eclipse/">eclipse</a><a class="article-category-link" href="/categories/eclipse/jrebel/">jrebel</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/eclipse/">eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jrebel/">jrebel</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>我们用eclipse开发时经常遇到一个麻烦的问题是修改类文件后需重启tomcat才能生效，即使使用一些tomcat插件，有时修改了方法名或添加了类，也需要重启。使用获得jolt大奖的作品jrebel，就能轻松实现 jvm热部署，Rebel 可快速实现Tomcat的热部署，最为强大的是支持Spring注解的热部署，这样就能节省大量的服务器重启时间，提高了个人开发效率。JRebel支持Eclipse和IntelliJ IDEA，下面分别从两个IDE介绍JRebel的安装方法，如有错误或遗漏，欢迎指出。PS: 改properties\xml无效，这是要手动重启的。 </p>
+<a id="more"></a>
+<h2 id="安装方法"><a href="#安装方法" class="headerlink" title="安装方法"></a>安装方法</h2><h3 id="1-Eclipse安装JRebel"><a href="#1-Eclipse安装JRebel" class="headerlink" title="1.Eclipse安装JRebel"></a>1.Eclipse安装JRebel</h3><ul>
+<li>JRebel官网地址：<a href="https://manuals.zeroturnaround.com/jrebel/index.html" target="_blank" rel="noopener">https://manuals.zeroturnaround.com/jrebel/index.html</a></li>
+<li>Eclipse插件在线安装地址：<a href="http://update.zeroturnaround.com/update-site/" target="_blank" rel="noopener">http://update.zeroturnaround.com/update-site/</a></li>
+<li>添加插件在线安装地址到Eclipse，然后选择安装  JRebel for Java EE，重启之后设置里会出现  Jrebel的选项，说明安装成功。<h4 id="破解：Crack"><a href="#破解：Crack" class="headerlink" title="破解：Crack:"></a>破解：Crack:</h4></li>
+</ul>
+<ol>
+<li>使用授权服务器：Help &gt; JRebel Activation &gt; I already have a license &gt; Connect to License Server</li>
+</ol>
+<ul>
+<li>Group URL 填写：<a href="http://idea.lanyus.com/{username}" target="_blank" rel="noopener">http://idea.lanyus.com/{username}</a>  (用任意用户名替换 {username})，Email 随意。</li>
+</ul>
+<ol>
+<li>手动：打开Eclipse目录：plugins/org.zeroturnaround.eclipse.embedder_*<br>分别替换 jrebel，jr6/jrebel 文件夹里的jar文件为破解后的jar文件，将证书放到用户文件夹的 .jrebel 文件夹下，例如 ~/.jrebel/。<br>回到Eclipse，选择Help -&gt; JRebel Configuration 打开jrebel的配置中心，到Advance里设置JRebel agent为JRebel 6 Agent。<br>如果Jrebel提示没激活，请手动选择一下注册证书的路径。<br>设置好之后，在已有项目上右键 -&gt; Jrebel -&gt; Add Jrebel Nature，然后源码目录就会生成一个  rebel.xml 文件，设置成功。</li>
+</ol>
+<h3 id="2-IntelliJ-IDEA安装JRebel插件："><a href="#2-IntelliJ-IDEA安装JRebel插件：" class="headerlink" title="2.IntelliJ IDEA安装JRebel插件："></a>2.IntelliJ IDEA安装JRebel插件：</h3><p>以下步骤基于IntelliJ IDEA 16，其他版本大同小异。</p>
+<ul>
+<li>File -&gt; Settings -&gt; Plugins -&gt; Browse repositories…查找 JRebel for Intellij 并安装。<h4 id="破解：Crack-1"><a href="#破解：Crack-1" class="headerlink" title="破解：Crack:"></a>破解：Crack:</h4></li>
+</ul>
+<ol>
+<li>使用第三方授权服务器：</li>
+</ol>
+<ul>
+<li><img src="http://img.skyheng.com/picture/2016/jrebel/jrebel.png" alt="JRebel"></li>
+<li>还是那句话，如果JRebel给你节约了大量时间，而你又的确喜欢这款软件，请买正版支持一下。</li>
+</ul>
+<ol>
+<li>手动：<br>打开插件目录：C:/Users/&lt;当前用户&gt;/.IntelliJIdea16/config/plugins/jr-ide-idea/lib，或者 ~/.IntelliJIdea16/config/plugins/jr-ide-idea/lib。<br>分别替换 jrebel 和 jrebel6 里边的jar文件为破解后的jar文件，并将注册证书放到 C:/Users/&lt;当前用户&gt;/.jrebel/ 文件夹下，或者 ~/.jrebel/。<br>回到IntelliJ IDEA：File -&gt; Settings -&gt; JRebel，确认一下注册状态，然后到 Advanced 选择JRebel 6 Agent。</li>
+</ol>
+<ul>
+<li>使用方法：在当前项目上右键 -&gt; JRebel -&gt; rebel.xml 来生成 rebel.xml 文件，或者在IntelliJ左下角，选择JRebel选项卡，将第一个勾上即可。（不做这步也可以）</li>
+<li><img src="http://img.skyheng.com/picture/2016/jrebel/jrebel-modules.png" alt="JRebel"></li>
+<li>Run -&gt; Edit Configurations…，设置On ‘Update action’ 和 On firame deactivation。</li>
+<li><img src="http://img.skyheng.com/picture/2016/jrebel/run-jrebel.png" alt="JRebel"></li>
+</ul>
+<blockquote>
+<p>PS:官方文档里边给出的是分别设置为“Restart server”和“Do nothing”，但是需要手动编译才能自动部署。我推荐设置为如下图，当IDEA失去焦点的时候会自动编译并重新部署，更方便。</p>
+<ul>
+<li>IntelliJ安装JRebel官方教程：<a href="http://manuals.zeroturnaround.com/jrebel/ide/intellij.html" target="_blank" rel="noopener">http://manuals.zeroturnaround.com/jrebel/ide/intellij.html</a></li>
+<li><img src="http://img.skyheng.com/picture/2016/jrebel/run-configurations.png" alt="JRebel"></li>
+</ul>
+</blockquote>
+<h2 id="配置讲解"><a href="#配置讲解" class="headerlink" title="配置讲解"></a>配置讲解</h2><h3 id="1-使用方法"><a href="#1-使用方法" class="headerlink" title="1.使用方法"></a>1.使用方法</h3><ul>
+<li>总体的思路就是：下载官方的Eclipse插件  然后再指定javaagent等于破解版的jrebel.java路径</li>
+</ul>
+<ol>
+<li>下载官方的Eclipse插件 在eclipse marketplace 里面下载 jrebel  我下载的是 6.几  忘了，直接下最近版的就Ok了  里面包含了三个基本的插件</li>
+<li>破解版的jrebel.jar 网上自己搜索 很多 。解压后的目录为D:\jrebel</li>
+<li>指定javaagent的值  看图  在就rebel config center 里面 在overview plug-ins advanced 一栏中 点击advanced 就会看到jrebel agent 选择other jrebel.jar 选择破解版jrebel.jar的位置</li>
+</ol>
+<ul>
+<li><img src="http://img.skyheng.com/picture/2016/jrebel/jrebel-setting.png" alt="JRebel"></li>
+<li>这一步还有另外一种更方便的思路，直接替换eclipse的plugins目录下，org.zeroturnaround.eclipse.embedder_6.4.1.RELEASE 这个目录下的所有jrebel.jar 这样就不用设置代理了，后面的路径也不用配置了，因为直接用的是默认的。</li>
+</ul>
+<ol>
+<li>在overview中 选择好服务器类型 勾选服务器</li>
+</ol>
+<ul>
+<li><img src="http://img.skyheng.com/picture/2016/jrebel/jrebel-configuration.png" alt="JRebel"></li>
+</ul>
+<ol>
+<li>在server中可以选择这两个选项，同时在tomcat的conf/server.xml 中将context的reloadable设为false。为true的时候 就是重启tomcat，这就会很不爽。<blockquote>
+<p>这里标注一下，以前我在网上看到别人都是说要把这个never publish sutomatically选择的，可是在我本机选择不自动发布后修改jsp页就不能重新加载了，选上Automatically<br>publish when resources change后jsp就可以和以前一样热加载了</p>
+</blockquote>
+</li>
+</ol>
+<ul>
+<li><img src="http://img.skyheng.com/picture/2016/jrebel/tomcat-setting.png" alt="JRebel"></li>
+</ul>
+<ol>
+<li>tomcat启动时 参数的传入中设置tomcat 7的配置里叫做 Open launch configuration。！！！！</li>
+</ol>
+<ul>
+<li><img src="http://img.skyheng.com/picture/2016/jrebel/arguments-setting.png" alt="JRebel"><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$&#123;jrebel_args&#125;</span> </span><br><span class="line">-Drebel.generate.show=<span class="literal">true</span></span><br><span class="line">-Drebel.spring_plugin=<span class="literal">true</span></span><br><span class="line">-Drebel.aspectj_plugin=<span class="literal">true</span></span><br><span class="line">-Drebel.cxf_plugin=<span class="literal">true</span></span><br><span class="line">-Drebel.logback_plugin=<span class="literal">true</span></span><br><span class="line">-Drebel.mybatis_plugin=<span class="literal">true</span></span><br><span class="line">-javaagent:D:\Software\jrebel6\jrebel.jar</span><br><span class="line">-noverify -XX:PermSize=128M -XX:MaxPermSize=512M</span><br><span class="line">-Drebel.log=d\:\\jrebel\\jrebel.log</span><br><span class="line">-Xms512m -Xmx1024m</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="也可以这样配置"><a href="#也可以这样配置" class="headerlink" title="也可以这样配置"></a>也可以这样配置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">-noverify</span><br><span class="line">-Djavaagent:C:\jrebel6\jrebel.jar</span><br><span class="line">-DXbootclasspath/p:D:\jrebel6\rebelboot.jar</span><br><span class="line">-Drebel.generate.show=<span class="literal">true</span></span><br><span class="line">-Drebel.spring_plugin=<span class="literal">true</span></span><br><span class="line">-Drebel.aspectj_plugin=<span class="literal">true</span></span><br><span class="line">-Drebel.cxf_plugin=<span class="literal">true</span></span><br><span class="line">-Drebel.logback_plugin=<span class="literal">true</span></span><br><span class="line">-Drebel.mybatis_plugin=<span class="literal">true</span></span><br><span class="line">-Xdebug -Djava.compiler=NONE -DXrunjdwp:transport=dt_socket,address=8787,server=y,<span class="built_in">suspend</span>=n</span><br><span class="line">-Drebel.dirs=E:\workspace\shop-server\mmarket-server\target\classes</span><br><span class="line">-Dmmarket-server.root=E:\workspace\shop-server\mmarket-server</span><br><span class="line">-Drebel.disable_update=<span class="literal">true</span></span><br><span class="line">-XX:PermSize=128M -XX:MaxPermSize=512M -Xms512m -Xmx1024m</span><br></pre></td></tr></table></figure>
+<ol>
+<li>将特定的project添加jrebel nature选中project 右击 选择jrebel  选择 <code>add jrebel nature</code>  就会生成一个文件rebel.xml 里面配置着 jrebel对当前project监控的路径 然后里面有${}包含的参数 这个是在jrebel config center 里面 查看</li>
+</ol>
+<h3 id="2-注意"><a href="#2-注意" class="headerlink" title="2.注意"></a>2.注意</h3><ul>
+<li>tomcat需配置自动加载资源, 最好以debug方式启动</li>
+<li>当一个项目使用maven多模块开发时通过上面的配置, 只能自动加载webapp所在的模块, 若想改动其他模块的代码也要自动加载, 需在项目的跟pom中加入下面的配置: <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">plugin</span>&gt;</span> </span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.zeroturnaround<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jrebel-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.1.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;<span class="name">configuration</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">addResourcesDirToRebelXml</span>&gt;</span>true<span class="tag">&lt;/<span class="name">addResourcesDirToRebelXml</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">alwaysGenerate</span>&gt;</span>true<span class="tag">&lt;/<span class="name">alwaysGenerate</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">showGenerated</span>&gt;</span>true<span class="tag">&lt;/<span class="name">showGenerated</span>&gt;</span> </span><br><span class="line">  <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;<span class="name">executions</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">execution</span>&gt;</span> </span><br><span class="line">      <span class="tag">&lt;<span class="name">id</span>&gt;</span>generate-rebel-xml<span class="tag">&lt;/<span class="name">id</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;<span class="name">phase</span>&gt;</span>process-resources<span class="tag">&lt;/<span class="name">phase</span>&gt;</span>  </span><br><span class="line">      <span class="tag">&lt;<span class="name">goals</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">goal</span>&gt;</span>generate<span class="tag">&lt;/<span class="name">goal</span>&gt;</span> </span><br><span class="line">      <span class="tag">&lt;/<span class="name">goals</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;/<span class="name">execution</span>&gt;</span> </span><br><span class="line">  <span class="tag">&lt;/<span class="name">executions</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="3-JRebel使用说明"><a href="#3-JRebel使用说明" class="headerlink" title="3.JRebel使用说明"></a>3.JRebel使用说明</h3><ul>
+<li>项目下的src/rebel.xml文件配置的是JRebel的监控路径，如果使用不正常，请确认一下这个文件里边配置的路径是否正确。<br>启动项目，如果提示类似以下信息，说明JRebel运行正常：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">2016-08-29 15:05:09 JRebel:  <span class="comment">#############################################################</span></span><br><span class="line">2016-08-29 15:05:09 JRebel:  </span><br><span class="line">2016-08-29 15:05:09 JRebel:  JRebel Agent 6.4.8 (201608161142)</span><br><span class="line">2016-08-29 15:05:09 JRebel:  (c) Copyright ZeroTurnaround AS, Estonia, Tartu.</span><br><span class="line">2016-08-29 15:05:09 JRebel:  </span><br><span class="line">2016-08-29 15:05:09 JRebel:  Over the last 1 days JRebel prevented</span><br><span class="line">2016-08-29 15:05:09 JRebel:  at least 25 redeploys/restarts saving you about 0.4 hours.</span><br><span class="line">2016-08-29 15:05:09 JRebel:  </span><br><span class="line">2016-08-29 15:05:09 JRebel:  License acquired from License Server: http://idea.lanyus.com</span><br><span class="line">2016-08-29 15:05:09 JRebel:  </span><br><span class="line">2016-08-29 15:05:09 JRebel:  Licensed to skyheng.</span><br><span class="line">2016-08-29 15:05:09 JRebel:  </span><br><span class="line">2016-08-29 15:05:09 JRebel:  </span><br><span class="line">2016-08-29 15:05:09 JRebel:  <span class="comment">#############################################################</span></span><br></pre></td></tr></table></figure>
+<h3 id="在Maven下使用"><a href="#在Maven下使用" class="headerlink" title="在Maven下使用"></a>在Maven下使用</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.3.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">source</span>&gt;</span>1.7<span class="tag">&lt;/<span class="name">source</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">target</span>&gt;</span>1.7<span class="tag">&lt;/<span class="name">target</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 配置 maven 的 jetty 插件 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mortbay.jetty<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jetty-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">version</span>&gt;</span>7.2.2.v20101205<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">webAppConfig</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">contextPath</span>&gt;</span>/$&#123;project.artifactId&#125;<span class="tag">&lt;/<span class="name">contextPath</span>&gt;</span></span><br><span class="line">				<span class="comment">&lt;!-- 指定 root context 在这里指定为$&#123;project.artifactId&#125; 即 jetty， 那么访问时就用http://localized:8080/jetty </span></span><br><span class="line"><span class="comment">					访问， 如果指定梶为test 就用http://localized:8080/test访问，更多信息，请查看jetty 插件官方文档 --&gt;</span></span><br><span class="line">				<span class="comment">&lt;!-- 设置其他项目extraClasspath，多个用";"隔开 --&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">extraClasspath</span>&gt;</span>../data-service/target/classes<span class="tag">&lt;/<span class="name">extraClasspath</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">webAppConfig</span>&gt;</span></span><br><span class="line"></span><br><span class="line">			<span class="tag">&lt;<span class="name">scanTargets</span>&gt;</span></span><br><span class="line">				<span class="comment">&lt;!-- &lt;scanTarget&gt;../data-service/target/classes&lt;/scanTarget&gt; --&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">scanTargets</span>&gt;</span></span><br><span class="line"></span><br><span class="line">			<span class="comment">&lt;!-- 指定额外需要监控变化的文件或文件夹，主要用于热部署中的识别文件更新 --&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">scanTargetPatterns</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">scanTargetPattern</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">directory</span>&gt;</span>src<span class="tag">&lt;/<span class="name">directory</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">includes</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">include</span>&gt;</span>**/*.java<span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">include</span>&gt;</span>**/*.properties<span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;/<span class="name">includes</span>&gt;</span></span><br><span class="line">					<span class="comment">&lt;!-- &lt;excludes&gt;</span></span><br><span class="line"><span class="comment">						 	&lt;exclude&gt;**/*.xml&lt;/exclude&gt;</span></span><br><span class="line"><span class="comment">							&lt;exclude&gt;**/myspecial.properties&lt;/exclude&gt; </span></span><br><span class="line"><span class="comment">						&lt;/excludes&gt;</span></span><br><span class="line"><span class="comment">					 --&gt;</span></span><br><span class="line">				<span class="tag">&lt;/<span class="name">scanTargetPattern</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">scanTargetPatterns</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">scanIntervalSeconds</span>&gt;</span>0<span class="tag">&lt;/<span class="name">scanIntervalSeconds</span>&gt;</span><span class="comment">&lt;!-- 指定监控的扫描时间间隔，0为关闭jetty自身的热部署，主要是为了使用jrebel --&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">webAppSourceDirectory</span>&gt;</span>$&#123;basedir&#125;/src/main/webapp<span class="tag">&lt;/<span class="name">webAppSourceDirectory</span>&gt;</span></span><br><span class="line">			<span class="comment">&lt;!-- 指定web页面的文件夹 --&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">&lt;!-- jerebel maven 插件，用于生成jrebel.xml --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.zeroturnaround<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jrebel-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">version</span>&gt;</span>1.1.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">id</span>&gt;</span>generate-rebel-xml<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">phase</span>&gt;</span>process-resources<span class="tag">&lt;/<span class="name">phase</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">goal</span>&gt;</span>generate<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">rebelXmlDirectory</span>&gt;</span>$&#123;basedir&#125;/src/main/webapp/WEB-INF/classes<span class="tag">&lt;/<span class="name">rebelXmlDirectory</span>&gt;</span></span><br><span class="line">			<span class="comment">&lt;!-- 指定生成的jrebel.xml放在哪里， 要求放在web应用的 classpath下 --&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">outputDirectory</span>&gt;</span>$&#123;basedir&#125;/src/main/webapp/WEB-INF/classes<span class="tag">&lt;/<span class="name">outputDirectory</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">指定编译后文件的存放路径，因为jetty默认src/main/webapp为 web应用的根目录而 maven compile 目标后的默认classpath </span></span><br><span class="line"><span class="comment">在target文件夹下，就造成jrebel.xml无法兼顾 jetty 默认的是webapp中的classes为 web 应用的根目录， 而maven </span></span><br><span class="line"><span class="comment">默认是target 目录所以需要修改该maven的默认classes目录。</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Maven插件"><a href="#Maven插件" class="headerlink" title="Maven插件"></a>Maven插件</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.zeroturnaround<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jrebel-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.1.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">id</span>&gt;</span>generate-rebel-xml<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">phase</span>&gt;</span>process-resources<span class="tag">&lt;/<span class="name">phase</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">goal</span>&gt;</span>generate<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>插件地址：<a href="http://manuals.zeroturnaround.com/jrebel/standalone/maven.html" target="_blank" rel="noopener">http://manuals.zeroturnaround.com/jrebel/standalone/maven.html</a></li>
+</ul>
+<h3 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h3><ul>
+<li>JRebel免安装版本下载地址，不是IDE插件，可直接挂载到Tomcat：<code>&lt;https://zeroturnaround.com/software/jrebel/download/thank-you/?file=jrebel-6.4.8-nosetup.zip&gt;</code></li>
+<li>链接：<a href="http://pan.baidu.com/s/1qWOnH7I" target="_blank" rel="noopener">http://pan.baidu.com/s/1qWOnH7I</a> 密码：ynyq</li>
+<li>来源 ：<a href="http://download.csdn.net/user/cock333" target="_blank" rel="noopener">http://download.csdn.net/user/cock333</a></li>
+<li>6.4.3 以上暂无，请使用激活服务器。</li>
+<li>Jrebel从6.5.1版开始封了idea.lanyus.com，目前还可以用idea.qinxi1992.cn激活，现在Jrebel限制切换离线最多只能离线半年。</li>
+</ul>
+<h2 id="资料"><a href="#资料" class="headerlink" title="资料"></a>资料</h2><ul>
+<li>扩软博客：<a href="https://blog.kuoruan.com/62.html" target="_blank" rel="noopener">https://blog.kuoruan.com/62.html</a></li>
+<li>IDEA下安装JRebel热部署：<a href="http://www.cnblogs.com/winner-0715/p/5263422.html" target="_blank" rel="noopener">http://www.cnblogs.com/winner-0715/p/5263422.html</a></li>
+<li>JRebel使用：<a href="http://truemylife.iteye.com/blog/1140921" target="_blank" rel="noopener">http://truemylife.iteye.com/blog/1140921</a></li>
+<li>安装eclipse的JRebel6.4.3的插件：<a href="http://blog.csdn.net/paincupid/article/details/52226014" target="_blank" rel="noopener">http://blog.csdn.net/paincupid/article/details/52226014</a></li>
+<li><a href="http://she.iteye.com/blog/1493669" target="_blank" rel="noopener">http://she.iteye.com/blog/1493669</a></li>
+<li>错误解决：<a href="&#109;&#x61;&#x69;&#108;&#116;&#x6f;&#58;&#104;&#x74;&#116;&#x70;&#x3a;&#47;&#47;&#x62;&#x6c;&#x6f;&#x67;&#46;&#49;&#54;&#x33;&#x2e;&#x63;&#111;&#x6d;&#47;&#x6f;&#x6c;&#102;&#x7a;&#x70;&#x70;&#64;&#x31;&#x32;&#x36;&#47;&#98;&#108;&#x6f;&#103;&#47;&#115;&#116;&#97;&#116;&#105;&#99;&#x2f;&#49;&#57;&#x37;&#x36;&#x36;&#57;&#54;&#56;&#x32;&#x30;&#49;&#48;&#x33;&#x31;&#50;&#x35;&#x32;&#49;&#x32;&#56;&#x33;&#53;&#x31;&#47;">&#104;&#x74;&#116;&#x70;&#x3a;&#47;&#47;&#x62;&#x6c;&#x6f;&#x67;&#46;&#49;&#54;&#x33;&#x2e;&#x63;&#111;&#x6d;&#47;&#x6f;&#x6c;&#102;&#x7a;&#x70;&#x70;&#64;&#x31;&#x32;&#x36;&#47;&#98;&#108;&#x6f;&#103;&#47;&#115;&#116;&#97;&#116;&#105;&#99;&#x2f;&#49;&#57;&#x37;&#x36;&#x36;&#57;&#54;&#56;&#x32;&#x30;&#49;&#48;&#x33;&#x31;&#50;&#x35;&#x32;&#49;&#x32;&#56;&#x33;&#53;&#x31;&#47;</a></li>
+<li>jrebel eclipse/tomcat：<a href="http://www.xuebuyuan.com/2169652.html" target="_blank" rel="noopener">http://www.xuebuyuan.com/2169652.html</a></li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/post/33906.html">Eclipse安装JRebel6.4.8热部署插件教程</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">一切随缘</a></p>
+        <p><span>发布时间:</span>2016-08-25, 23:19:19</p>
+        <p><span>最后更新:</span>2018-03-20, 22:51:22</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/post/33906.html" title="Eclipse安装JRebel6.4.8热部署插件教程">http://code.skyheng.com/post/33906.html</a>
+            <span class="copy-path" data-clipboard-text="原文: http://code.skyheng.com/post/33906.html　　作者: 一切随缘" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/post/59806.html">
+                    Eclipse常用插件安装
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/post/8028.html">
+                    JQuery的eval解析JSON中的注意点介绍
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装方法"><span class="toc-number">1.</span> <span class="toc-text">安装方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Eclipse安装JRebel"><span class="toc-number">1.1.</span> <span class="toc-text">1.Eclipse安装JRebel</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#破解：Crack"><span class="toc-number">1.1.1.</span> <span class="toc-text">破解：Crack:</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-IntelliJ-IDEA安装JRebel插件："><span class="toc-number">1.2.</span> <span class="toc-text">2.IntelliJ IDEA安装JRebel插件：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#破解：Crack-1"><span class="toc-number">1.2.1.</span> <span class="toc-text">破解：Crack:</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置讲解"><span class="toc-number">2.</span> <span class="toc-text">配置讲解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-使用方法"><span class="toc-number">2.1.</span> <span class="toc-text">1.使用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#也可以这样配置"><span class="toc-number">2.2.</span> <span class="toc-text">也可以这样配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-注意"><span class="toc-number">2.3.</span> <span class="toc-text">2.注意</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-JRebel使用说明"><span class="toc-number">2.4.</span> <span class="toc-text">3.JRebel使用说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在Maven下使用"><span class="toc-number">2.5.</span> <span class="toc-text">在Maven下使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Maven插件"><span class="toc-number">2.6.</span> <span class="toc-text">Maven插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#下载地址"><span class="toc-number">2.7.</span> <span class="toc-text">下载地址</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#资料"><span class="toc-number">3.</span> <span class="toc-text">资料</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Eclipse安装JRebel6.4.8热部署插件教程　| 一切随缘的技术博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+    
+
+    
+    
+
+    
+        <section class="changyan" id="comments">
+    <div id="SOHUCS" sid="post/33906.html" ></div>
+    <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+        <script type="text/javascript">
+            window.changyan.api.config({
+                appid: "cyts7t2el",
+                conf: "fb4aa871793bef5899de054a3902f3eb"
+            });
+        </script>
+    </script>
+</section>
+    
+
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/post/59806.html" title="上一篇: Eclipse常用插件安装">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/post/8028.html" title="下一篇: JQuery的eval解析JSON中的注意点介绍">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/post/36308.html">MarkdownPad2在win10上安装及破解</a></li><li class="post-list-item"><a class="post-list-link" href="/post/61360.html">关系数据库常用SQL的详细用法</a></li><li class="post-list-item"><a class="post-list-link" href="/post/5372.html">Hexo部署在阿里云服务器上</a></li><li class="post-list-item"><a class="post-list-link" href="/post/55981.html">BigDecimal的用法详解及注意事项</a></li><li class="post-list-item"><a class="post-list-link" href="/post/4240.html">Java日期时间格式化转换符</a></li><li class="post-list-item"><a class="post-list-link" href="/post/46695.html">Hexo使用过程中常见问题记录</a></li><li class="post-list-item"><a class="post-list-link" href="/post/62692.html">PowerDesigner16应用</a></li><li class="post-list-item"><a class="post-list-link" href="/post/27822.html">怎样在虚拟机上安装Ubuntu17.10系统</a></li><li class="post-list-item"><a class="post-list-link" href="/post/55614.html">Java8 JDK1.8 API中文</a></li><li class="post-list-item"><a class="post-list-link" href="/post/8806.html">前端CDN公共库大全</a></li><li class="post-list-item"><a class="post-list-link" href="/post/25067.html">Shiro Freemarker标签的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/post/50779.html">Velocity与Freemarker比较</a></li><li class="post-list-item"><a class="post-list-link" href="/post/24506.html">Logback.xml常用配置详解</a></li><li class="post-list-item"><a class="post-list-link" href="/post/61394.html">Mysql数据库优化方法,千万级数据库记录查询轻松解决</a></li><li class="post-list-item"><a class="post-list-link" href="/post/49258.html">程序员，你为什么值这么多钱？</a></li><li class="post-list-item"><a class="post-list-link" href="/post/52661.html">数据库事务的四大特性以及事务的隔离级别</a></li><li class="post-list-item"><a class="post-list-link" href="/post/32480.html">从Request中获得参数Map返回可读的Map</a></li><li class="post-list-item"><a class="post-list-link" href="/post/56296.html">Win10常用的快捷键</a></li><li class="post-list-item"><a class="post-list-link" href="/post/25267.html">ZooKeeper常用命令介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/post/50164.html">ZooKeeper的安装与设置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/4103.html">收集的国内Maven镜像地址</a></li><li class="post-list-item"><a class="post-list-link" href="/post/47539.html">Windows下git pull批处理</a></li><li class="post-list-item"><a class="post-list-link" href="/post/8298.html">Git常用的操作命令</a></li><li class="post-list-item"><a class="post-list-link" href="/post/26220.html">python安装</a></li><li class="post-list-item"><a class="post-list-link" href="/post/46664.html">实例Demo之3D-Transform立方体效果</a></li><li class="post-list-item"><a class="post-list-link" href="/post/51910.html">Redis在Linux下的安装和配置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20294.html">Tomcat7优化配置参数</a></li><li class="post-list-item"><a class="post-list-link" href="/post/56640.html">一些好的技术博客,追随牛逼的人,让自己更牛逼</a></li><li class="post-list-item"><a class="post-list-link" href="/post/37438.html">国内外知名IT科技博客（强烈推荐）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/59806.html">Eclipse常用插件安装</a></li><li class="post-list-item"><a class="post-list-link" href="/post/33906.html">Eclipse安装JRebel6.4.8热部署插件教程</a></li><li class="post-list-item"><a class="post-list-link" href="/post/8028.html">JQuery的eval解析JSON中的注意点介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/post/28651.html">关于分布式一致性的探究</a></li><li class="post-list-item"><a class="post-list-link" href="/post/5101.html">初识分布式系统</a></li><li class="post-list-item"><a class="post-list-link" href="/post/13879.html">用Excel生成和管理Markdown表格</a></li><li class="post-list-item"><a class="post-list-link" href="/post/29405.html">Hexo最常用的几个命令</a></li><li class="post-list-item"><a class="post-list-link" href="/post/52802.html">GIT的常用操作命令</a></li><li class="post-list-item"><a class="post-list-link" href="/post/31797.html">常用软件与工具整理</a></li><li class="post-list-item"><a class="post-list-link" href="/post/23662.html">Linux常用命令大全</a></li><li class="post-list-item"><a class="post-list-link" href="/post/62293.html">在一个千万级的数据库查询中，如何提高查询效率？</a></li><li class="post-list-item"><a class="post-list-link" href="/post/60804.html">VMware中CentOS设置静态IP</a></li><li class="post-list-item"><a class="post-list-link" href="/post/9311.html">Tomcat8安装和配置以及优化</a></li><li class="post-list-item"><a class="post-list-link" href="/post/65527.html">【微信支付】“刷卡支付”、“被扫支付”开发JavaDemo</a></li><li class="post-list-item"><a class="post-list-link" href="/post/30401.html">【微信支付】“刷卡支付”、“被扫支付”开发说明</a></li><li class="post-list-item"><a class="post-list-link" href="/post/60927.html">Svn密码破解，Svn密码本地找回</a></li><li class="post-list-item"><a class="post-list-link" href="/post/26924.html">Subversion在Linux下的安装与配置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/56374.html">Mysql在Linux下的安装和配置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/24125.html">Maven在Linux下的安装和配置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/7577.html">在linux下的JDK安装和配置（基于阿里云服务器CentOS 6.5）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/59363.html">Nexus在linux下的安装和配置（基于阿里云服务器CentOS 6.5）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/4365.html">我的学习归纳方法（以学习Maven为例）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/53342.html">使用Github搭建Hexo技术博客--增强教程</a></li><li class="post-list-item"><a class="post-list-link" href="/post/4103.html">使用Github搭建Hexo技术博客--安装教程</a></li><li class="post-list-item"><a class="post-list-link" href="/post/2803.html">构建工具Maven相关知识整理专题</a></li><li class="post-list-item"><a class="post-list-link" href="/post/17946.html">JAVA中重写和重载区别</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2015-2018 一切随缘
+                <span>| </span>
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备16005473号-1</a>
+                <!--|| <span>博客全站共2字</span>-->
+            </div>
+            <div class="footer-right">
+                <a>
+                    
+                        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1273088600'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1273088600%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+                    
+                </a>
+                <span>| </span>
+                Hosted by <a href="https://pages.coding.me" style="font-weight: bold" target="_blank" >Coding Pages</a>
+				<!--
+                    <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>Theme
+                    <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE
+                    <i class="fa fa-heart animated infinite pulse"></i>
+                 -->
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+	<script type="text/javascript" src="/resources/love.js"></script>
+	<script type="text/javascript" src="/resources/float.js"></script>
+	<script type="text/javascript" src="/resources/typewriter.js"></script>
+	<script type="text/javascript" color=0,104,183 opacity=1 zindex=-1 count=50 src="/resources/particle.js"></script>
+
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+  </div>
+</body>
+</html>

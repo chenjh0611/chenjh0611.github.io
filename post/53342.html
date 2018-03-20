@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="一切随缘" />
+
+
+
+<meta name="description" content="本文将讲解 Hexo博客的常用插件、站点 SEO 等内容！">
+<meta name="keywords" content="git,hexo,github">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Github搭建Hexo技术博客--增强教程">
+<meta property="og:url" content="http://code.skyheng.com/post/53342.html">
+<meta property="og:site_name" content="一切随缘的技术博客">
+<meta property="og:description" content="本文将讲解 Hexo博客的常用插件、站点 SEO 等内容！">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://img.skyheng.com/picture/hexo/hexo_pages.png">
+<meta property="og:image" content="http://img.skyheng.com/picture/hexo/music-get-link.png">
+<meta property="og:image" content="http://img.skyheng.com/picture/hexo/music-code.png">
+<meta property="og:image" content="http://img.skyheng.com/picture/hexo/folder-tree.png">
+<meta property="og:updated_time" content="2018-03-18T15:10:12.654Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用Github搭建Hexo技术博客--增强教程">
+<meta name="twitter:description" content="本文将讲解 Hexo博客的常用插件、站点 SEO 等内容！">
+<meta name="twitter:image" content="http://img.skyheng.com/picture/hexo/hexo_pages.png">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="一切随缘的技术博客" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>使用Github搭建Hexo技术博客--增强教程 | 一切随缘的技术博客</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?d195b745077c1dbc09dacf43876b8f07";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">一切随缘</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">日拱一卒无有尽、功不唐捐终入海</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/pdf/">书籍</a></li>
+                        
+                            <li><a href="/toolbox/">工具箱</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:chenjh0611@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/chenjh0611" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" href="http://blog.csdn.net/skychenjh" title="CSDN"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI/">CI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/">ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centOS/">centOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css3/">css3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/database/">database</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dubbo/">dubbo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eclipse/">eclipse</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/excel/">excel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/freemarker/">freemarker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jdk/">jdk</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jrebel/">jrebel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/logback/">logback</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nexus/">nexus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/oracle/">oracle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plugin/">plugin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/powerDesigner/">powerDesigner</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rect/">rect</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scanpay/">scanpay</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shiro/">shiro</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/software/">software</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql/">sql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/table/">table</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tomcat/">tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/velocity/">velocity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vmware/">vmware</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/win10/">win10</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wxpay/">wxpay</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zooKeeper/">zooKeeper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式/">分布式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习方法/">学习方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/闲聊/">闲聊</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.skyheng.com/">MyBlog</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://theme.skyheng.com/">后台模板</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.jheng.top/">next博客</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于技术,专注于开发</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">一切随缘</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">一切随缘</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">日拱一卒无有尽、功不唐捐终入海</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/pdf/">书籍</a></li>
+                
+                    <li><a href="/toolbox/">工具箱</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:chenjh0611@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/chenjh0611" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/skychenjh" title="CSDN"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-hexo-2015-05-01-使用Github搭建Hexo技术博客-增强教程" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/post/53342.html" class="article-date">
+      <time datetime="2015-05-01T03:46:18.000Z" itemprop="datePublished">2015-05-01</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      使用Github搭建Hexo技术博客--增强教程
+    </h1>
+  
+
+		
+		   <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">4,930字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">23分</span>
+      </span>
+    </span>
+</div>
+		
+      </header>
+      
+      <div class="article-info article-info-post">
+		
+          <br>
+          <br>
+        
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/hexo/">hexo</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>本文将讲解 Hexo博客的常用插件、站点 SEO 等内容！<br><a id="more"></a><br><img src="http://img.skyheng.com/picture/hexo/hexo_pages.png" alt="使用Github搭建Hexo技术博客"></p>
+<h2 id="主题优化"><a href="#主题优化" class="headerlink" title="主题优化"></a>主题优化</h2><h3 id="主题配置介绍"><a href="#主题配置介绍" class="headerlink" title="主题配置介绍"></a>主题配置介绍</h3><p>我这里只讲自己在使用的 yelle 主题，你可以参考下，可能还有一些改动我后续会自己在慢慢改，但是大体基本也就这样了。</p>
+<p>从中我们也可以看出，对于主题来讲，大部分可以配置的地方其实都是在这里的，所以对于主题的使用者来讲，懂这里很重要。</p>
+<ul>
+<li>基本上主题的配置文件都是有内容改，但是下面这几点我觉得特别重要：</li>
+<li><code>duoshuo</code>，如果你是打算采用多说评论系统的话，你需要设置这里，但是我个人对多说没好印象</li>
+<li><code>youyan</code>，有言也是国内实用比较多的评论系统之一，个人感觉相对比较稳定</li>
+<li><code>open_in_new</code>，我个人觉得这个东西就应该是 true，不是用新标签的都是坏人</li>
+<li><code>baidu_tongji</code>，我个人使用的是百度统计，具体百度统计的使用可以查看百度统计官网：<a href="http://tongji.baidu.com" target="_blank" rel="noopener">http://tongji.baidu.com</a><h3 id="我的-yelle-主题配置"><a href="#我的-yelle-主题配置" class="headerlink" title="我的 yelle 主题配置"></a>我的 yelle 主题配置</h3></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Theme Version | 当前版本</span></span><br><span class="line">Yelee: <span class="string">"3.5"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># &gt;&gt;&gt; Basic Setup | 基础设置 &lt;&lt;&lt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Header | 主菜单</span></span><br><span class="line"><span class="comment">## About Page: `hexo new page about`</span></span><br><span class="line"><span class="comment">## Tags Cloud Page: `hexo new page tags`</span></span><br><span class="line">menu:</span><br><span class="line">  主页: /</span><br><span class="line">  所有文章: /archives/</span><br><span class="line">  <span class="comment">#随笔: /tags/随笔</span></span><br><span class="line">  标签云: /tags/</span><br><span class="line">  关于我: /about/</span><br><span class="line"></span><br><span class="line"><span class="comment"># Link to your avatar | 填写头像地址</span></span><br><span class="line">avatar: /img/avatar.png</span><br><span class="line"></span><br><span class="line"><span class="comment"># Small icon of Your site | 站点小图标地址</span></span><br><span class="line">favicon: /favicon.png</span><br><span class="line"></span><br><span class="line"><span class="comment"># Internationalization | 主题语言</span></span><br><span class="line"><span class="comment">## Change Language in SITE's _config.yml | 在站点配置中切换语言</span></span><br><span class="line"><span class="comment">## https://hexo.io/docs/internationalization.html</span></span><br><span class="line"><span class="comment">## Available Languages: en, zh-Hans, zh-Hant-TW, zh-Hant-HK</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Subdirectory | 子目录</span></span><br><span class="line"><span class="comment">## If your site' url is 'http://yoursite.com/blog', set root_url as '/blog/'</span></span><br><span class="line"><span class="comment">## 网站若存放在子目录，请按上面格式填写</span></span><br><span class="line"><span class="comment">## https://hexo.io/docs/configuration.html#URL</span></span><br><span class="line">root_url: </span><br><span class="line"></span><br><span class="line"><span class="comment"># Year of Site Creation | 网站成立年份</span></span><br><span class="line">since: 2015</span><br><span class="line"></span><br><span class="line"><span class="comment"># Social info. Bar | 社交信息展示</span></span><br><span class="line"><span class="comment">## Keep "mailto:" in Email | 设置 Email 时保留 "mailto:"</span></span><br><span class="line"><span class="comment">## Encrypt email 加密邮件地址 http://ctrlq.org/encode/</span></span><br><span class="line"><span class="comment">## RSS requires a plugin to take effect | 使用 RSS 需先安装对应插件</span></span><br><span class="line"><span class="comment">## https://github.com/hexojs/hexo-generator-feed</span></span><br><span class="line"></span><br><span class="line">subnav:</span><br><span class="line">  Email: <span class="string">"chenjh0611@163.com"</span></span><br><span class="line">  <span class="comment">#新浪微博: "sina weibo"</span></span><br><span class="line">  GitHub: <span class="string">"https://github.com/chenjh0611"</span></span><br><span class="line">  <span class="comment">#V2EX: "#"</span></span><br><span class="line">  RSS: <span class="string">"/atom.xml"</span></span><br><span class="line">  <span class="comment">#知乎: "zhihu"</span></span><br><span class="line">  <span class="comment">#豆瓣: "douban"</span></span><br><span class="line">  <span class="comment">#简书: "jianshu"</span></span><br><span class="line">  <span class="comment">#SegmentFault: ""</span></span><br><span class="line">  <span class="comment">#博客园: "cnblogs"</span></span><br><span class="line">  CSDN: <span class="string">"http://blog.csdn.net/skychenjh"</span></span><br><span class="line">  <span class="comment">#Coding: "https://coding.net/u/chenjh0719"</span></span><br><span class="line">  <span class="comment">#网易云音乐: "http://music.163.com/#/user/home?id=83179914"</span></span><br><span class="line">  <span class="comment">#虾米音乐: "xiami"</span></span><br><span class="line">  <span class="comment">#bilibili: ""</span></span><br><span class="line">  <span class="comment">#AcFun: ""</span></span><br><span class="line">  <span class="comment">#niconico: ""</span></span><br><span class="line">  <span class="comment">#Quora: ""</span></span><br><span class="line">  <span class="comment">#Facebook: "#"</span></span><br><span class="line">  <span class="comment">#Google: "#"</span></span><br><span class="line">  <span class="comment">#Twitter: "#"</span></span><br><span class="line">  <span class="comment">#LinkedIn: "#"</span></span><br><span class="line">  <span class="comment">#QQ: "#"</span></span><br><span class="line">  微信: <span class="string">"weixin"</span></span><br><span class="line">  <span class="comment">#PayPal: "#"</span></span><br><span class="line">  <span class="comment">#StackOverflow: "#"</span></span><br><span class="line">  <span class="comment">#CodePen: ""</span></span><br><span class="line">  <span class="comment">#Plunker: ""</span></span><br><span class="line">  <span class="comment">#Instagram: "#"</span></span><br><span class="line">  <span class="comment">#LOFTER: ""</span></span><br><span class="line">  <span class="comment">#Flickr: "#"</span></span><br><span class="line">  <span class="comment">#reddit: ""</span></span><br><span class="line">  <span class="comment">#Medium: ""</span></span><br><span class="line">  <span class="comment">#TiddlyWiki: ""</span></span><br><span class="line">  <span class="comment">#Tumblr: ""</span></span><br><span class="line">  <span class="comment">#_500px: ""</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># &gt;&gt;&gt; Conments 评论系统 &lt;&lt;&lt;</span></span><br><span class="line"><span class="comment"># Chose ONE as your comment system and keep others disable.</span></span><br><span class="line"><span class="comment"># 选一个作为网站评论系统，其他保持禁用。</span></span><br><span class="line"></span><br><span class="line">preload_comment: <span class="literal">true</span></span><br><span class="line"><span class="comment">## false: 当点击评论条等区域时再加载评论模块</span></span><br><span class="line"><span class="comment">## false: load comment's section until u click/hover on the bar/icon</span></span><br><span class="line"></span><br><span class="line">show_count: <span class="literal">false</span></span><br><span class="line"><span class="comment">## 是否在主页文章标题旁显示评论数（多说、Disqus）</span></span><br><span class="line"><span class="comment">## Add comment count after article title</span></span><br><span class="line"></span><br><span class="line">disqus: </span><br><span class="line">  <span class="comment">#on: true</span></span><br><span class="line">  shortname: </span><br><span class="line">  <span class="comment"># https://help.disqus.com/customer/en/portal/articles/466208-what-s-a-shortname-</span></span><br><span class="line">  <span class="comment"># It is unnecessary to enable disqus here if </span></span><br><span class="line">  <span class="comment"># you have set "disqus_shortname" in your site's "_config.yml" </span></span><br><span class="line"></span><br><span class="line">duoshuo: </span><br><span class="line">  <span class="comment">#on: true</span></span><br><span class="line">  domain: </span><br><span class="line">  <span class="comment"># 是否开启多说评论，http://duoshuo.com/create-site/</span></span><br><span class="line">  <span class="comment"># 使用上面网址登陆你的多说，然后创建站点，在 domain 中填入你设定的域名前半部分</span></span><br><span class="line">  <span class="comment"># http://&lt;要填的部分&gt;.duoshuo.com (domain只填上&lt;&gt;里的内容，不要填整个网址)</span></span><br><span class="line"></span><br><span class="line">youyan:</span><br><span class="line">  on: <span class="literal">true</span></span><br><span class="line">  id: 2095968</span><br><span class="line">  <span class="comment"># 是否开启友言评论，http://www.uyan.cc/index.php</span></span><br><span class="line">  <span class="comment"># id 中填写你的友言用户数字ID，注册后进入后台管理即可查看</span></span><br><span class="line">  <span class="comment"># 友言服务在 Web 环境下运行，普通本地环境无法查看，请部署后在线上测试。</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># &gt;&gt;&gt; Style Customisation 样式自定义 &lt;&lt;&lt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Background | 背景</span></span><br><span class="line"><span class="comment">## "5": show images form bg-1.jpg to bg-5.jpg in `/yelee/source/background/`</span></span><br><span class="line"><span class="comment">## "5": 显示`/yelee/source/background/`文件夹中 bg-1.jpg 到 bg-5.jpg 这5张图片</span></span><br><span class="line"><span class="comment">## "0": white-gray background | 淳朴灰白背景</span></span><br><span class="line">background_image: 5</span><br><span class="line"></span><br><span class="line"><span class="comment"># Base Font Size | 字号调节</span></span><br><span class="line">base_font_size: 16  <span class="comment">#px, 16 - 24</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## General Color Scheme | 主题配色方案 </span></span><br><span class="line"><span class="comment">## 可用值 Value: yilia</span></span><br><span class="line">color_scheme: </span><br><span class="line"></span><br><span class="line">highlight_style:</span><br><span class="line">  on: <span class="literal">true</span></span><br><span class="line">  inline_code: 3  <span class="comment"># Value: 0 - 9 可选</span></span><br><span class="line">  code_block: 2  <span class="comment"># Value: 0 - 4 </span></span><br><span class="line">  <span class="comment"># Set inline_code to style highlight text</span></span><br><span class="line">  <span class="comment"># Chose a highlight theme for code block</span></span><br><span class="line">  <span class="comment"># 通过 inline_code 切换内置文本高亮样式</span></span><br><span class="line">  <span class="comment"># 通过 code_block 切换内置代码高亮配色主题</span></span><br><span class="line"></span><br><span class="line">blockquote_style:</span><br><span class="line">  on: <span class="literal">true</span></span><br><span class="line">  blockquote: 1  <span class="comment"># Value: 0 - 7 可选</span></span><br><span class="line">  <span class="comment"># 自定义文章「引用部分」的样式</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Headings Style | 标题风格</span></span><br><span class="line"><span class="comment">## 0-Yelee, 1-Yilia, 2-GitHub</span></span><br><span class="line">heading_style: 0 <span class="comment"># Value: 0 - 2</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## List style type (ul) | 无序列表项标记样式</span></span><br><span class="line">list_style: 0  <span class="comment"># value: 0 - 12 可选</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 左边栏宽度 px</span></span><br><span class="line">left_col_width: 300</span><br><span class="line"></span><br><span class="line"><span class="comment"># Copyright info. of post | 文末版权信息</span></span><br><span class="line">copyright: <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Table of contents | 文章目录</span></span><br><span class="line">toc:</span><br><span class="line">  on: <span class="literal">true</span></span><br><span class="line">  list_number: <span class="literal">true</span> <span class="comment"># 目录序号</span></span><br><span class="line">  max_depth: 3  <span class="comment"># 1 - 6 (h1-h6) 目录最大级数</span></span><br><span class="line">  nowrap: <span class="literal">false</span> <span class="comment"># Keep title on same line | 目录标题不换行</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 是否开启主页及加载头像时的动画效果</span></span><br><span class="line"><span class="comment"># Animation in Homepage and Loading avatar</span></span><br><span class="line">animate: <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Load jQuery UI to style tooltips</span></span><br><span class="line"><span class="comment"># 工具提示框样式美化</span></span><br><span class="line">jquery_ui: <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Max width of right cloumn | 限制右侧内容的宽带 </span></span><br><span class="line">limit_article_width: </span><br><span class="line">  on: <span class="literal">false</span></span><br><span class="line">  max_width: 60 <span class="comment"># em</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># &gt;&gt;&gt; Small features | 小功能设置 &lt;&lt;&lt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 是否开启边栏多标签切换</span></span><br><span class="line"><span class="comment"># Birdhouse button in left column</span></span><br><span class="line">tagcloud: <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Blogroll, Link exchange | 友情链接</span></span><br><span class="line">friends:</span><br><span class="line">  MyBlog: http://www.skyheng.com/</span><br><span class="line">  GitHub: https://pages.github.com/</span><br><span class="line">  <span class="comment">#MOxFIVE: http://moxfive.xyz/</span></span><br><span class="line"><span class="comment">#friends: false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#是否开启“关于我”。</span></span><br><span class="line">aboutme: 专注于技术,专注于开发</span><br><span class="line"><span class="comment">#aboutme: true</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Open link in a new tab | 是否在新窗口打开链接</span></span><br><span class="line"><span class="comment">## `global` 0: Set separately, 1: Open all in new 2: Open all in current</span></span><br><span class="line"><span class="comment">## `global` 0: 分开设置, 1: 全部在新标签打开, 2: 全部在"当前"标签打开</span></span><br><span class="line">open_in_new:</span><br><span class="line">  global: 0 <span class="comment"># 0-2</span></span><br><span class="line">  title: <span class="literal">false</span> <span class="comment"># article title in homepage 主页文章标题</span></span><br><span class="line">  post: <span class="literal">false</span> <span class="comment"># link within post/page 正文中的链接</span></span><br><span class="line">  tags: <span class="literal">false</span> <span class="comment"># 标签</span></span><br><span class="line">  categories: <span class="literal">false</span> <span class="comment"># 分类</span></span><br><span class="line">  article_nav: <span class="literal">false</span> <span class="comment"># 导航</span></span><br><span class="line">  archives: <span class="literal">true</span> <span class="comment"># 归档</span></span><br><span class="line">  mini_archives: <span class="literal">true</span> <span class="comment"># 迷你归档</span></span><br><span class="line">  menu: <span class="literal">false</span> <span class="comment"># 边栏菜单</span></span><br><span class="line">  friends: <span class="literal">true</span>  <span class="comment"># 友情链接</span></span><br><span class="line">  socail: <span class="literal">true</span> <span class="comment"># 社交图标</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Customize feed link 自定义订阅地址</span></span><br><span class="line">rss: /atom.xml</span><br><span class="line"></span><br><span class="line"><span class="comment"># Update Reminder for IE6/7/8</span></span><br><span class="line"><span class="comment"># 针对 IE6/7/8 的升级浏览器提示</span></span><br><span class="line">ie_updater:</span><br><span class="line">  on: <span class="literal">true</span></span><br><span class="line">  link: //outdatedbrowser.com/</span><br><span class="line">  <span class="comment">## http://browsehappy.com/</span></span><br><span class="line">  <span class="comment">## http://outdatedbrowser.com/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Tab Title Change | 标签页标题切换</span></span><br><span class="line">tab_title_change: </span><br><span class="line">  <span class="comment">#on: false</span></span><br><span class="line">  left_tab_title: <span class="string">'(つェ⊂) 我藏好了哦~ '</span></span><br><span class="line">  return_tab_title: <span class="string">'(*´∇｀*) 被你发现啦~ '</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># &gt;&gt;&gt; Vendors | 第三方工具 &amp; 服务 &lt;&lt;&lt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Local Site Search | 本地站内搜索</span></span><br><span class="line"><span class="comment">## Insatall below plugin to take effect | 使用搜索需先安装对应插件</span></span><br><span class="line"><span class="comment">## https://github.com/PaicHyperionDev/hexo-generator-search</span></span><br><span class="line">search: </span><br><span class="line">  on: <span class="literal">true</span></span><br><span class="line">  onload: <span class="literal">false</span></span><br><span class="line">  <span class="comment">## true: get search.xml file when the page has loaded</span></span><br><span class="line">  <span class="comment">## false: get the file when search box gets focus</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># images viewer | 图片浏览器</span></span><br><span class="line"><span class="comment">## http://www.fancyapps.com/fancybox/</span></span><br><span class="line">fancybox: <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Display Math(LaTeX, MathML...) | 数学公式支持</span></span><br><span class="line"><span class="comment">## https://www.mathjax.org/</span></span><br><span class="line">mathjax: <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Socail Share | 是否开启分享</span></span><br><span class="line">share: </span><br><span class="line">  on: <span class="literal">true</span></span><br><span class="line">  baidu: <span class="literal">true</span></span><br><span class="line">  addthis: <span class="literal">false</span></span><br><span class="line">  addthis_pubid: <span class="string">"ra-56ff76c972fc0cf9"</span></span><br><span class="line">  <span class="comment">## Go to www.addthis.com/dashboard to get your pubid (in src of Code)</span></span><br><span class="line">  <span class="comment">## and customize AddThis share buttons</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 百度、谷歌站长验证。填写 HTML 标签 content</span></span><br><span class="line"><span class="comment"># Site Verification for Google and Baidu. HTML label content.</span></span><br><span class="line">baidu_site: </span><br><span class="line">google_site: </span><br><span class="line"></span><br><span class="line"><span class="comment"># Fill in Google Analytics tracking ID, #e.g. UA-XXXXX-X</span></span><br><span class="line">google_analytics: </span><br><span class="line"></span><br><span class="line"><span class="comment"># 百度统计 http://sitecenter.baidu.com/sc-web/</span></span><br><span class="line"><span class="comment"># 查看代码，填入 //hm.baidu.com/hm.js? 之后的内容</span></span><br><span class="line">baidu_tongji: </span><br><span class="line"></span><br><span class="line"><span class="comment"># 不蒜子网站计数设置</span></span><br><span class="line"><span class="comment"># http://ibruce.info/2015/04/04/busuanzi/</span></span><br><span class="line">visit_counter:</span><br><span class="line">  on: <span class="literal">true</span></span><br><span class="line">  site_visit: 本站到访数</span><br><span class="line">  page_visit: 本页阅读量</span><br><span class="line"></span><br><span class="line"><span class="comment"># GitHub Repo Widget</span></span><br><span class="line"><span class="comment"># https://github.com/hustcc/GitHub-Repo-Widget.js</span></span><br><span class="line">github_widget: <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Progress Bar | 页面加载进度条</span></span><br><span class="line"><span class="comment"># Demo: http://github.hubspot.com/pace/docs/welcome/</span></span><br><span class="line"><span class="comment"># type: barber-shop|big-counter|bounce|center-atom|center-circle|</span></span><br><span class="line"><span class="comment">#       center-radar|center-simple|corner-indicator|flash|flat-top|</span></span><br><span class="line"><span class="comment">#       loading-bar|mac-osx|minimal</span></span><br><span class="line"><span class="comment"># color: black|blue|green|orange|pink|purple|red|silver|white|yellow|</span></span><br><span class="line">progressBar:</span><br><span class="line">  on: <span class="literal">true</span></span><br><span class="line">  <span class="built_in">type</span>: <span class="string">"minimal"</span>  <span class="comment"># Keep Quotes | 保留引号避免出错</span></span><br><span class="line">  color: blue</span><br><span class="line"></span><br><span class="line">CDN:</span><br><span class="line">  jquery: //cdn.bootcss.com/jquery/2.2.4/jquery.min.js</span><br><span class="line">  require: //cdn.bootcss.com/require.js/2.2.0/require.min.js</span><br><span class="line">  fontawesome: //cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css</span><br><span class="line">  fancybox_js: //cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js</span><br><span class="line">  fancybox_css: //cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css</span><br><span class="line">  animate_css: //cdn.bootcss.com/animate.css/3.5.1/animate.min.css</span><br><span class="line">  jquery_ui_js: //cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js</span><br><span class="line">  jquery_ui_css: //cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css</span><br><span class="line">  pace_js: //cdn.bootcss.com/pace/1.0.2/pace.min.js</span><br><span class="line">  clipboard: //cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js</span><br><span class="line">  mathjax: //cdn.bootcss.com/mathjax/2.6.1/MathJax.js</span><br><span class="line">  scrollreveal: //cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js</span><br></pre></td></tr></table></figure>
+<h2 id="常用页面添加"><a href="#常用页面添加" class="headerlink" title="常用页面添加"></a>常用页面添加</h2><h3 id="404、关于我、标签页"><a href="#404、关于我、标签页" class="headerlink" title="404、关于我、标签页"></a>404、关于我、标签页</h3><ul>
+<li>还是以上一篇文章我们讲解的项目根目录上：E:\blog_space\hexo，在该目录启动 Git Bash：</li>
+<li>新增一个 404 页面：<code>hexo new page 404</code></li>
+<li>新增一个 about 页面：<code>hexo new page about</code></li>
+<li>新增一个 tag 标签云页面：<code>hexo new page tags</code></li>
+<li>新增一个 robot.txt 文件，把该文件放在：E:\blog_space\hexo\source 目录下，如果你没有该文件可以到我的项目上找：<a href="https://github.com/chenjh0611/chenjh0611.github.io" target="_blank" rel="noopener">https://github.com/chenjh0611/chenjh0611.github.io</a></li>
+<li>robot 文件内容：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">User-Agent: *</span><br><span class="line">Allow: /</span><br><span class="line">Disallow: /background</span><br><span class="line">Disallow: /css</span><br><span class="line">Disallow: /fancybox</span><br><span class="line">Disallow: /font-awesome</span><br><span class="line">Disallow: /img</span><br><span class="line">Disallow: /js</span><br><span class="line">Sitemap: http://code.skyheng.com/sitemap.xml</span><br><span class="line">Sitemap: http://code.skyheng.com/baidusitemap.xml</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>在md文件的Front-matter区域添将comments设置为flase的话，将不会展示评论界面。</p>
+</blockquote>
+<h2 id="设置分类"><a href="#设置分类" class="headerlink" title="设置分类"></a>设置分类</h2><p>在我们编辑文章的时候，直接在categories:项填写属于哪个分类，但如果分类是中文的时候，路径也会包含中文。 比如分类我们设置的是：<br>categories: 编程 那在生成页面后，分类列表就会出现编程这个选项，他的访问路径是：<code>*/categories/编程</code><br>如果我们想要把路径名和分类名分别设置，需要怎么办呢？<br>打开根目录下（并非主题目录）的配置文件_config.yml（别打开错了），找到如下位置做更改（设置种类）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># Category &amp; Tag</span><br><span class="line">default_category: uncategorized</span><br><span class="line">category_map:</span><br><span class="line">    编程: programming</span><br><span class="line">    Hexo：Hexo</span><br><span class="line">    生活: life</span><br><span class="line">    其他: other</span><br><span class="line">tag_map:</span><br></pre></td></tr></table></figure></p>
+<p>在这里category_map:是设置分类的地方，每行一个分类，冒号前面是分类名称，后面是访问路径。 可以提前在这里设置好一些分类，当编辑的文章填写了对应的分类名时，就会自动的按照对应的路径来访问。</p>
+<h2 id="置顶文章方法"><a href="#置顶文章方法" class="headerlink" title="置顶文章方法"></a>置顶文章方法</h2><ul>
+<li>参考：<ol>
+<li><a href="http://www.netcan666.com/2015/11/22/%E8%A7%A3%E5%86%B3Hexo%E7%BD%AE%E9%A1%B6%E9%97%AE%E9%A2%98/" target="_blank" rel="noopener">解决Hexo置顶问题</a></li>
+<li><a href="https://www.jianshu.com/p/42a4efcdf8d7" target="_blank" rel="noopener">解决Hexo博客文章置顶问题</a></li>
+</ol>
+</li>
+<li>编辑这个文件：<code>node_modules/hexo-generator-index/lib/generator.js</code>在生成文章之前进行文章top值排序。</li>
+<li>覆盖原文件内容，采用下面内容：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'use strict'</span>;</span><br><span class="line">var pagination = require(<span class="string">'hexo-pagination'</span>);</span><br><span class="line">module.exports = <span class="keyword">function</span>(locals)&#123;</span><br><span class="line">var config = this.config;</span><br><span class="line">var posts = locals.posts;</span><br><span class="line">posts.data = posts.data.sort(<span class="keyword">function</span>(a, b) &#123;</span><br><span class="line">    <span class="keyword">if</span>(a.top &amp;&amp; b.top) &#123; // 两篇文章top都有定义</span><br><span class="line">        <span class="keyword">if</span>(a.top == b.top) <span class="built_in">return</span> b.date - a.date; // 若top值一样则按照文章日期降序排</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">return</span> b.top - a.top; // 否则按照top值降序排</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(a.top &amp;&amp; !b.top) &#123; // 以下是只有一篇文章top有定义，那么将有top的排在前面（这里用异或操作居然不行233）</span><br><span class="line">        <span class="built_in">return</span> -1;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(!a.top &amp;&amp; b.top) &#123;</span><br><span class="line">        <span class="built_in">return</span> 1;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">return</span> b.date - a.date; // 都没定义按照文章日期降序排</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">  var paginationDir = config.pagination_dir || <span class="string">'page'</span>;</span><br><span class="line">  <span class="built_in">return</span> pagination(<span class="string">''</span>, posts, &#123;</span><br><span class="line">    perPage: config.index_generator.per_page,</span><br><span class="line">    layout: [<span class="string">'index'</span>, <span class="string">'archive'</span>],</span><br><span class="line">    format: paginationDir + <span class="string">'/%d/'</span>,</span><br><span class="line">    data: &#123;</span><br><span class="line">      __index: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>然后在文章头部的：Front-matter位置加上一个：<code>top: 1000</code>的内容。数值越大，越靠前</li>
+</ul>
+<h3 id="另外一种解决方案："><a href="#另外一种解决方案：" class="headerlink" title="另外一种解决方案："></a>另外一种解决方案：</h3><ul>
+<li><a href="http://blog.csdn.net/qwerty200696/article/details/79010629" target="_blank" rel="noopener">hexo博客优化之文章置顶+置顶标签</a><br>文章中卸载<code>hexo-generator-index</code>使用<code>cnpm install --save hexo-generator-index-pin-top</code>插件来实现，安装这个插件然后在需要置顶的文章的Front-matter中加上top: true即可，也可以是数值，数值越大，越靠前</li>
+</ul>
+<h2 id="字数统计和阅读时长"><a href="#字数统计和阅读时长" class="headerlink" title="字数统计和阅读时长"></a>字数统计和阅读时长</h2><p>Next 是已经集成了这个功能，所以还是得需要咱们自己完成，首先看一下官网的使用帮助<a href="https://www.npmjs.com/package/hexo-wordcount" target="_blank" rel="noopener">hexo-wordcount</a>.</p>
+<h3 id="集成步骤"><a href="#集成步骤" class="headerlink" title="集成步骤"></a>集成步骤</h3><ol>
+<li>先安装插件<code>hexo-wordcount</code>、执行<code>cnpm install --save hexo-wordcount</code>安装</li>
+<li><p>文件配置、在<code>yelee/layout/_partial/post/word.ejs</code>下创建<code>word.ejs</code>文件：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"margin-top:10px;"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"post-time"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"post-meta-item-icon"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-keyboard-o"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"post-meta-item-text"</span>&gt;</span>  字数统计: <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"post-count"</span>&gt;</span><span class="tag">&lt;<span class="name">%=</span> <span class="attr">wordcount</span>(<span class="attr">post.content</span>) %&gt;</span>字<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"post-time"</span>&gt;</span></span><br><span class="line">      &amp;nbsp; | &amp;nbsp;</span><br><span class="line">      <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"post-meta-item-icon"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-hourglass-half"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"post-meta-item-text"</span>&gt;</span>  阅读时长: <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"post-count"</span>&gt;</span><span class="tag">&lt;<span class="name">%=</span> <span class="attr">min2read</span>(<span class="attr">post.content</span>) %&gt;</span>分<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>然后在 <code>themes/yelee/layout/_partial/article.ejs</code>文件中<code>&lt;%- partial(&#39;post/title&#39;, {class_name: &#39;article-title&#39;}) %&gt;</code>后面添加如下代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;% <span class="keyword">if</span>(theme.word_count &amp;&amp; !post.no_word_count)&#123; %&gt;</span><br><span class="line">   &lt;%- partial(<span class="string">'post/word'</span>) %&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在<code>&lt;div class=&quot;article-info article-info-post&quot;&gt;</code>后添加如下代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;% <span class="keyword">if</span>(theme.word_count &amp;&amp; !post.no_word_count)&#123; %&gt;</span><br><span class="line">  &lt;br&gt;</span><br><span class="line">  &lt;br&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在主题<code>_config.yml</code>中配置<code>word_count</code>是否需要添加字数统计功能控制的flag、在md文件的Front-matter区域添加<code>no_word_count</code>为true即配置文章不需要显示字数统计功能</p>
+</li>
+</ol>
+<ul>
+<li><code>article.ejs</code>文件中代码块示例<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;% if (post.link || post.title)&#123; %&gt;</span><br><span class="line">  &lt;header class=&quot;article-header&quot;&gt;</span><br><span class="line">	&lt;%- partial(&apos;post/title&apos;, &#123;class_name: &apos;article-title&apos;&#125;) %&gt;</span><br><span class="line">	&lt;% if(theme.word_count &amp;&amp; !post.no_word_count)&#123; %&gt;</span><br><span class="line">	   &lt;%- partial(&apos;post/word&apos;) %&gt;</span><br><span class="line">	&lt;% &#125; %&gt;</span><br><span class="line">  &lt;/header&gt;</span><br><span class="line">  &lt;% if (!index)&#123; %&gt;</span><br><span class="line">  &lt;div class=&quot;article-info article-info-post&quot;&gt;</span><br><span class="line">	&lt;% if(theme.word_count &amp;&amp; !post.no_word_count)&#123; %&gt;</span><br><span class="line">	  &lt;br&gt;</span><br><span class="line">	  &lt;br&gt;</span><br><span class="line">	&lt;% &#125; %&gt;</span><br><span class="line">	&lt;%- partial(&apos;post/category&apos;) %&gt;</span><br><span class="line">	&lt;%- partial(&apos;post/tag&apos;) %&gt;</span><br><span class="line">	&lt;div class=&quot;clearfix&quot;&gt;&lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  &lt;% &#125; %&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="网易云音乐"><a href="#网易云音乐" class="headerlink" title="网易云音乐"></a>网易云音乐</h2><ul>
+<li>集成起来就很简单了，<code>MarkDown</code> 是支持 <code>h5</code> 代码的，所以打开<a href="https://music.163.com" target="_blank" rel="noopener">网易云</a>,输入你想要的歌曲，点击对应歌曲的 生成外链播放器。前提是有版权哈，然后拷贝相应的代码即可。<br><img src="http://img.skyheng.com/picture/hexo/music-get-link.png" alt="外链"><br><img src="http://img.skyheng.com/picture/hexo/music-code.png" alt="拷贝代码"><br>效果请点击<a href="http://code.skyheng.com/about/">关于我</a></li>
+</ul>
+<h2 id="鼠标点击效果"><a href="#鼠标点击效果" class="headerlink" title="鼠标点击效果"></a>鼠标点击效果</h2><p>废话不多说，直接看如何集成。 拷贝需要的文件、进入到<a href="https://github.com/xiaweizi/BackupBlog" target="_blank" rel="noopener">我的备份</a>，拷贝文件。<br><img src="http://img.skyheng.com/picture/hexo/folder-tree.png" alt="文件夹目录"><br>拷贝<code>resources</code>下的所有文件到您对应的目录。<br>打开<code>themes/yelee/layout/_partial/after-footer.ejs</code>文件，添加刚刚添加文件的配置。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;% if (theme.background_animation)&#123; %&gt;</span><br><span class="line">	&lt;script type=&quot;text/javascript&quot; src=&quot;/resources/love.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">	&lt;script type=&quot;text/javascript&quot; src=&quot;/resources/float.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">	&lt;script type=&quot;text/javascript&quot; src=&quot;/resources/typewriter.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">	&lt;script type=&quot;text/javascript&quot; color=0,104,183 opacity=1 zindex=-1 count=50 src=&quot;/resources/particle.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="快速实现博客压缩"><a href="#快速实现博客压缩" class="headerlink" title="快速实现博客压缩"></a>快速实现博客压缩</h2><p>项目压缩也叫<code>代码丑化</code>, 分别对 html、css、js、images进行优化，即把重复的代码合并，把多余的空格去掉，用算法把 images 进行压缩。压缩后的博客，加载速度会有较大的提升，自然能留住更多游客。<br>蛮多朋友使用了<code>gulp</code>对博客进行压缩，这也是一个办法，但在社区逛了下，找到了一个比较好用的模块<a href="https://github.com/chenzhutian/hexo-all-minifier" target="_blank" rel="noopener">hexo-all-minifier</a>，这个模块集成了对 html、css、js、image 的优化。安装上此模块后，只要在根目录下的<code>_config.yml</code>文件中加上如下字段就可对博客所有内容进行压缩。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">html_minifier:</span><br><span class="line">  <span class="built_in">enable</span>: <span class="literal">true</span></span><br><span class="line">  ignore_error: <span class="literal">false</span></span><br><span class="line">  exclude:</span><br><span class="line"></span><br><span class="line">css_minifier:</span><br><span class="line">  <span class="built_in">enable</span>: <span class="literal">true</span></span><br><span class="line">  exclude:</span><br><span class="line">    - <span class="string">'*.min.css'</span></span><br><span class="line"></span><br><span class="line">js_minifier:</span><br><span class="line">  <span class="built_in">enable</span>: <span class="literal">true</span></span><br><span class="line">  mangle: <span class="literal">true</span></span><br><span class="line">  output:</span><br><span class="line">  compress:</span><br><span class="line">  exclude:</span><br><span class="line">    - <span class="string">'*.min.js'</span></span><br><span class="line"></span><br><span class="line">image_minifier:</span><br><span class="line">  <span class="built_in">enable</span>: <span class="literal">true</span></span><br><span class="line">  interlaced: <span class="literal">false</span></span><br><span class="line">  multipass: <span class="literal">false</span></span><br><span class="line">  optimizationLevel: 2</span><br><span class="line">  pngquant: <span class="literal">false</span></span><br><span class="line">  progressive: <span class="literal">false</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="文章链接唯一化"><a href="#文章链接唯一化" class="headerlink" title="文章链接唯一化"></a>文章链接唯一化</h2><p>也许你会数次更改文章题目或者变更文章发布时间，在默认设置下，文章链接都会改变，不利于搜索引擎收录，也不利于分享。唯一永久链接才是更好的选择。</p>
+<ul>
+<li>hexo-abbrlink介绍：<a href="https://post.zz173.com/detail/hexo-abbrlink.html" target="_blank" rel="noopener">https://post.zz173.com/detail/hexo-abbrlink.html</a>、GitHub地址：<a href="https://github.com/Rozbo/hexo-abbrlink" target="_blank" rel="noopener">hexo-abbrlink</a><br>安装：<code>cnpm install hexo-abbrlink --save</code><br>在<code>站点配置文件</code>中查找代码<code>permalink</code>，将其更改为：<code>permalink: posts/:abbrlink/  # posts/</code>可自行更换</li>
+</ul>
+<p>这里有个知识点：</p>
+<blockquote>
+<p>百度蜘蛛抓取网页的规则:  对于蜘蛛说网页权重越高、信用度越高抓取越频繁，例如网站的首页和内页。蜘蛛先抓取网站的首页，因为首页权重更高，并且大部分的链接都是指向首页。然后通过首页抓取网站的内页，并不是所有内页蜘蛛都会去抓取。<br>搜索引擎认为对于一般的中小型站点，3层足够承受所有的内容了，所以蜘蛛经常抓取的内容是前三层，而超过三层的内容蜘蛛认为那些内容并不重要，所以不经常爬取。出于这个原因所以permalink后面跟着的最好不要超过2个斜杠。</p>
+</blockquote>
+<ul>
+<li>然后在<code>站点配置文件</code>中添加如下代码:<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># abbrlink config</span></span><br><span class="line">abbrlink:</span><br><span class="line">  alg: crc32  <span class="comment"># 算法：crc16(default) and crc32</span></span><br><span class="line">  rep: hex    <span class="comment"># 进制：dec(default) and hex</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>可选择模式：</p>
+<ul>
+<li>crc16 &amp; hex</li>
+<li>crc16 &amp; dec</li>
+<li>crc32 &amp; hex</li>
+<li>crc32 &amp; dec</li>
+</ul>
+<p>示例：<br>生成的链接如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">crc16 &amp; hex</span><br><span class="line">https://post.zz173.com/posts/66c8.html</span><br><span class="line">crc16 &amp; dec</span><br><span class="line">https://post.zz173.com/posts/65535.html</span><br><span class="line">crc32 &amp; hex</span><br><span class="line">https://post.zz173.com/posts/8ddf18fb.html</span><br><span class="line">crc32 &amp; dec</span><br><span class="line">https://post.zz173.com/posts/1690090958.html</span><br></pre></td></tr></table></figure></p>
+<h2 id="Yelog—对Yelee主题的改进"><a href="#Yelog—对Yelee主题的改进" class="headerlink" title="Yelog—对Yelee主题的改进"></a>Yelog—对Yelee主题的改进</h2><blockquote>
+<p>由于Yelee主题存在代码块上下出现空格的情况以及主题布局尺寸固定的情况，Yelog主题对Yelee主题进行了改进，github地址如下：<br><a href="https://github.com/yelog/hexo-theme-yelog" target="_blank" rel="noopener">https://github.com/yelog/hexo-theme-yelog</a></p>
+</blockquote>
+<h2 id="使用Yilia主题需要"><a href="#使用Yilia主题需要" class="headerlink" title="使用Yilia主题需要"></a>使用Yilia主题需要</h2><ul>
+<li>在查看所有文章的时候需要<br>1、请确保node版本大于6.2<br>2、在博客根目录（注意不是yilia根目录）执行以下命令：npm i hexo-generator-json-content –save<br>3、在根目录_config.yml里添加配置：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">jsonContent:</span><br><span class="line">meta: <span class="literal">false</span></span><br><span class="line">pages: <span class="literal">false</span></span><br><span class="line">posts:</span><br><span class="line">  title: <span class="literal">true</span></span><br><span class="line">  date: <span class="literal">true</span></span><br><span class="line">  path: <span class="literal">true</span></span><br><span class="line">  text: <span class="literal">false</span></span><br><span class="line">  raw: <span class="literal">false</span></span><br><span class="line">  content: <span class="literal">false</span></span><br><span class="line">  slug: <span class="literal">false</span></span><br><span class="line">  updated: <span class="literal">false</span></span><br><span class="line">  comments: <span class="literal">false</span></span><br><span class="line">  link: <span class="literal">false</span></span><br><span class="line">  permalink: <span class="literal">false</span></span><br><span class="line">  excerpt: <span class="literal">false</span></span><br><span class="line">  categories: <span class="literal">false</span></span><br><span class="line">  tags: <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="显示pdf的支持"><a href="#显示pdf的支持" class="headerlink" title="显示pdf的支持"></a>显示pdf的支持</h2><ul>
+<li>安装：<code>cnpm install --save hexo-pdf</code> github地址：<a href="https://github.com/superalsrk/hexo-pdf/" target="_blank" rel="noopener">hexo-pdf</a></li>
+<li>使用示例：
+
+	<div class="row">
+    <embed src="http://7xov2f.com1.z0.glb.clouddn.com/bash_freshman.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+</li>
+</ul>
+<h2 id="插件推荐"><a href="#插件推荐" class="headerlink" title="插件推荐"></a>插件推荐</h2><h3 id="插件的基本使用命令"><a href="#插件的基本使用命令" class="headerlink" title="插件的基本使用命令"></a>插件的基本使用命令</h3><ul>
+<li>插件官网：<a href="https://hexo.io/plugins/" target="_blank" rel="noopener">https://hexo.io/plugins/</a></li>
+<li>安装插件：<code>npm install 插件名 --save</code></li>
+<li>卸载插件：<code>npm uninstall 插件名</code></li>
+<li>更新插件和博客框架（需要在 E:\blog_space\hexo 目录下）：<code>npm update</code></li>
+<li>它实质上是通过项目根目录下 package.json 文件更新各大组件</li>
+</ul>
+<h3 id="必备插件"><a href="#必备插件" class="headerlink" title="必备插件"></a>必备插件</h3><ul>
+<li>支持RSS：<code>cnpm install hexo-generator-feed --save</code></li>
+<li>生成站点地图：<code>cnpm install hexo-generator-sitemap --save</code></li>
+<li>生成百度站点地图：<code>cnpm install hexo-generator-baidu-sitemap --save</code></li>
+<li>HTML 压缩：<code>cnpm install hexo-html-minifier --save</code></li>
+<li>JavaScript 压缩：<code>cnpm install hexo-uglify --save</code></li>
+<li>CSS 压缩插件：<code>cnpm install hexo-clean-css --save</code></li>
+<li>SEO优化：<code>cnpm install hexo-generator-seo-friendly-sitemap</code></li>
+<li>站内搜索：<code>hexo-generator-search</code>插件为 Hexo3 提供搜索功能。 安装： <code>cnpm install hexo-generator-search --save</code></li>
+</ul>
+<h3 id="其他插件支持"><a href="#其他插件支持" class="headerlink" title="其他插件支持"></a>其他插件支持</h3><h2 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h2><ul>
+<li>真心希望这是 Hexo 最后一篇，因为我们只是要安心写东西而已，不需要太多折腾。<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2></li>
+<li><a href="http://www.jianshu.com/p/57e22584b277" target="_blank" rel="noopener">搭建Hexo博客进阶篇–API和一些小部件（四）</a></li>
+<li><a href="http://blog.csdn.net/yanzi1225627/article/details/77761488" target="_blank" rel="noopener">hexo链接持久化终极解决之道</a></li>
+</ul>
+<h2 id="系列博文整理"><a href="#系列博文整理" class="headerlink" title="系列博文整理"></a>系列博文整理</h2><p>整理了下hexo系列的文章，发现这位博主写系列博客感觉还是很棒的：</p>
+<ul>
+<li><a href="http://tengj.top/2016/02/22/hexo1/" target="_blank" rel="noopener">hexo干货系列：（一）hexo+gitHub搭建个人独立博客</a></li>
+<li><a href="http://tengj.top/2016/02/26/hexo2/" target="_blank" rel="noopener">hexo干货系列：（二）hexo主题下载及配置</a></li>
+<li><a href="http://tengj.top/2016/03/06/hexo3/" target="_blank" rel="noopener">hexo干货系列：（三）hexo的Jacman主题优化</a></li>
+<li><a href="http://tengj.top/2016/03/06/hexo4/" target="_blank" rel="noopener">hexo干货系列：（四）将hexo博客同时托管到github和coding</a></li>
+<li><a href="http://tengj.top/2016/03/11/hexo5Swiftype" target="_blank" rel="noopener">hexo干货系列：（五）hexo添加站内搜索</a></li>
+<li><a href="http://tengj.top/2016/03/14/hexo6seo" target="_blank" rel="noopener">hexo干货系列：（六）hexo提交搜索引擎（百度+谷歌）</a></li>
+<li><a href="http://tengj.top/2016/03/17/hexo7count/" target="_blank" rel="noopener">hexo干货系列：（七）hexo安装统计插件</a></li>
+<li><a href="http://tengj.top/2016/03/20/hexo8hidewidgets/" target="_blank" rel="noopener">hexo干货系列：（八）hexo文章自动隐藏侧边栏</a></li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/post/53342.html">使用Github搭建Hexo技术博客--增强教程</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">一切随缘</a></p>
+        <p><span>发布时间:</span>2015-05-01, 11:46:18</p>
+        <p><span>最后更新:</span>2018-03-18, 23:10:12</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/post/53342.html" title="使用Github搭建Hexo技术博客--增强教程">http://code.skyheng.com/post/53342.html</a>
+            <span class="copy-path" data-clipboard-text="原文: http://code.skyheng.com/post/53342.html　　作者: 一切随缘" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/post/4365.html">
+                    我的学习归纳方法（以学习Maven为例）
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/post/4103.html">
+                    使用Github搭建Hexo技术博客--安装教程
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#主题优化"><span class="toc-number">1.</span> <span class="toc-text">主题优化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#主题配置介绍"><span class="toc-number">1.1.</span> <span class="toc-text">主题配置介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#我的-yelle-主题配置"><span class="toc-number">1.2.</span> <span class="toc-text">我的 yelle 主题配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用页面添加"><span class="toc-number">2.</span> <span class="toc-text">常用页面添加</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#404、关于我、标签页"><span class="toc-number">2.1.</span> <span class="toc-text">404、关于我、标签页</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设置分类"><span class="toc-number">3.</span> <span class="toc-text">设置分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#置顶文章方法"><span class="toc-number">4.</span> <span class="toc-text">置顶文章方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#另外一种解决方案："><span class="toc-number">4.1.</span> <span class="toc-text">另外一种解决方案：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字数统计和阅读时长"><span class="toc-number">5.</span> <span class="toc-text">字数统计和阅读时长</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#集成步骤"><span class="toc-number">5.1.</span> <span class="toc-text">集成步骤</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#网易云音乐"><span class="toc-number">6.</span> <span class="toc-text">网易云音乐</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#鼠标点击效果"><span class="toc-number">7.</span> <span class="toc-text">鼠标点击效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#快速实现博客压缩"><span class="toc-number">8.</span> <span class="toc-text">快速实现博客压缩</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文章链接唯一化"><span class="toc-number">9.</span> <span class="toc-text">文章链接唯一化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Yelog—对Yelee主题的改进"><span class="toc-number">10.</span> <span class="toc-text">Yelog—对Yelee主题的改进</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用Yilia主题需要"><span class="toc-number">11.</span> <span class="toc-text">使用Yilia主题需要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#显示pdf的支持"><span class="toc-number">12.</span> <span class="toc-text">显示pdf的支持</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#插件推荐"><span class="toc-number">13.</span> <span class="toc-text">插件推荐</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#插件的基本使用命令"><span class="toc-number">13.1.</span> <span class="toc-text">插件的基本使用命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#必备插件"><span class="toc-number">13.2.</span> <span class="toc-text">必备插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他插件支持"><span class="toc-number">13.3.</span> <span class="toc-text">其他插件支持</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结束语"><span class="toc-number">14.</span> <span class="toc-text">结束语</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资料"><span class="toc-number">15.</span> <span class="toc-text">参考资料</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#系列博文整理"><span class="toc-number">16.</span> <span class="toc-text">系列博文整理</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"使用Github搭建Hexo技术博客--增强教程　| 一切随缘的技术博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+    
+
+    
+    
+
+    
+        <section class="changyan" id="comments">
+    <div id="SOHUCS" sid="post/53342.html" ></div>
+    <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+        <script type="text/javascript">
+            window.changyan.api.config({
+                appid: "cyts7t2el",
+                conf: "fb4aa871793bef5899de054a3902f3eb"
+            });
+        </script>
+    </script>
+</section>
+    
+
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/post/4365.html" title="上一篇: 我的学习归纳方法（以学习Maven为例）">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/post/4103.html" title="下一篇: 使用Github搭建Hexo技术博客--安装教程">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/post/36308.html">MarkdownPad2在win10上安装及破解</a></li><li class="post-list-item"><a class="post-list-link" href="/post/61360.html">关系数据库常用SQL的详细用法</a></li><li class="post-list-item"><a class="post-list-link" href="/post/5372.html">Hexo部署在阿里云服务器上</a></li><li class="post-list-item"><a class="post-list-link" href="/post/55981.html">BigDecimal的用法详解及注意事项</a></li><li class="post-list-item"><a class="post-list-link" href="/post/4240.html">Java日期时间格式化转换符</a></li><li class="post-list-item"><a class="post-list-link" href="/post/46695.html">Hexo使用过程中常见问题记录</a></li><li class="post-list-item"><a class="post-list-link" href="/post/62692.html">PowerDesigner16应用</a></li><li class="post-list-item"><a class="post-list-link" href="/post/27822.html">怎样在虚拟机上安装Ubuntu17.10系统</a></li><li class="post-list-item"><a class="post-list-link" href="/post/55614.html">Java8 JDK1.8 API中文</a></li><li class="post-list-item"><a class="post-list-link" href="/post/8806.html">前端CDN公共库大全</a></li><li class="post-list-item"><a class="post-list-link" href="/post/25067.html">Shiro Freemarker标签的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/post/50779.html">Velocity与Freemarker比较</a></li><li class="post-list-item"><a class="post-list-link" href="/post/24506.html">Logback.xml常用配置详解</a></li><li class="post-list-item"><a class="post-list-link" href="/post/61394.html">Mysql数据库优化方法,千万级数据库记录查询轻松解决</a></li><li class="post-list-item"><a class="post-list-link" href="/post/49258.html">程序员，你为什么值这么多钱？</a></li><li class="post-list-item"><a class="post-list-link" href="/post/52661.html">数据库事务的四大特性以及事务的隔离级别</a></li><li class="post-list-item"><a class="post-list-link" href="/post/32480.html">从Request中获得参数Map返回可读的Map</a></li><li class="post-list-item"><a class="post-list-link" href="/post/56296.html">Win10常用的快捷键</a></li><li class="post-list-item"><a class="post-list-link" href="/post/25267.html">ZooKeeper常用命令介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/post/50164.html">ZooKeeper的安装与设置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/4103.html">收集的国内Maven镜像地址</a></li><li class="post-list-item"><a class="post-list-link" href="/post/47539.html">Windows下git pull批处理</a></li><li class="post-list-item"><a class="post-list-link" href="/post/8298.html">Git常用的操作命令</a></li><li class="post-list-item"><a class="post-list-link" href="/post/26220.html">python安装</a></li><li class="post-list-item"><a class="post-list-link" href="/post/46664.html">实例Demo之3D-Transform立方体效果</a></li><li class="post-list-item"><a class="post-list-link" href="/post/51910.html">Redis在Linux下的安装和配置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20294.html">Tomcat7优化配置参数</a></li><li class="post-list-item"><a class="post-list-link" href="/post/56640.html">一些好的技术博客,追随牛逼的人,让自己更牛逼</a></li><li class="post-list-item"><a class="post-list-link" href="/post/37438.html">国内外知名IT科技博客（强烈推荐）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/59806.html">Eclipse常用插件安装</a></li><li class="post-list-item"><a class="post-list-link" href="/post/33906.html">Eclipse安装JRebel6.4.8热部署插件教程</a></li><li class="post-list-item"><a class="post-list-link" href="/post/8028.html">JQuery的eval解析JSON中的注意点介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/post/28651.html">关于分布式一致性的探究</a></li><li class="post-list-item"><a class="post-list-link" href="/post/5101.html">初识分布式系统</a></li><li class="post-list-item"><a class="post-list-link" href="/post/13879.html">用Excel生成和管理Markdown表格</a></li><li class="post-list-item"><a class="post-list-link" href="/post/29405.html">Hexo最常用的几个命令</a></li><li class="post-list-item"><a class="post-list-link" href="/post/52802.html">GIT的常用操作命令</a></li><li class="post-list-item"><a class="post-list-link" href="/post/31797.html">常用软件与工具整理</a></li><li class="post-list-item"><a class="post-list-link" href="/post/23662.html">Linux常用命令大全</a></li><li class="post-list-item"><a class="post-list-link" href="/post/62293.html">在一个千万级的数据库查询中，如何提高查询效率？</a></li><li class="post-list-item"><a class="post-list-link" href="/post/60804.html">VMware中CentOS设置静态IP</a></li><li class="post-list-item"><a class="post-list-link" href="/post/9311.html">Tomcat8安装和配置以及优化</a></li><li class="post-list-item"><a class="post-list-link" href="/post/65527.html">【微信支付】“刷卡支付”、“被扫支付”开发JavaDemo</a></li><li class="post-list-item"><a class="post-list-link" href="/post/30401.html">【微信支付】“刷卡支付”、“被扫支付”开发说明</a></li><li class="post-list-item"><a class="post-list-link" href="/post/60927.html">Svn密码破解，Svn密码本地找回</a></li><li class="post-list-item"><a class="post-list-link" href="/post/26924.html">Subversion在Linux下的安装与配置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/56374.html">Mysql在Linux下的安装和配置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/24125.html">Maven在Linux下的安装和配置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/7577.html">在linux下的JDK安装和配置（基于阿里云服务器CentOS 6.5）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/59363.html">Nexus在linux下的安装和配置（基于阿里云服务器CentOS 6.5）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/4365.html">我的学习归纳方法（以学习Maven为例）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/53342.html">使用Github搭建Hexo技术博客--增强教程</a></li><li class="post-list-item"><a class="post-list-link" href="/post/4103.html">使用Github搭建Hexo技术博客--安装教程</a></li><li class="post-list-item"><a class="post-list-link" href="/post/2803.html">构建工具Maven相关知识整理专题</a></li><li class="post-list-item"><a class="post-list-link" href="/post/17946.html">JAVA中重写和重载区别</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2015-2018 一切随缘
+                <span>| </span>
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备16005473号-1</a>
+                <!--|| <span>博客全站共2字</span>-->
+            </div>
+            <div class="footer-right">
+                <a>
+                    
+                        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1273088600'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1273088600%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+                    
+                </a>
+                <span>| </span>
+                Hosted by <a href="https://pages.coding.me" style="font-weight: bold" target="_blank" >Coding Pages</a>
+				<!--
+                    <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>Theme
+                    <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE
+                    <i class="fa fa-heart animated infinite pulse"></i>
+                 -->
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+	<script type="text/javascript" src="/resources/love.js"></script>
+	<script type="text/javascript" src="/resources/float.js"></script>
+	<script type="text/javascript" src="/resources/typewriter.js"></script>
+	<script type="text/javascript" color=0,104,183 opacity=1 zindex=-1 count=50 src="/resources/particle.js"></script>
+
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+  </div>
+</body>
+</html>

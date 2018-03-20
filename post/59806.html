@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="一切随缘" />
+
+
+
+<meta name="description" content="在java开发过程中会使用到很多的eclipse的插件，在你下载一个新的eclipse版本后，你会去增强你的eclipse的功能，会去安装插件，但是每次安装起插件来都是在网上到处找链接，还有很多的链接是失效的，在这里我记录一些我安装插件过程中的一些链接及介绍。">
+<meta name="keywords" content="eclipse,plugin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Eclipse常用插件安装">
+<meta property="og:url" content="http://code.skyheng.com/post/59806.html">
+<meta property="og:site_name" content="一切随缘的技术博客">
+<meta property="og:description" content="在java开发过程中会使用到很多的eclipse的插件，在你下载一个新的eclipse版本后，你会去增强你的eclipse的功能，会去安装插件，但是每次安装起插件来都是在网上到处找链接，还有很多的链接是失效的，在这里我记录一些我安装插件过程中的一些链接及介绍。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://img.skyheng.com/picture/2016/eclipse.jpg">
+<meta property="og:updated_time" content="2018-03-20T14:51:22.147Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Eclipse常用插件安装">
+<meta name="twitter:description" content="在java开发过程中会使用到很多的eclipse的插件，在你下载一个新的eclipse版本后，你会去增强你的eclipse的功能，会去安装插件，但是每次安装起插件来都是在网上到处找链接，还有很多的链接是失效的，在这里我记录一些我安装插件过程中的一些链接及介绍。">
+<meta name="twitter:image" content="http://img.skyheng.com/picture/2016/eclipse.jpg">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="一切随缘的技术博客" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>Eclipse常用插件安装 | 一切随缘的技术博客</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?d195b745077c1dbc09dacf43876b8f07";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">一切随缘</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">日拱一卒无有尽、功不唐捐终入海</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/pdf/">书籍</a></li>
+                        
+                            <li><a href="/toolbox/">工具箱</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:chenjh0611@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/chenjh0611" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" href="http://blog.csdn.net/skychenjh" title="CSDN"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI/">CI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/">ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centOS/">centOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css3/">css3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/database/">database</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dubbo/">dubbo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eclipse/">eclipse</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/excel/">excel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/freemarker/">freemarker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jdk/">jdk</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jrebel/">jrebel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/logback/">logback</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nexus/">nexus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/oracle/">oracle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plugin/">plugin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/powerDesigner/">powerDesigner</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rect/">rect</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scanpay/">scanpay</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shiro/">shiro</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/software/">software</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql/">sql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/table/">table</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tomcat/">tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/velocity/">velocity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vmware/">vmware</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/win10/">win10</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wxpay/">wxpay</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zooKeeper/">zooKeeper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式/">分布式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习方法/">学习方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/闲聊/">闲聊</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.skyheng.com/">MyBlog</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://theme.skyheng.com/">后台模板</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.jheng.top/">next博客</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于技术,专注于开发</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">一切随缘</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">一切随缘</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">日拱一卒无有尽、功不唐捐终入海</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/pdf/">书籍</a></li>
+                
+                    <li><a href="/toolbox/">工具箱</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:chenjh0611@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/chenjh0611" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/skychenjh" title="CSDN"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-2016-2016-08-29-Eclipse常用插件安装" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/post/59806.html" class="article-date">
+      <time datetime="2016-08-29T08:47:43.000Z" itemprop="datePublished">2016-08-29</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Eclipse常用插件安装
+    </h1>
+  
+
+		
+		   <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">3,213字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">13分</span>
+      </span>
+    </span>
+</div>
+		
+      </header>
+      
+      <div class="article-info article-info-post">
+		
+          <br>
+          <br>
+        
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/eclipse/">eclipse</a><a class="article-category-link" href="/categories/eclipse/plugin/">plugin</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/eclipse/">eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/plugin/">plugin</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>在java开发过程中会使用到很多的eclipse的插件，在你下载一个新的eclipse版本后，你会去增强你的eclipse的功能，会去安装插件，但是每次安装起插件来都是在网上到处找链接，还有很多的链接是失效的，在这里我记录一些我安装插件过程中的一些链接及介绍。</p>
+<a id="more"></a>
+<p><img src="http://img.skyheng.com/picture/2016/eclipse.jpg" alt="eclipse"></p>
+<h2 id="Eclipse插件"><a href="#Eclipse插件" class="headerlink" title="Eclipse插件"></a>Eclipse插件</h2><p>开发过程中的常用Eclipse插件，按字母排序：</p>
+<h3 id="1-AmaterasUML"><a href="#1-AmaterasUML" class="headerlink" title="(1)AmaterasUML"></a>(1)AmaterasUML</h3><ul>
+<li>介绍：Eclipse的UML插件，支持UML活动图，class图，sequence图，usecase图等；支持与Java class/interface之间的相互导入导出。</li>
+<li>官方网站：<a href="http://amateras.sourceforge.jp/cgi-bin/fswiki_en/wiki.cgi?page=AmaterasUML" target="_blank" rel="noopener">http://amateras.sourceforge.jp/cgi-bin/fswiki_en/wiki.cgi?page=AmaterasUML</a></li>
+<li>插件下载URL：<a href="http://sourceforge.jp/projects/amateras/downloads/56447/AmaterasUML_1.3.4.zip/" target="_blank" rel="noopener">http://sourceforge.jp/projects/amateras/downloads/56447/AmaterasUML_1.3.4.zip/</a>  （目前最新版本）</li>
+<li>注：安装时需要GEF插件的支持。</li>
+</ul>
+<h3 id="2-Bravo-JSP"><a href="#2-Bravo-JSP" class="headerlink" title="(2)Bravo JSP"></a>(2)Bravo JSP</h3><ul>
+<li>介绍：Bravo JSP编辑器是一款WYSIWYG（所见即所得的）JSP/html页面编辑器。Code Editor(代码编辑器)与Eclipse Web Tools的JSP编辑器相同，所以支持代码建议，代码模板和其它相同的功能。可视化部分：支持CSS样式、图片、JSP表达式/标签库/标签文件、外部included的文件。改变HTML/CSS/JSP代码可以立即看到效果。提供DOM查找/替换对话框。JSTL的变量查看功能。</li>
+<li>官方网站：<a href="http://bravo.comxa.com/index.php" target="_blank" rel="noopener">http://bravo.comxa.com/index.php</a></li>
+<li>Eclipse在线安装URL：<a href="http://bravo.comxa.com/update" target="_blank" rel="noopener">http://bravo.comxa.com/update</a></li>
+</ul>
+<h3 id="3-Checkstyle"><a href="#3-Checkstyle" class="headerlink" title="(3)Checkstyle"></a>(3)Checkstyle</h3><ul>
+<li>介绍：CheckStyle是SourceForge下的一个项目，提供了一个帮助JAVA开发人员遵守某些编码规范的工具。它能够自动化代码规范检查过程，从而使得开发人员从这项重要，但是枯燥的任务中解脱出来。CheckStyle检验的主要内容有：Javadoc注释、命名约定、标题、import语句、体积大小、空白、修饰符、块、代码问题、类设计以及混合检查（包括一些有用的比如非必须的System.out和printstackTrace）等。</li>
+<li>官方网站：<a href="http://checkstyle.sourceforge.net/" target="_blank" rel="noopener">http://checkstyle.sourceforge.net/</a></li>
+<li>Eclipse在线安装URL：<a href="http://eclipse-cs.sourceforge.net/update/" target="_blank" rel="noopener">http://eclipse-cs.sourceforge.net/update/</a></li>
+</ul>
+<h3 id="4-Easy-Explorer"><a href="#4-Easy-Explorer" class="headerlink" title="(4)Easy Explorer"></a>(4)Easy Explorer</h3><ul>
+<li>介绍：如果你经常需要在Eclipse里打开相关资源文件所在的文件夹，比较麻烦，要右键，属性，在Location一栏中把所在的文件夹拷贝一下，然后再去资源管理器里输入这个路径，回车，然后打开它，比较麻烦。Easy Explorer是一个Eclipse的小插件，它能直接打开选中文件所在的目录，很方便好用.</li>
+<li>官方网站：<a href="http://sourceforge.net/projects/easystruts/" target="_blank" rel="noopener">http://sourceforge.net/projects/easystruts/</a></li>
+</ul>
+<h3 id="5-EasySQL"><a href="#5-EasySQL" class="headerlink" title="(5)EasySQL"></a>(5)EasySQL</h3><ul>
+<li>介绍：EasySQL:Eclipse SQL插件。包含SQL编辑器和执行器,表格编辑器，数据导出工具。EasySQL设计成易于与其它插件相集成。如果在你的项目中需要数据库<br>操作功能，可以考虑该插件。</li>
+<li>官方网站：<a href="http://easysql.sourceforge.net/" target="_blank" rel="noopener">http://easysql.sourceforge.net/</a></li>
+<li>插件下载URL：<a href="http://sourceforge.net/projects/easysql/files/latest/download?source=files" target="_blank" rel="noopener">http://sourceforge.net/projects/easysql/files/latest/download?source=files</a></li>
+</ul>
+<h3 id="6-EclEmma"><a href="#6-EclEmma" class="headerlink" title="(6)EclEmma"></a>(6)EclEmma</h3><ul>
+<li>介绍：提到 EclEmma 首先就要说到著名的 Java 覆盖测试工具 Emma。从某种程度上说，EclEmma 可以看作是 Emma 的一个图形界面。EclEmma的出现弥补了 Emma 用户一个大的遗憾 —- 缺乏图形界面以及对集成开发环境的支持。将 Eclipse 和 Emma 这两个在各自领域最为优秀的工具结合起来，这就是 EclEmma 为我们提供的。</li>
+<li>官方网站：<a href="http://www.eclemma.org/" target="_blank" rel="noopener">http://www.eclemma.org/</a></li>
+<li>Eclipse在线安装URL：<a href="http://update.eclemma.org/" target="_blank" rel="noopener">http://update.eclemma.org/</a></li>
+</ul>
+<h3 id="7-Eclipse-SWT-Designer-Plugin"><a href="#7-Eclipse-SWT-Designer-Plugin" class="headerlink" title="(7)Eclipse SWT Designer Plugin"></a>(7)Eclipse SWT Designer Plugin</h3><ul>
+<li>介绍：Eclipse SWT Designer Plugin是一个用于快速构建J2SE的桌面化GUI开发的Eclipse插件。</li>
+<li>官方网站：<a href="http://sourceforge.net/projects/eclipsedesigner/" target="_blank" rel="noopener">http://sourceforge.net/projects/eclipsedesigner/</a></li>
+<li>插件下载URL：<a href="http://sourceforge.net/projects/eclipsedesigner/files/latest/download" target="_blank" rel="noopener">http://sourceforge.net/projects/eclipsedesigner/files/latest/download</a></li>
+</ul>
+<h3 id="8-FindBugs"><a href="#8-FindBugs" class="headerlink" title="(8)FindBugs"></a>(8)FindBugs</h3><ul>
+<li>介绍：Findbugs 是一个静态分析工具，它检查类或者 JAR 文件，将字节码与一组缺陷模式进行对比以发现可能的问题。了静态分析工具，就可以在不实际运行程序的情况对软件进行分析。它可以帮助改进代码的质量。它是寻找代码缺陷的，很多我们写的不好的地方，可以优化的地方，它都能检查出来。例如：未关闭的数据库连接，缺少必要的null check，多余的 null check，多余的if后置条件，相同的条件分支，重复的代码块，错误的使用了”==”，不同数据类型的比较，建议使用StringBuffer代替字符串连加等等。</li>
+<li>官方网站：<a href="http://findbugs.sourceforge.net/" target="_blank" rel="noopener">http://findbugs.sourceforge.net/</a></li>
+<li>Eclipse在线安装URL：<a href="http://findbugs.cs.umd.edu/eclipse" target="_blank" rel="noopener">http://findbugs.cs.umd.edu/eclipse</a> </li>
+</ul>
+<h3 id="9-FreeMarker-IDE"><a href="#9-FreeMarker-IDE" class="headerlink" title="(9)FreeMarker IDE"></a>(9)FreeMarker IDE</h3><p>介绍：FreeMarker IDE是一个FreeMarker(模板引擎)感知编辑器，支持：语法高亮显示(Syntax Hilighting)、内容辅助(Content Assist)、大纲视图(Outline View)。其主页上提供了如何使用该插件进行开发的Flash视频。FreeMarker还有另外一个插件FreeMarker Eclipse Plugin。<br>官方网站：<a href="http://freemarker-ide.sourceforge.net/" target="_blank" rel="noopener">http://freemarker-ide.sourceforge.net/</a><br>插件下载URL：<a href="http://sourceforge.net/projects/freemarker-ide/files/" target="_blank" rel="noopener">http://sourceforge.net/projects/freemarker-ide/files/</a></p>
+<h3 id="10-Spket"><a href="#10-Spket" class="headerlink" title="(10)Spket"></a>(10)Spket</h3><ul>
+<li>介绍：Spket IDE是功能强大的JavaScript 和XML开发工具包。这个强大的编辑器可以进行JavaScript、XUL/XBL以及Yahoo! Widget开发。其中JavaScript编辑器具有代码完成（code completion）、语法标记以及内容概览等功能，协助开发人员创建高效的JavaScript代码。</li>
+<li>官方网站：<a href="http://www.spket.com" target="_blank" rel="noopener">http://www.spket.com</a></li>
+<li>Eclipse在线安装URL：<a href="http://www.agpad.com/update" target="_blank" rel="noopener">http://www.agpad.com/update</a></li>
+</ul>
+<h3 id="11-JadClipse"><a href="#11-JadClipse" class="headerlink" title="(11)JadClipse"></a>(11)JadClipse</h3><ul>
+<li>介绍：JadClipse是一个Eclipse插件,无缝地集成了Jad(快速Java反编译器)与Eclipse。通常,当打开一个类文件，类文件查看器将显示一个简短的API类的轮廓。如果你安装这个插件,JadClipse类文件查看器将替换类文件查看器并显示了类的反编译源代码。这个任务可以通过在后台使用Jad反编译相应的类文件来完成。可以支持正常的Java语法高亮以及大纲视图。</li>
+<li>官方网站：<a href="http://sourceforge.net/projects/jadclipse/" target="_blank" rel="noopener">http://sourceforge.net/projects/jadclipse/</a></li>
+<li>Eclipse在线安装URL：<a href="http://feeling.sourceforge.net/update" target="_blank" rel="noopener">http://feeling.sourceforge.net/update</a></li>
+</ul>
+<h3 id="12-Javascript-Debug-Toolkit"><a href="#12-Javascript-Debug-Toolkit" class="headerlink" title="(12)Javascript Debug Toolkit"></a>(12)Javascript Debug Toolkit</h3><ul>
+<li>介绍：JSDT(Javascript Debug Toolkit)是一个用于javascript调试的Eclipse 插件，用于调试javascript。JSDT可以跨浏览器调试，支持在IE,Firefox,Safari,Chrome等主流浏览器中调试javascript。JSDT支持设置断点，单步调试等调试工具的基本特性。</li>
+<li>官方网站：<a href="http://code.google.com/p/jsdt/" target="_blank" rel="noopener">http://code.google.com/p/jsdt/</a></li>
+<li>Eclipse在线安装URL：<a href="http://jsdt.googlecode.com/svn/trunk/org.ayound.js.debug.update" target="_blank" rel="noopener">http://jsdt.googlecode.com/svn/trunk/org.ayound.js.debug.update</a></li>
+</ul>
+<h3 id="13-Mybatis-Editor"><a href="#13-Mybatis-Editor" class="headerlink" title="(13)Mybatis Editor"></a>(13)Mybatis Editor</h3><ul>
+<li>介绍：MyBatis Editor是一个Eclipse的插件，用来编辑MyBatis的配置文件。</li>
+<li>官方网站：<a href="http://code.google.com/a/eclipselabs.org/p/mybatiseditor/" target="_blank" rel="noopener">http://code.google.com/a/eclipselabs.org/p/mybatiseditor/</a></li>
+<li>Eclipse在线安装URL：<a href="http://mybatiseditor.eclipselabs.org.codespot.com/git/org.eclipselabs.mybatiseditor.updatesite" target="_blank" rel="noopener">http://mybatiseditor.eclipselabs.org.codespot.com/git/org.eclipselabs.mybatiseditor.updatesite</a></li>
+</ul>
+<h3 id="14-MAT"><a href="#14-MAT" class="headerlink" title="(14)MAT"></a>(14)MAT</h3><ul>
+<li>介绍：Eclipse Memory Analyzer（MAT）是著名的跨平台集成开发环境 Eclipse Galileo 版本的 33 个组成项目中之一，它是一个功能丰富的JAVA 堆转储文件分析工具，可以帮助你发现内存漏洞和减少内存消耗。对于大型 JAVA 应用程序来说，再精细的测试也难以堵住所有的漏洞，即便我们在测试阶段进行了大量卓有成效的工作，很多问题还是会在生产环境下暴露出来，并且很难在测试环境中进行重现。JVM 能够记录下问题发生时系统的部分运行状态，并将其存储在堆转储 (Heap Dump) 文件中，从而为我们分析和诊断问题提供了重要的依据。</li>
+<li>官方网站：<a href="http://www.eclipse.org/mat/" target="_blank" rel="noopener">http://www.eclipse.org/mat/</a></li>
+<li>Eclipse在线安装URL：<a href="http://download.eclipse.org/mat/1.2/update-site/" target="_blank" rel="noopener">http://download.eclipse.org/mat/1.2/update-site/</a></li>
+</ul>
+<h3 id="15-m2eclipse"><a href="#15-m2eclipse" class="headerlink" title="(15)m2eclipse"></a>(15)m2eclipse</h3><ul>
+<li>介绍：这是一个在Eclipse环境中集成的Maven插件。 </li>
+<li>官方网站：<a href="http://www.sonatype.org/m2eclipse/" target="_blank" rel="noopener">http://www.sonatype.org/m2eclipse/</a></li>
+<li>Eclipse在线安装URL： <a href="http://m2eclipse.sonatype.org/sites/m2e" target="_blank" rel="noopener">http://m2eclipse.sonatype.org/sites/m2e</a></li>
+<li>m2eclipse最新可用地址：<a href="http://download.eclipse.org/technology/m2e/releases" target="_blank" rel="noopener">http://download.eclipse.org/technology/m2e/releases</a></li>
+</ul>
+<h3 id="16-PatternBox"><a href="#16-PatternBox" class="headerlink" title="(16)PatternBox"></a>(16)PatternBox</h3><ul>
+<li>介绍：PatternBox是一个Java设计模式编辑器。它提供一个基于模板的代码生成器。这个基于XML的模板机制使得你能够定义自己的代码模板。PatternBox当前能够为16种GoF设计模式生成代码。</li>
+<li>官方网站：<a href="http://www.patternbox.com/" target="_blank" rel="noopener">http://www.patternbox.com/</a></li>
+<li>插件下载URL：<a href="http://www.patternbox.com/eclipse-plugin.html" target="_blank" rel="noopener">http://www.patternbox.com/eclipse-plugin.html</a></li>
+</ul>
+<h3 id="17-PMD"><a href="#17-PMD" class="headerlink" title="(17)PMD"></a>(17)PMD</h3><ul>
+<li>介绍：PMD是一种开源分析Java代码错误的工具。与其他分析工具不同的是，PMD通过静态分析获知代码错误。也就是说，在不运行Java程序的情况下报告错误。PMD附带了许多可以直接使用的规则，利用这些规则可以找出Java源程序的许多问题。此外，用户还可以自己定义规则，检查Java代码是否符合某些特定的编码规范。PMD是一款采用BSD协议发布的Java程序代码检查工具。该工具可以做到检查Java代码中是否含有未使用的变量、是否含有空的抓取块、是否含有不必要的对象等。该软件功能强大，扫描效率高，是Java程序员debug的好帮手。 </li>
+<li>官方网站：<a href="http://pmd.sourceforge.net/" target="_blank" rel="noopener">http://pmd.sourceforge.net/</a></li>
+<li>Eclipse在线安装URL：<a href="http://pmd.sf.net/eclipse" target="_blank" rel="noopener">http://pmd.sf.net/eclipse</a></li>
+</ul>
+<h3 id="18-Properties-Editor"><a href="#18-Properties-Editor" class="headerlink" title="(18)Properties Editor"></a>(18)Properties Editor</h3><ul>
+<li>介绍：Properties Editor 编辑java的属性文件，并可以自动存盘为Unicode格式。</li>
+<li>官方网站：<a href="http://propedit.sourceforge.jp/index_en.html" target="_blank" rel="noopener">http://propedit.sourceforge.jp/index_en.html</a></li>
+<li>Eclipse在线安装URL：<a href="http://propedit.sourceforge.jp/eclipse/updates/" target="_blank" rel="noopener">http://propedit.sourceforge.jp/eclipse/updates/</a></li>
+</ul>
+<h3 id="19-Regex-Util"><a href="#19-Regex-Util" class="headerlink" title="(19)Regex Util"></a>(19)Regex Util</h3><ul>
+<li>介绍：正则表达式测试插件。它能够高亮显示正则表达式语法、括号匹配、错误检测。能够提醒正则表达式的功能详细描述等。</li>
+<li>官方网站：<a href="http://myregexp.com/eclipsePlugin.html" target="_blank" rel="noopener">http://myregexp.com/eclipsePlugin.html</a></li>
+<li>Eclipse在线安装URL：<a href="http://regex-util.sourceforge.net/update/" target="_blank" rel="noopener">http://regex-util.sourceforge.net/update/</a></li>
+</ul>
+<h3 id="20-Smelly"><a href="#20-Smelly" class="headerlink" title="(20)Smelly"></a>(20)Smelly</h3><ul>
+<li>介绍：Smelly这个插件能够自动探测Java代码中的Bad Smells。Smelly在软件开发中非常有用，它当前能够探测以下这些Bad Smells：</li>
+</ul>
+<ol>
+<li>Data Class(纯数据类)：Class只有fields或get/set属性，没有任何行为。</li>
+<li>Large Class(庞大的类)：单一类做过多的事情。</li>
+<li>Long Method(过长的Method)：过长的代码会使得Method难以理解和维护，应该将该Method分解成多个独立功能的Method。</li>
+<li>High Comment Density(过多的注释)：注释过多意味着该段代码难于理解。</li>
+<li>Long Parameters List(过长的参数列表)：一个Method中传入过长的参数列表，使得参数列难以理解。修改参数列时将会使得参数前后不一致。</li>
+<li>Switch Statements(Switch语句)：同样的Switch语句出现在不同的方法或不同的Class中，这样当需要增加新的CASE分支或者修改CASE分支内语句时，就必须找到所有的地方，然后进行修改。 </li>
+</ol>
+<ul>
+<li>官方网站：<a href="http://smelly.sourceforge.net/english.html" target="_blank" rel="noopener">http://smelly.sourceforge.net/english.html</a></li>
+<li>插件下载URL：<a href="http://smelly.sourceforge.net/download2.html" target="_blank" rel="noopener">http://smelly.sourceforge.net/download2.html</a></li>
+</ul>
+<h3 id="21-SpringIDE"><a href="#21-SpringIDE" class="headerlink" title="(21)SpringIDE"></a>(21)SpringIDE</h3><ul>
+<li>介绍：Spring IDE是一系列Eclipse插件，目的开发基于Spring的应用。Spring IDE增强了普通Eclipse IDE自带工具构建基于Spring的应用程序的能力。它使你的Eclipse IDE能够感知Spring，并给各种不同类型的Spring相关构件（Spring配置文件，Spring注解等）添加代码完成，验证，内容辅助，快速修复等功能。它也包含了对重构、Spring自动装配、Spring AOP和AspectJ、Spring Batch、Spring集成、Spring Security以及Spring WebFlow的支持，并集成了Eclipse Mylyn。它同时还包含了Spring UAA（用户代理分析），帮助我们收集一些使用数据的一个可选组件。这是完全匿名的，并且有助于我们更好地理解如何使用工具，如何在未来改进它。它还附带了SpringSource面板这个可选组件，可以给你带来有关SpringSource相关项目的最新信息以及一个易于使用的扩展安装来为Eclipse集成像VMware vFabric TC Server或Cloud Foundry这样的额外的工具附加组件。</li>
+<li>官方网站：<a href="https://github.com/SpringSource/spring-ide" target="_blank" rel="noopener">https://github.com/SpringSource/spring-ide</a></li>
+<li>Eclipse在线安装URL：</li>
+<li><a href="http://dist.springsource.com/release/TOOLS/update/e4.2" target="_blank" rel="noopener">http://dist.springsource.com/release/TOOLS/update/e4.2</a> (for Eclipse Juno 4.2)</li>
+<li><a href="http://dist.springsource.com/release/TOOLS/update/e3.7" target="_blank" rel="noopener">http://dist.springsource.com/release/TOOLS/update/e3.7</a> (for Eclipse Indigo 3.7)</li>
+<li><a href="http://dist.springsource.com/release/TOOLS/update/e3.6" target="_blank" rel="noopener">http://dist.springsource.com/release/TOOLS/update/e3.6</a> (for Eclipse Helios 3.6) </li>
+</ul>
+<h3 id="22-StrutsIDE"><a href="#22-StrutsIDE" class="headerlink" title="(22)StrutsIDE"></a>(22)StrutsIDE</h3><ul>
+<li>介绍：Struts开发辅助工具。提供struts-config.xml的图形编辑界面；提供Action, ActionForm, JSP等的创建向导。</li>
+<li>官方网站：<a href="http://amateras.sourceforge.jp/cgi-bin/fswiki_en/wiki.cgi?page=StrutsIDE" target="_blank" rel="noopener">http://amateras.sourceforge.jp/cgi-bin/fswiki_en/wiki.cgi?page=StrutsIDE</a></li>
+<li>插件下载URL：<a href="http://sourceforge.jp/projects/amateras/downloads/48176/tk.eclipse.plugin.struts_2.0.7.jar/" target="_blank" rel="noopener">http://sourceforge.jp/projects/amateras/downloads/48176/tk.eclipse.plugin.struts_2.0.7.jar/</a></li>
+</ul>
+<h3 id="23-Subclipse"><a href="#23-Subclipse" class="headerlink" title="(23)Subclipse"></a>(23)Subclipse</h3><ul>
+<li>介绍：Subclipse 是一个为 Eclipse IDE 添加 Subversion 支持的项目。支持几乎所有版本的Eclipse。</li>
+<li>官方网站：<a href="http://subclipse.stage.tigris.org/" target="_blank" rel="noopener">http://subclipse.stage.tigris.org/</a></li>
+<li>Eclipse在线安装URL：</li>
+<li><a href="http://subclipse.tigris.org/update_1.6.x" target="_blank" rel="noopener">http://subclipse.tigris.org/update_1.6.x</a></li>
+<li><a href="http://subclipse.tigris.org/update_1.8.x" target="_blank" rel="noopener">http://subclipse.tigris.org/update_1.8.x</a> (支持Subversion 1.7.x)</li>
+<li><a href="http://subclipse.tigris.org/update_1.10.x" target="_blank" rel="noopener">http://subclipse.tigris.org/update_1.10.x</a></li>
+</ul>
+<h3 id="24-XMLBuddy"><a href="#24-XMLBuddy" class="headerlink" title="(24)XMLBuddy"></a>(24)XMLBuddy</h3><ul>
+<li>介绍：一个XML的Eclipse插件，支持XML，DTD，XML Schema，XSLT等。XMLBuddy分了2个版本，一个是免费的，XMLBuddy Pro是收费的。</li>
+<li>官方网站：<a href="http://www.xmlbuddy.com/" target="_blank" rel="noopener">http://www.xmlbuddy.com/</a>  </li>
+</ul>
+<h3 id="25-ER-Master"><a href="#25-ER-Master" class="headerlink" title="(25)ER Master"></a>(25)ER Master</h3><ul>
+<li>介绍：ER Master 是一个用于设计ER模型图的Eclipse插件。提供的功能包括：从数据库导入关系生成ER图，导出设计图，导出DDL数据定义语句等。目前完整支持的数据库包括 MySQL、PostgreSQL 和Oracle (developing)、DB2 (developing)、HSQLDB (developing)、SQLITE (developing)、SQLServer (developing)</li>
+<li>官方网站：<a href="http://ermaster.sourceforge.net/" target="_blank" rel="noopener">http://ermaster.sourceforge.net/</a></li>
+<li>插件下载URL：<a href="http://ermaster.sourceforge.net/update-site/" target="_blank" rel="noopener">http://ermaster.sourceforge.net/update-site/</a></li>
+<li>ERMaster下载地址：<a href="http://sourceforge.net/projects/ermaster/files/" target="_blank" rel="noopener">http://sourceforge.net/projects/ermaster/files/</a></li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/post/59806.html">Eclipse常用插件安装</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">一切随缘</a></p>
+        <p><span>发布时间:</span>2016-08-29, 16:47:43</p>
+        <p><span>最后更新:</span>2018-03-20, 22:51:22</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/post/59806.html" title="Eclipse常用插件安装">http://code.skyheng.com/post/59806.html</a>
+            <span class="copy-path" data-clipboard-text="原文: http://code.skyheng.com/post/59806.html　　作者: 一切随缘" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/post/37438.html">
+                    国内外知名IT科技博客（强烈推荐）
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/post/33906.html">
+                    Eclipse安装JRebel6.4.8热部署插件教程
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Eclipse插件"><span class="toc-number">1.</span> <span class="toc-text">Eclipse插件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-AmaterasUML"><span class="toc-number">1.1.</span> <span class="toc-text">(1)AmaterasUML</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Bravo-JSP"><span class="toc-number">1.2.</span> <span class="toc-text">(2)Bravo JSP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Checkstyle"><span class="toc-number">1.3.</span> <span class="toc-text">(3)Checkstyle</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Easy-Explorer"><span class="toc-number">1.4.</span> <span class="toc-text">(4)Easy Explorer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-EasySQL"><span class="toc-number">1.5.</span> <span class="toc-text">(5)EasySQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-EclEmma"><span class="toc-number">1.6.</span> <span class="toc-text">(6)EclEmma</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-Eclipse-SWT-Designer-Plugin"><span class="toc-number">1.7.</span> <span class="toc-text">(7)Eclipse SWT Designer Plugin</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-FindBugs"><span class="toc-number">1.8.</span> <span class="toc-text">(8)FindBugs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-FreeMarker-IDE"><span class="toc-number">1.9.</span> <span class="toc-text">(9)FreeMarker IDE</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-Spket"><span class="toc-number">1.10.</span> <span class="toc-text">(10)Spket</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-JadClipse"><span class="toc-number">1.11.</span> <span class="toc-text">(11)JadClipse</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-Javascript-Debug-Toolkit"><span class="toc-number">1.12.</span> <span class="toc-text">(12)Javascript Debug Toolkit</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-Mybatis-Editor"><span class="toc-number">1.13.</span> <span class="toc-text">(13)Mybatis Editor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-MAT"><span class="toc-number">1.14.</span> <span class="toc-text">(14)MAT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15-m2eclipse"><span class="toc-number">1.15.</span> <span class="toc-text">(15)m2eclipse</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-PatternBox"><span class="toc-number">1.16.</span> <span class="toc-text">(16)PatternBox</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-PMD"><span class="toc-number">1.17.</span> <span class="toc-text">(17)PMD</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#18-Properties-Editor"><span class="toc-number">1.18.</span> <span class="toc-text">(18)Properties Editor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#19-Regex-Util"><span class="toc-number">1.19.</span> <span class="toc-text">(19)Regex Util</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#20-Smelly"><span class="toc-number">1.20.</span> <span class="toc-text">(20)Smelly</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21-SpringIDE"><span class="toc-number">1.21.</span> <span class="toc-text">(21)SpringIDE</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-StrutsIDE"><span class="toc-number">1.22.</span> <span class="toc-text">(22)StrutsIDE</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#23-Subclipse"><span class="toc-number">1.23.</span> <span class="toc-text">(23)Subclipse</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#24-XMLBuddy"><span class="toc-number">1.24.</span> <span class="toc-text">(24)XMLBuddy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#25-ER-Master"><span class="toc-number">1.25.</span> <span class="toc-text">(25)ER Master</span></a></li></ol></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Eclipse常用插件安装　| 一切随缘的技术博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+    
+
+    
+    
+
+    
+        <section class="changyan" id="comments">
+    <div id="SOHUCS" sid="post/59806.html" ></div>
+    <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+        <script type="text/javascript">
+            window.changyan.api.config({
+                appid: "cyts7t2el",
+                conf: "fb4aa871793bef5899de054a3902f3eb"
+            });
+        </script>
+    </script>
+</section>
+    
+
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/post/37438.html" title="上一篇: 国内外知名IT科技博客（强烈推荐）">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/post/33906.html" title="下一篇: Eclipse安装JRebel6.4.8热部署插件教程">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/post/36308.html">MarkdownPad2在win10上安装及破解</a></li><li class="post-list-item"><a class="post-list-link" href="/post/61360.html">关系数据库常用SQL的详细用法</a></li><li class="post-list-item"><a class="post-list-link" href="/post/5372.html">Hexo部署在阿里云服务器上</a></li><li class="post-list-item"><a class="post-list-link" href="/post/55981.html">BigDecimal的用法详解及注意事项</a></li><li class="post-list-item"><a class="post-list-link" href="/post/4240.html">Java日期时间格式化转换符</a></li><li class="post-list-item"><a class="post-list-link" href="/post/46695.html">Hexo使用过程中常见问题记录</a></li><li class="post-list-item"><a class="post-list-link" href="/post/62692.html">PowerDesigner16应用</a></li><li class="post-list-item"><a class="post-list-link" href="/post/27822.html">怎样在虚拟机上安装Ubuntu17.10系统</a></li><li class="post-list-item"><a class="post-list-link" href="/post/55614.html">Java8 JDK1.8 API中文</a></li><li class="post-list-item"><a class="post-list-link" href="/post/8806.html">前端CDN公共库大全</a></li><li class="post-list-item"><a class="post-list-link" href="/post/25067.html">Shiro Freemarker标签的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/post/50779.html">Velocity与Freemarker比较</a></li><li class="post-list-item"><a class="post-list-link" href="/post/24506.html">Logback.xml常用配置详解</a></li><li class="post-list-item"><a class="post-list-link" href="/post/61394.html">Mysql数据库优化方法,千万级数据库记录查询轻松解决</a></li><li class="post-list-item"><a class="post-list-link" href="/post/49258.html">程序员，你为什么值这么多钱？</a></li><li class="post-list-item"><a class="post-list-link" href="/post/52661.html">数据库事务的四大特性以及事务的隔离级别</a></li><li class="post-list-item"><a class="post-list-link" href="/post/32480.html">从Request中获得参数Map返回可读的Map</a></li><li class="post-list-item"><a class="post-list-link" href="/post/56296.html">Win10常用的快捷键</a></li><li class="post-list-item"><a class="post-list-link" href="/post/25267.html">ZooKeeper常用命令介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/post/50164.html">ZooKeeper的安装与设置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/4103.html">收集的国内Maven镜像地址</a></li><li class="post-list-item"><a class="post-list-link" href="/post/47539.html">Windows下git pull批处理</a></li><li class="post-list-item"><a class="post-list-link" href="/post/8298.html">Git常用的操作命令</a></li><li class="post-list-item"><a class="post-list-link" href="/post/26220.html">python安装</a></li><li class="post-list-item"><a class="post-list-link" href="/post/46664.html">实例Demo之3D-Transform立方体效果</a></li><li class="post-list-item"><a class="post-list-link" href="/post/51910.html">Redis在Linux下的安装和配置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20294.html">Tomcat7优化配置参数</a></li><li class="post-list-item"><a class="post-list-link" href="/post/56640.html">一些好的技术博客,追随牛逼的人,让自己更牛逼</a></li><li class="post-list-item"><a class="post-list-link" href="/post/37438.html">国内外知名IT科技博客（强烈推荐）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/59806.html">Eclipse常用插件安装</a></li><li class="post-list-item"><a class="post-list-link" href="/post/33906.html">Eclipse安装JRebel6.4.8热部署插件教程</a></li><li class="post-list-item"><a class="post-list-link" href="/post/8028.html">JQuery的eval解析JSON中的注意点介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/post/28651.html">关于分布式一致性的探究</a></li><li class="post-list-item"><a class="post-list-link" href="/post/5101.html">初识分布式系统</a></li><li class="post-list-item"><a class="post-list-link" href="/post/13879.html">用Excel生成和管理Markdown表格</a></li><li class="post-list-item"><a class="post-list-link" href="/post/29405.html">Hexo最常用的几个命令</a></li><li class="post-list-item"><a class="post-list-link" href="/post/52802.html">GIT的常用操作命令</a></li><li class="post-list-item"><a class="post-list-link" href="/post/31797.html">常用软件与工具整理</a></li><li class="post-list-item"><a class="post-list-link" href="/post/23662.html">Linux常用命令大全</a></li><li class="post-list-item"><a class="post-list-link" href="/post/62293.html">在一个千万级的数据库查询中，如何提高查询效率？</a></li><li class="post-list-item"><a class="post-list-link" href="/post/60804.html">VMware中CentOS设置静态IP</a></li><li class="post-list-item"><a class="post-list-link" href="/post/9311.html">Tomcat8安装和配置以及优化</a></li><li class="post-list-item"><a class="post-list-link" href="/post/65527.html">【微信支付】“刷卡支付”、“被扫支付”开发JavaDemo</a></li><li class="post-list-item"><a class="post-list-link" href="/post/30401.html">【微信支付】“刷卡支付”、“被扫支付”开发说明</a></li><li class="post-list-item"><a class="post-list-link" href="/post/60927.html">Svn密码破解，Svn密码本地找回</a></li><li class="post-list-item"><a class="post-list-link" href="/post/26924.html">Subversion在Linux下的安装与配置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/56374.html">Mysql在Linux下的安装和配置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/24125.html">Maven在Linux下的安装和配置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/7577.html">在linux下的JDK安装和配置（基于阿里云服务器CentOS 6.5）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/59363.html">Nexus在linux下的安装和配置（基于阿里云服务器CentOS 6.5）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/4365.html">我的学习归纳方法（以学习Maven为例）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/53342.html">使用Github搭建Hexo技术博客--增强教程</a></li><li class="post-list-item"><a class="post-list-link" href="/post/4103.html">使用Github搭建Hexo技术博客--安装教程</a></li><li class="post-list-item"><a class="post-list-link" href="/post/2803.html">构建工具Maven相关知识整理专题</a></li><li class="post-list-item"><a class="post-list-link" href="/post/17946.html">JAVA中重写和重载区别</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2015-2018 一切随缘
+                <span>| </span>
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备16005473号-1</a>
+                <!--|| <span>博客全站共2字</span>-->
+            </div>
+            <div class="footer-right">
+                <a>
+                    
+                        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1273088600'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1273088600%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+                    
+                </a>
+                <span>| </span>
+                Hosted by <a href="https://pages.coding.me" style="font-weight: bold" target="_blank" >Coding Pages</a>
+				<!--
+                    <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>Theme
+                    <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE
+                    <i class="fa fa-heart animated infinite pulse"></i>
+                 -->
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+	<script type="text/javascript" src="/resources/love.js"></script>
+	<script type="text/javascript" src="/resources/float.js"></script>
+	<script type="text/javascript" src="/resources/typewriter.js"></script>
+	<script type="text/javascript" color=0,104,183 opacity=1 zindex=-1 count=50 src="/resources/particle.js"></script>
+
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="一切随缘" />
+
+
+
+<meta name="description" content="本文将讲【解微信支付】“刷卡支付”、“被扫支付”开发JavaDemo">
+<meta name="keywords" content="wxpay,scanpay">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【微信支付】“刷卡支付”、“被扫支付”开发JavaDemo">
+<meta property="og:url" content="http://code.skyheng.com/post/65527.html">
+<meta property="og:site_name" content="一切随缘的技术博客">
+<meta property="og:description" content="本文将讲【解微信支付】“刷卡支付”、“被扫支付”开发JavaDemo">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://img.skyheng.com/picture/weixin/scanpay/ibridge.jpg">
+<meta property="og:image" content="http://img.skyheng.com/picture/weixin/scanpay/best_practice.png">
+<meta property="og:image" content="http://img.skyheng.com/picture/weixin/scanpay/scanpaybusiness_resultlistener.png">
+<meta property="og:image" content="http://img.skyheng.com/picture/weixin/scanpay/best_cdraw.png">
+<meta property="og:image" content="http://img.skyheng.com/picture/weixin/scanpay/system_structure.png">
+<meta property="og:updated_time" content="2018-03-20T14:50:32.487Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【微信支付】“刷卡支付”、“被扫支付”开发JavaDemo">
+<meta name="twitter:description" content="本文将讲【解微信支付】“刷卡支付”、“被扫支付”开发JavaDemo">
+<meta name="twitter:image" content="http://img.skyheng.com/picture/weixin/scanpay/ibridge.jpg">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="一切随缘的技术博客" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>【微信支付】“刷卡支付”、“被扫支付”开发JavaDemo | 一切随缘的技术博客</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?d195b745077c1dbc09dacf43876b8f07";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">一切随缘</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">日拱一卒无有尽、功不唐捐终入海</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/pdf/">书籍</a></li>
+                        
+                            <li><a href="/toolbox/">工具箱</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:chenjh0611@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/chenjh0611" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" href="http://blog.csdn.net/skychenjh" title="CSDN"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI/">CI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/">ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centOS/">centOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css3/">css3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/database/">database</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dubbo/">dubbo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eclipse/">eclipse</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/excel/">excel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/freemarker/">freemarker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jdk/">jdk</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jrebel/">jrebel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/logback/">logback</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nexus/">nexus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/oracle/">oracle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plugin/">plugin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/powerDesigner/">powerDesigner</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rect/">rect</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scanpay/">scanpay</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shiro/">shiro</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/software/">software</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql/">sql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/table/">table</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tomcat/">tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/velocity/">velocity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vmware/">vmware</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/win10/">win10</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wxpay/">wxpay</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zooKeeper/">zooKeeper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式/">分布式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习方法/">学习方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/闲聊/">闲聊</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.skyheng.com/">MyBlog</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://theme.skyheng.com/">后台模板</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.jheng.top/">next博客</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于技术,专注于开发</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">一切随缘</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">一切随缘</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">日拱一卒无有尽、功不唐捐终入海</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/pdf/">书籍</a></li>
+                
+                    <li><a href="/toolbox/">工具箱</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:chenjh0611@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/chenjh0611" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/skychenjh" title="CSDN"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-2016-2016-05-04-微信刷卡支付sdk开发JavaDemo" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/post/65527.html" class="article-date">
+      <time datetime="2016-05-04T15:39:51.000Z" itemprop="datePublished">2016-05-04</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      【微信支付】“刷卡支付”、“被扫支付”开发JavaDemo
+    </h1>
+  
+
+		
+		   <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">3,265字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">12分</span>
+      </span>
+    </span>
+</div>
+		
+      </header>
+      
+      <div class="article-info article-info-post">
+		
+          <br>
+          <br>
+        
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/wxpay/">wxpay</a><a class="article-category-link" href="/categories/wxpay/scanpay/">scanpay</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/scanpay/">scanpay</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wxpay/">wxpay</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>本文将讲【解微信支付】“刷卡支付”、“被扫支付”开发JavaDemo<br><a id="more"></a></p>
+<h2 id="快速上手，使用SDK只需三步即可接入“被扫支付”"><a href="#快速上手，使用SDK只需三步即可接入“被扫支付”" class="headerlink" title="快速上手，使用SDK只需三步即可接入“被扫支付”"></a>快速上手，使用SDK只需三步即可接入“被扫支付”</h2><h5 id="第一步，初始化SDK"><a href="#第一步，初始化SDK" class="headerlink" title="第一步，初始化SDK"></a>第一步，初始化SDK</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//--------------------------------------------------------------------</span></span><br><span class="line"><span class="comment">//第一步：初始化SDK（只需全局初始化一次即可）</span></span><br><span class="line"><span class="comment">//--------------------------------------------------------------------</span></span><br><span class="line">WXPay.initSDKConfiguration(</span><br><span class="line">    <span class="comment">//签名算法需要用到的秘钥</span></span><br><span class="line">    <span class="string">"40a8f8aa8ebe45a40bdc4e0f7307bc66"</span>,</span><br><span class="line">    <span class="comment">//公众账号ID，成功申请公众账号后获得</span></span><br><span class="line">    <span class="string">"wxf5b5e87a6a0fde94"</span>,</span><br><span class="line">    <span class="comment">//商户ID，成功申请微信支付功能之后通过官方发出的邮件获得</span></span><br><span class="line">    <span class="string">"10000097"</span>,</span><br><span class="line">    <span class="comment">//子商户ID，受理模式下必填；</span></span><br><span class="line">    <span class="string">""</span>,</span><br><span class="line">    <span class="comment">//HTTP证书在服务器中的路径，用来加载证书用</span></span><br><span class="line">    <span class="string">"C:/wxpay_scanpay_java_cert/10000097.p12"</span>,</span><br><span class="line">    <span class="comment">//HTTP证书的密码，默认等于MCHID</span></span><br><span class="line">    <span class="string">"10000097"</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h5 id="第二步，准备好提交给API的数据-scanPayReqData"><a href="#第二步，准备好提交给API的数据-scanPayReqData" class="headerlink" title="第二步，准备好提交给API的数据(scanPayReqData)"></a>第二步，准备好提交给API的数据(<code>scanPayReqData</code>)</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//--------------------------------------------------------------------</span></span><br><span class="line"><span class="comment">//第二步：准备好提交给API的数据(scanPayReqData)</span></span><br><span class="line"><span class="comment">//--------------------------------------------------------------------</span></span><br><span class="line"><span class="comment">//1）创建一个可以用来生成数据的bridge，这里用的是一个专门用来测试用的Bridge，商户需要自己实现</span></span><br><span class="line">BridgeForScanPayBusinessTest bridge = <span class="keyword">new</span> BridgeForScanPayBusinessTest();</span><br><span class="line"><span class="comment">//2）从bridge里面拿到数据，构建提交被扫支付API需要的数据对象</span></span><br><span class="line">ScanPayReqData scanPayReqData = <span class="keyword">new</span> ScanPayReqData(</span><br><span class="line">    <span class="comment">//这个是扫码终端设备从用户手机上扫取到的支付授权号，有效期是1分钟</span></span><br><span class="line">    bridge.getAuthCode(),</span><br><span class="line">    <span class="comment">//要支付的商品的描述信息，用户会在支付成功页面里看到这个信息</span></span><br><span class="line">    bridge.getBody(),</span><br><span class="line">    <span class="comment">//支付订单里面可以填的附加数据，API会将提交的这个附加数据原样返回</span></span><br><span class="line">    bridge.getAttach(),</span><br><span class="line">    <span class="comment">//商户系统内部的订单号,32个字符内可包含字母, 确保在商户系统唯一</span></span><br><span class="line">    bridge.getOutTradeNo(),</span><br><span class="line">    <span class="comment">//订单总金额，单位为“分”，只能整数</span></span><br><span class="line">    bridge.getTotalFee(),</span><br><span class="line">    <span class="comment">//商户自己定义的扫码支付终端设备号，方便追溯这笔交易发生在哪台终端设备上</span></span><br><span class="line">    bridge.getDeviceInfo(),</span><br><span class="line">    <span class="comment">//订单生成的机器IP</span></span><br><span class="line">    bridge.getSpBillCreateIP(),</span><br><span class="line">    <span class="comment">//订单生成时间，格式为yyyyMMddHHmmss，如2009年12月25日9点10分10秒表示为20091225091010</span></span><br><span class="line">    bridge.getTimeStart(),</span><br><span class="line">    <span class="comment">//订单失效时间，格式同上</span></span><br><span class="line">    bridge.getTimeExpire(),</span><br><span class="line">    <span class="comment">//商品标记，微信平台配置的商品标记，用于优惠券或者满减使用</span></span><br><span class="line">    bridge.getGoodsTag()</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h5 id="第三步，准备好一个用来处理各种结果分支的监听器-resultListener"><a href="#第三步，准备好一个用来处理各种结果分支的监听器-resultListener" class="headerlink" title="第三步，准备好一个用来处理各种结果分支的监听器(resultListener)"></a>第三步，准备好一个用来处理各种结果分支的监听器(<code>resultListener</code>)</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//--------------------------------------------------------------------</span></span><br><span class="line"><span class="comment">//第三步：准备好一个用来处理各种结果分支的监听器(resultListener)</span></span><br><span class="line"><span class="comment">//--------------------------------------------------------------------</span></span><br><span class="line"><span class="comment">//这个是Demo里面写的一个默认行为，商户需要根据自身需求来进行完善</span></span><br><span class="line">DefaultScanPayBusinessResultListener resultListener = <span class="keyword">new</span> DefaultScanPayBusinessResultListener();</span><br><span class="line"></span><br><span class="line"><span class="comment">//--------------------------------------------------------------------</span></span><br><span class="line"><span class="comment">//搞定以上三步后执行业务逻辑</span></span><br><span class="line"><span class="comment">//--------------------------------------------------------------------</span></span><br><span class="line">WXPay.doScanPayBusiness(scanPayReqData,resultListener);</span><br></pre></td></tr></table></figure>
+<h2 id="Demo简单说明"><a href="#Demo简单说明" class="headerlink" title="Demo简单说明"></a>Demo简单说明</h2><ol>
+<li><a href="#user-content-demo包含的内容">Demo中包含的内容</a></li>
+<li><a href="#user-content-demo依赖的配置项">Demo依赖的配置项</a></li>
+<li><a href="#user-content-demo需要商户自己实现的ibridge">Demo需要商户自己实现的IBridge</a></li>
+</ol>
+<h2 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h2><ol>
+<li><a href="#user-content-被扫支付业务流程最佳实践">被扫支付业务流程最佳实践</a>  </li>
+<li><a href="#user-content-支付业务逻辑分支处理最佳实践">支付业务逻辑分支处理最佳实践</a></li>
+<li><a href="#user-content-商户系统接入sdk最佳实践">商户系统接入SDK最佳实践</a></li>
+<li><a href="#user-content-商户系统部署最佳实践">商户系统部署最佳实践</a></li>
+</ol>
+<h2 id="高级自定义"><a href="#高级自定义" class="headerlink" title="高级自定义"></a>高级自定义</h2><ol>
+<li><a href="#user-content-高级自定义1自定义查询流程和撤销流程">自定义查询流程和撤销流程</a> </li>
+<li><a href="#user-content-高级自定义2使用自己的https请求器">使用自己的Https请求器</a> </li>
+</ol>
+<h2 id="“被扫支付”高级知识"><a href="#“被扫支付”高级知识" class="headerlink" title="“被扫支付”高级知识"></a>“被扫支付”高级知识</h2><ol>
+<li><a href="#user-content-调用被扫支付api的协议规则">调用被扫支付API的协议规则</a></li>
+<li><a href="#user-content-支付验证密码规则">支付验证密码规则</a></li>
+</ol>
+<h2 id="Demo包含的内容"><a href="#Demo包含的内容" class="headerlink" title="Demo包含的内容"></a>Demo包含的内容</h2><p>Demo里面需要大家关注的主要有三个地方：  </p>
+<ol>
+<li><p>四个业务Demo，位于<code>src/main/java/com/tencent/business/</code>目录里面，这些demo将会教大家如何调用SDK里面封装好的业务逻辑。</p>
+</li>
+<li><p>桥接器<code>bridge</code>，位于<code>src/main/java/com/tencent/bridge/</code>目录里面。里面目前有4个bridge，分别对应4个业务demo。这个东西是用来对接商户系统逻辑，产生SDK请求所需要的特定参数用的，请大家按照API文档的说明实现这些参数的产生逻辑。 </p>
+</li>
+<li><p>监听器<code>listener</code>，位于<code>src/main/java/com/tencent/listener/</code>目录里面，这几个<code>listener</code>都是对业务逻辑各种可能返回事件的默认处理，商户需要自己实现更加具体的处理逻辑。</p>
+</li>
+</ol>
+<h2 id="Demo依赖的配置项"><a href="#Demo依赖的配置项" class="headerlink" title="Demo依赖的配置项"></a>Demo依赖的配置项</h2><ul>
+<li>打开demo工程里的<code>wxpay.properties</code>文件可以看到里面有6个配置项（该demo里面用的是一个mchid为10000097的测试号）<br>这些关键配置项的作用分别为：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">-</th>
+<th>名称</th>
+<th>用途</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td>KEY</td>
+<td>签名算法需要用到的秘钥</td>
+<td>成功申请微信支付功能之后通过官方发出的邮件获得</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td>APPID</td>
+<td>公众账号ID</td>
+<td>成功申请公众账号后获得</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td>MCHID</td>
+<td>商户ID</td>
+<td>成功申请微信支付功能之后通过官方发出的邮件获得</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td>SUBMCHID</td>
+<td>子商户ID</td>
+<td>受理模式下必须要有的一个子商户ID</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td>CERT_LOCAL_PATH</td>
+<td>HTTP证书在服务器中的路径，用来加载证书用</td>
+<td>成功申请微信支付功能之后通过官方发出的邮件获得“HTTPS证书”，这个配置项就是“HTTP证书”在服务器上所部署的路径（demo中需要的证书文件就是docs/https_cert_for_test/文件夹中的10000097.cert）</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td>CERT_PASSWORD</td>
+<td>HTTP证书的密码，默认等于MCHID</td>
+<td>成功申请微信支付功能之后通过官方发出的邮件获得</td>
+</tr>
+</tbody>
+</table>
+<p>这些配置项用来对SDK进行一次初始化的时候使用。初始化方法见上面的“<a href="#user-content-demo第一步，初始化SDK">第一步，初始化SDK</a>”</p>
+<h2 id="Demo需要商户自己实现的IBridge"><a href="#Demo需要商户自己实现的IBridge" class="headerlink" title="Demo需要商户自己实现的IBridge"></a>Demo需要商户自己实现的IBridge</h2><p><img src="http://img.skyheng.com/picture/weixin/scanpay/ibridge.jpg" alt="ibridge桥接器" title="ibridge桥接器"><br>从上图可见IBridge桥接器其实就是定义了请求API时需要提交的各种参数的产生接口，这些接口跟商户自己的系统是紧密结合的，商户自己需要根据具体业务系统的实际情况，按照API文档定义的格式来产生相应的参数给到调用API时使用。<br>举个例子，IBridge里面定义了一个非常关键的接口，叫getAuthCode()，这个接口的作用就是用来返回一个合法的“授权码”供调用API时用。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 获取auth_code，这个是扫码终端设备从用户手机上扫取到的支付授权号，这个号是跟用户用来支付的银行卡绑定的，有效期是1分钟</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> 授权码</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getAuthCode</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//由于这个authCode有效期只有1分钟，所以实际测试SDK的时候也可以手动将微信刷卡界面一维码下的那串数字输入进来</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">"120242957324236112"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>以上只是简单的<code>hardcode</code>（用来先简单手动输入“授权码”调试API是否能正常返回数据时用），实际上商户自己在实现这个接口的时候就需要根据自己实际系统来进行设计了，例如需要去监听“扫码枪”等具备一维码/二维码扫描功能的外设，当成功扫描到这串“授权码”的时候，将其保存下来，然后触发提交支付的API调用，调用时让I<code>Bridge</code>桥接器中的<code>getAuthCode()</code>接口取得刚刚扫描到的授权码，作为参数传给支付API。  </p>
+<h2 id="被扫支付业务流程最佳实践"><a href="#被扫支付业务流程最佳实践" class="headerlink" title="被扫支付业务流程最佳实践"></a>被扫支付业务流程最佳实践</h2><p>被扫支付整个完成流程将会涉及到“查询”和“撤销”等请求，这里给出建议实现的流程供大家参考，SDK里面的<code>ScanPayBusiness</code>就是按照这个流程来设计的：<br><img src="http://img.skyheng.com/picture/weixin/scanpay/best_practice.png" alt="被扫支付最佳实践" title="被扫支付最佳实践">  </p>
+<p>从上图可见主要流程分为四种情况：  </p>
+<ol>
+<li>直接扣款成功：直接返回成功</li>
+<li>扣款明确失败：走撤销流程，返回失败（建议提示具体的失败信息，指示用户进行下一步操作）</li>
+<li>需输入密码：走查单流程，如果查询了一定时间还是没有成功则当失败处理，直接走撤销</li>
+<li>扣款未知失败：先走查单流程，如果查询了一定时间还是没有成功则当失败处理，直接走撤销</li>
+</ol>
+<p>两个关键流程解释：  </p>
+<ol>
+<li>有限次查询流程：这里会根据设定的“查询次数”（用户可以自定义）和“查询间隔”来进行轮询，超过了查询次数之后还是没有查询到“支付成功”的情况会自动转入“撤销流程”</li>
+<li>撤销流程：这里会根据设定的“查询间隔”进行不停地轮询撤销API，API会通过recall字段来告诉商户侧需不需要继续轮询，如果“recall=Y”或是“撤销结果成功”都表示不需要再轮询了，然后到达“支付失败”的最终状态。</li>
+</ol>
+<p>（以上最佳实践已经在SDK的<code>ScanPayBusiness</code>里面封装好了）</p>
+<h2 id="支付业务逻辑分支处理最佳实践"><a href="#支付业务逻辑分支处理最佳实践" class="headerlink" title="支付业务逻辑分支处理最佳实践"></a>支付业务逻辑分支处理最佳实践</h2><p><img src="http://img.skyheng.com/picture/weixin/scanpay/scanpaybusiness_resultlistener.png" alt="被扫支付最佳实践" title="被扫支付最佳实践">    </p>
+<p><code>ScanPayBusiness</code>里面的<code>ResultListener</code>接口定义了支付流程中可能走到的8个分支，分别是：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ResultListener</span> </span>&#123;</span><br><span class="line">       <span class="comment">//API返回ReturnCode不合法，支付请求逻辑错误，请仔细检测传过去的每一个参数是否合法，或是看API能否被正常访问</span></span><br><span class="line">       <span class="function"><span class="keyword">void</span> <span class="title">onFailByReturnCodeError</span><span class="params">(ScanPayResData scanPayResData)</span></span>;</span><br><span class="line">       <span class="comment">//API返回ReturnCode为FAIL，支付API系统返回失败，请检测Post给API的数据是否规范合法</span></span><br><span class="line">       <span class="function"><span class="keyword">void</span> <span class="title">onFailByReturnCodeFail</span><span class="params">(ScanPayResData scanPayResData)</span></span>;</span><br><span class="line">       <span class="comment">//支付请求API返回的数据签名验证失败，有可能数据被篡改了</span></span><br><span class="line">       <span class="function"><span class="keyword">void</span> <span class="title">onFailBySignInvalid</span><span class="params">(ScanPayResData scanPayResData)</span></span>;</span><br><span class="line">       <span class="comment">//用户用来支付的二维码已经过期，提示收银员重新扫一下用户微信“刷卡”里面的二维码</span></span><br><span class="line">       <span class="function"><span class="keyword">void</span> <span class="title">onFailByAuthCodeExpire</span><span class="params">(ScanPayResData scanPayResData)</span></span>;</span><br><span class="line">       <span class="comment">//授权码无效，提示用户刷新一维码/二维码，之后重新扫码支付"</span></span><br><span class="line">       <span class="function"><span class="keyword">void</span> <span class="title">onFailByAuthCodeInvalid</span><span class="params">(ScanPayResData scanPayResData)</span></span>;</span><br><span class="line">       <span class="comment">//用户余额不足，换其他卡支付或是用现金支付</span></span><br><span class="line">       <span class="function"><span class="keyword">void</span> <span class="title">onFailByMoneyNotEnough</span><span class="params">(ScanPayResData scanPayResData)</span></span>;</span><br><span class="line">       <span class="comment">//支付失败</span></span><br><span class="line">       <span class="function"><span class="keyword">void</span> <span class="title">onFail</span><span class="params">(ScanPayResData scanPayResData)</span></span>;</span><br><span class="line">       <span class="comment">//支付成功</span></span><br><span class="line">       <span class="function"><span class="keyword">void</span> <span class="title">onSuccess</span><span class="params">(ScanPayResData scanPayResData)</span></span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
+<p>Demo里面用到的<code>DefaultScanPayBusinessResultListener</code>就是实现了以上这8个接口。<br>这里有几点处理建议：  </p>
+<ol>
+<li><code>onFailByReturnCodeError</code>、<code>onFailByReturnCodeFail</code>、<code>onFailBySignInvalid</code>这3种属于程序逻辑问题，建议商户自己做好日志监控，发现问题要及时让工程师进行定位处理；  </li>
+<li><code>onFailByAuthCodeExpire</code>、<code>onFailByAuthCodeInvalid</code>、<code>onFailByMoneyNotEnough</code>这三种属于用户自身的问题，建议商户把具体出错信息提示给用户，指导用户进行下一步操作。（具体出错信息可以通过<code>scanPayResData.getErr_code_des()</code>获取得到）</li>
+</ol>
+<h2 id="商户系统接入SDK最佳实践"><a href="#商户系统接入SDK最佳实践" class="headerlink" title="商户系统接入SDK最佳实践"></a>商户系统接入SDK最佳实践</h2><ol>
+<li>生成一个新的订单<code>out_trade_no</code></li>
+<li>输入订单金额<code>total_fee</code></li>
+<li>启动扫码枪功能供用户进行扫码</li>
+<li>扫码器获取授权码<code>auth_code</code>，并回传给SDK</li>
+<li>SDK提交支付请求</li>
+<li>SDK处理API返回的数据<br><img src="http://img.skyheng.com/picture/weixin/scanpay/best_cdraw.png" alt="商户系统接入最佳实践" title="商户系统接入最佳实践"></li>
+</ol>
+<h2 id="商户系统部署最佳实践"><a href="#商户系统部署最佳实践" class="headerlink" title="商户系统部署最佳实践"></a>商户系统部署最佳实践</h2><ol>
+<li>由于整套系统必须采用HTTPS来保证安全性，所以这里的支付请求必须由商户的后台系统来发起；</li>
+<li>商户系统跟SDK的对接主要就是实现IBridge里面的接口；</li>
+<li>从本demo里面有JUnit单元测试用例，商户开发者可以参考下这个示例；<br><img src="http://img.skyheng.com/picture/weixin/scanpay/system_structure.png" alt="商户系统部署最佳实践" title="商户系统部署最佳实践"></li>
+</ol>
+<h2 id="高级自定义：1）自定义查询流程和撤销流程"><a href="#高级自定义：1）自定义查询流程和撤销流程" class="headerlink" title="高级自定义：1）自定义查询流程和撤销流程"></a>高级自定义：1）自定义查询流程和撤销流程</h2><p>商户可以根据自己的实际需要来配置<a href="#user-content-被扫支付业务流程最佳实践">支付业务流程</a>中的“查询流程”的“查询次数”和“查询间隔”；“撤销流程”的“查询间隔”，例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//自定义调用查询接口的间隔</span></span><br><span class="line">scanPayBusiness.setWaitingTimeBeforePayQueryServiceInvoked(<span class="number">3000</span>);</span><br><span class="line"><span class="comment">//自定义调用查询接口的次数</span></span><br><span class="line">scanPayBusiness.setPayQueryLoopInvokedCount(<span class="number">1</span>);</span><br><span class="line"><span class="comment">//自定义调用撤销接口的间隔</span></span><br><span class="line">scanPayBusiness.setWaitingTimeBeforeReverseServiceInvoked(<span class="number">2000</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="高级自定义：2）使用自己的Https请求器"><a href="#高级自定义：2）使用自己的Https请求器" class="headerlink" title="高级自定义：2）使用自己的Https请求器"></a>高级自定义：2）使用自己的Https请求器</h2><p>可能有些商户自己系统里面已经拥有自己封装得很完善的Https请求器了，想让SDK的服务统一都走自己的Https请求器来发起请求的话，这里提供了一个配置项可以实现这个功能：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//自定义底层的HttpsRequest</span></span><br><span class="line">   Configure.setHttpsRequestClassName(<span class="string">"com.tencent.httpsrequest.HttpsRequestForTest"</span>);</span><br></pre></td></tr></table></figure>
+<p>温馨提示：自己实现的Https请求器必须实现IServiceRequest这个接口，可以参考SDK里面的HttpRequest的实现。</p>
+<h2 id="调用被扫支付API的协议规则"><a href="#调用被扫支付API的协议规则" class="headerlink" title="调用被扫支付API的协议规则"></a>调用被扫支付API的协议规则</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">序号</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td>传输方式</td>
+<td>为保证交易安全性，采用HTTPS传输</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td>提交方式</td>
+<td>采用POST方法提交</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td>数据格式</td>
+<td>提交和返回数据都为XML格式，根节点名为xml</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td>字符编码</td>
+<td>统一采用UTF-8字符编码</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td>签名算法</td>
+<td>MD5</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td>签名要求</td>
+<td>请求和接收数据均需要校验签名，签名的方法在SDK里面已经封装好了</td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td>证书要求</td>
+<td>调用申请退款、撤销订单接口需要商户证书</td>
+</tr>
+<tr>
+<td style="text-align:center">8</td>
+<td>判断逻辑</td>
+<td>先判断协议字段返回，再判断业务返回，最后判断交易状态</td>
+</tr>
+</tbody>
+</table>
+<h2 id="支付验证密码规则"><a href="#支付验证密码规则" class="headerlink" title="支付验证密码规则"></a>支付验证密码规则</h2><ol>
+<li>支付金额&gt;300元的交易需要验证用户支付密码；</li>
+<li>用户账号每天最多有10笔交易可以免密，超过后需要验证密码；</li>
+<li>微信支付后台判断用户支付行为有异常情况，符合免密规则的交易也会要求验证密码；</li>
+</ol>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li>刷卡支付开发者文档：<a href="https://pay.weixin.qq.com/wiki/doc/api/micropay.php?chapter=5_1" target="_blank" rel="noopener">https://pay.weixin.qq.com/wiki/doc/api/micropay.php?chapter=5_1</a></li>
+<li>刷卡支付SDK下载：<a href="https://pay.weixin.qq.com/wiki/doc/api/micropay.php?chapter=11_1" target="_blank" rel="noopener">https://pay.weixin.qq.com/wiki/doc/api/micropay.php?chapter=11_1</a></li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/post/65527.html">【微信支付】“刷卡支付”、“被扫支付”开发JavaDemo</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">一切随缘</a></p>
+        <p><span>发布时间:</span>2016-05-04, 23:39:51</p>
+        <p><span>最后更新:</span>2018-03-20, 22:50:32</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/post/65527.html" title="【微信支付】“刷卡支付”、“被扫支付”开发JavaDemo">http://code.skyheng.com/post/65527.html</a>
+            <span class="copy-path" data-clipboard-text="原文: http://code.skyheng.com/post/65527.html　　作者: 一切随缘" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/post/9311.html">
+                    Tomcat8安装和配置以及优化
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/post/30401.html">
+                    【微信支付】“刷卡支付”、“被扫支付”开发说明
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#快速上手，使用SDK只需三步即可接入“被扫支付”"><span class="toc-number">1.</span> <span class="toc-text">快速上手，使用SDK只需三步即可接入“被扫支付”</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#第一步，初始化SDK"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">第一步，初始化SDK</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#第二步，准备好提交给API的数据-scanPayReqData"><span class="toc-number">1.0.0.2.</span> <span class="toc-text">第二步，准备好提交给API的数据(scanPayReqData)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#第三步，准备好一个用来处理各种结果分支的监听器-resultListener"><span class="toc-number">1.0.0.3.</span> <span class="toc-text">第三步，准备好一个用来处理各种结果分支的监听器(resultListener)</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Demo简单说明"><span class="toc-number">2.</span> <span class="toc-text">Demo简单说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最佳实践"><span class="toc-number">3.</span> <span class="toc-text">最佳实践</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#高级自定义"><span class="toc-number">4.</span> <span class="toc-text">高级自定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#“被扫支付”高级知识"><span class="toc-number">5.</span> <span class="toc-text">“被扫支付”高级知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Demo包含的内容"><span class="toc-number">6.</span> <span class="toc-text">Demo包含的内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Demo依赖的配置项"><span class="toc-number">7.</span> <span class="toc-text">Demo依赖的配置项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Demo需要商户自己实现的IBridge"><span class="toc-number">8.</span> <span class="toc-text">Demo需要商户自己实现的IBridge</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#被扫支付业务流程最佳实践"><span class="toc-number">9.</span> <span class="toc-text">被扫支付业务流程最佳实践</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#支付业务逻辑分支处理最佳实践"><span class="toc-number">10.</span> <span class="toc-text">支付业务逻辑分支处理最佳实践</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#商户系统接入SDK最佳实践"><span class="toc-number">11.</span> <span class="toc-text">商户系统接入SDK最佳实践</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#商户系统部署最佳实践"><span class="toc-number">12.</span> <span class="toc-text">商户系统部署最佳实践</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#高级自定义：1）自定义查询流程和撤销流程"><span class="toc-number">13.</span> <span class="toc-text">高级自定义：1）自定义查询流程和撤销流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#高级自定义：2）使用自己的Https请求器"><span class="toc-number">14.</span> <span class="toc-text">高级自定义：2）使用自己的Https请求器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#调用被扫支付API的协议规则"><span class="toc-number">15.</span> <span class="toc-text">调用被扫支付API的协议规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#支付验证密码规则"><span class="toc-number">16.</span> <span class="toc-text">支付验证密码规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资料"><span class="toc-number">17.</span> <span class="toc-text">参考资料</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"【微信支付】“刷卡支付”、“被扫支付”开发JavaDemo　| 一切随缘的技术博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+    
+
+    
+    
+
+    
+        <section class="changyan" id="comments">
+    <div id="SOHUCS" sid="post/65527.html" ></div>
+    <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+        <script type="text/javascript">
+            window.changyan.api.config({
+                appid: "cyts7t2el",
+                conf: "fb4aa871793bef5899de054a3902f3eb"
+            });
+        </script>
+    </script>
+</section>
+    
+
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/post/9311.html" title="上一篇: Tomcat8安装和配置以及优化">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/post/30401.html" title="下一篇: 【微信支付】“刷卡支付”、“被扫支付”开发说明">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/post/36308.html">MarkdownPad2在win10上安装及破解</a></li><li class="post-list-item"><a class="post-list-link" href="/post/61360.html">关系数据库常用SQL的详细用法</a></li><li class="post-list-item"><a class="post-list-link" href="/post/5372.html">Hexo部署在阿里云服务器上</a></li><li class="post-list-item"><a class="post-list-link" href="/post/55981.html">BigDecimal的用法详解及注意事项</a></li><li class="post-list-item"><a class="post-list-link" href="/post/4240.html">Java日期时间格式化转换符</a></li><li class="post-list-item"><a class="post-list-link" href="/post/46695.html">Hexo使用过程中常见问题记录</a></li><li class="post-list-item"><a class="post-list-link" href="/post/62692.html">PowerDesigner16应用</a></li><li class="post-list-item"><a class="post-list-link" href="/post/27822.html">怎样在虚拟机上安装Ubuntu17.10系统</a></li><li class="post-list-item"><a class="post-list-link" href="/post/55614.html">Java8 JDK1.8 API中文</a></li><li class="post-list-item"><a class="post-list-link" href="/post/8806.html">前端CDN公共库大全</a></li><li class="post-list-item"><a class="post-list-link" href="/post/25067.html">Shiro Freemarker标签的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/post/50779.html">Velocity与Freemarker比较</a></li><li class="post-list-item"><a class="post-list-link" href="/post/24506.html">Logback.xml常用配置详解</a></li><li class="post-list-item"><a class="post-list-link" href="/post/61394.html">Mysql数据库优化方法,千万级数据库记录查询轻松解决</a></li><li class="post-list-item"><a class="post-list-link" href="/post/49258.html">程序员，你为什么值这么多钱？</a></li><li class="post-list-item"><a class="post-list-link" href="/post/52661.html">数据库事务的四大特性以及事务的隔离级别</a></li><li class="post-list-item"><a class="post-list-link" href="/post/32480.html">从Request中获得参数Map返回可读的Map</a></li><li class="post-list-item"><a class="post-list-link" href="/post/56296.html">Win10常用的快捷键</a></li><li class="post-list-item"><a class="post-list-link" href="/post/25267.html">ZooKeeper常用命令介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/post/50164.html">ZooKeeper的安装与设置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/4103.html">收集的国内Maven镜像地址</a></li><li class="post-list-item"><a class="post-list-link" href="/post/47539.html">Windows下git pull批处理</a></li><li class="post-list-item"><a class="post-list-link" href="/post/8298.html">Git常用的操作命令</a></li><li class="post-list-item"><a class="post-list-link" href="/post/26220.html">python安装</a></li><li class="post-list-item"><a class="post-list-link" href="/post/46664.html">实例Demo之3D-Transform立方体效果</a></li><li class="post-list-item"><a class="post-list-link" href="/post/51910.html">Redis在Linux下的安装和配置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20294.html">Tomcat7优化配置参数</a></li><li class="post-list-item"><a class="post-list-link" href="/post/56640.html">一些好的技术博客,追随牛逼的人,让自己更牛逼</a></li><li class="post-list-item"><a class="post-list-link" href="/post/37438.html">国内外知名IT科技博客（强烈推荐）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/59806.html">Eclipse常用插件安装</a></li><li class="post-list-item"><a class="post-list-link" href="/post/33906.html">Eclipse安装JRebel6.4.8热部署插件教程</a></li><li class="post-list-item"><a class="post-list-link" href="/post/8028.html">JQuery的eval解析JSON中的注意点介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/post/28651.html">关于分布式一致性的探究</a></li><li class="post-list-item"><a class="post-list-link" href="/post/5101.html">初识分布式系统</a></li><li class="post-list-item"><a class="post-list-link" href="/post/13879.html">用Excel生成和管理Markdown表格</a></li><li class="post-list-item"><a class="post-list-link" href="/post/29405.html">Hexo最常用的几个命令</a></li><li class="post-list-item"><a class="post-list-link" href="/post/52802.html">GIT的常用操作命令</a></li><li class="post-list-item"><a class="post-list-link" href="/post/31797.html">常用软件与工具整理</a></li><li class="post-list-item"><a class="post-list-link" href="/post/23662.html">Linux常用命令大全</a></li><li class="post-list-item"><a class="post-list-link" href="/post/62293.html">在一个千万级的数据库查询中，如何提高查询效率？</a></li><li class="post-list-item"><a class="post-list-link" href="/post/60804.html">VMware中CentOS设置静态IP</a></li><li class="post-list-item"><a class="post-list-link" href="/post/9311.html">Tomcat8安装和配置以及优化</a></li><li class="post-list-item"><a class="post-list-link" href="/post/65527.html">【微信支付】“刷卡支付”、“被扫支付”开发JavaDemo</a></li><li class="post-list-item"><a class="post-list-link" href="/post/30401.html">【微信支付】“刷卡支付”、“被扫支付”开发说明</a></li><li class="post-list-item"><a class="post-list-link" href="/post/60927.html">Svn密码破解，Svn密码本地找回</a></li><li class="post-list-item"><a class="post-list-link" href="/post/26924.html">Subversion在Linux下的安装与配置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/56374.html">Mysql在Linux下的安装和配置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/24125.html">Maven在Linux下的安装和配置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/7577.html">在linux下的JDK安装和配置（基于阿里云服务器CentOS 6.5）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/59363.html">Nexus在linux下的安装和配置（基于阿里云服务器CentOS 6.5）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/4365.html">我的学习归纳方法（以学习Maven为例）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/53342.html">使用Github搭建Hexo技术博客--增强教程</a></li><li class="post-list-item"><a class="post-list-link" href="/post/4103.html">使用Github搭建Hexo技术博客--安装教程</a></li><li class="post-list-item"><a class="post-list-link" href="/post/2803.html">构建工具Maven相关知识整理专题</a></li><li class="post-list-item"><a class="post-list-link" href="/post/17946.html">JAVA中重写和重载区别</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2015-2018 一切随缘
+                <span>| </span>
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备16005473号-1</a>
+                <!--|| <span>博客全站共2字</span>-->
+            </div>
+            <div class="footer-right">
+                <a>
+                    
+                        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1273088600'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1273088600%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+                    
+                </a>
+                <span>| </span>
+                Hosted by <a href="https://pages.coding.me" style="font-weight: bold" target="_blank" >Coding Pages</a>
+				<!--
+                    <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>Theme
+                    <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE
+                    <i class="fa fa-heart animated infinite pulse"></i>
+                 -->
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+	<script type="text/javascript" src="/resources/love.js"></script>
+	<script type="text/javascript" src="/resources/float.js"></script>
+	<script type="text/javascript" src="/resources/typewriter.js"></script>
+	<script type="text/javascript" color=0,104,183 opacity=1 zindex=-1 count=50 src="/resources/particle.js"></script>
+
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+  </div>
+</body>
+</html>

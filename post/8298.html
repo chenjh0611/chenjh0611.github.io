@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="一切随缘" />
+
+
+
+<meta name="description" content="Git常用的操作命令">
+<meta name="keywords" content="git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git常用的操作命令">
+<meta property="og:url" content="http://code.skyheng.com/post/8298.html">
+<meta property="og:site_name" content="一切随缘的技术博客">
+<meta property="og:description" content="Git常用的操作命令">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-03-20T14:50:32.502Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Git常用的操作命令">
+<meta name="twitter:description" content="Git常用的操作命令">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="一切随缘的技术博客" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>Git常用的操作命令 | 一切随缘的技术博客</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?d195b745077c1dbc09dacf43876b8f07";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">一切随缘</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">日拱一卒无有尽、功不唐捐终入海</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/pdf/">书籍</a></li>
+                        
+                            <li><a href="/toolbox/">工具箱</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:chenjh0611@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/chenjh0611" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" href="http://blog.csdn.net/skychenjh" title="CSDN"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI/">CI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/">ajax</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centOS/">centOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css3/">css3</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/database/">database</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dubbo/">dubbo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eclipse/">eclipse</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/excel/">excel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/freemarker/">freemarker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jdk/">jdk</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jrebel/">jrebel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/logback/">logback</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/">maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nexus/">nexus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/oracle/">oracle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/plugin/">plugin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/powerDesigner/">powerDesigner</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rect/">rect</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scanpay/">scanpay</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shiro/">shiro</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/software/">software</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql/">sql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svn/">svn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/table/">table</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tomcat/">tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/velocity/">velocity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vmware/">vmware</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/win10/">win10</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wxpay/">wxpay</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zooKeeper/">zooKeeper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式/">分布式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端/">前端</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/学习方法/">学习方法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/闲聊/">闲聊</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.skyheng.com/">MyBlog</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://theme.skyheng.com/">后台模板</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://www.jheng.top/">next博客</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于技术,专注于开发</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">一切随缘</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">一切随缘</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">日拱一卒无有尽、功不唐捐终入海</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/pdf/">书籍</a></li>
+                
+                    <li><a href="/toolbox/">工具箱</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:chenjh0611@163.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/chenjh0611" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa CSDN" target="_blank" href="http://blog.csdn.net/skychenjh" title="CSDN"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-2016-2016-10-15-Git常用的操作命令" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/post/8298.html" class="article-date">
+      <time datetime="2016-10-15T05:48:28.000Z" itemprop="datePublished">2016-10-15</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Git常用的操作命令
+    </h1>
+  
+
+		
+		   <div style="margin-top:10px;">
+    <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">4,752字</span>
+      </span>
+    </span>
+
+    <span class="post-time">
+      &nbsp; | &nbsp;
+      <span class="post-meta-item-icon">
+        <i class="fa fa-hourglass-half"></i>
+        <span class="post-meta-item-text">  阅读时长: </span>
+        <span class="post-count">19分</span>
+      </span>
+    </span>
+</div>
+		
+      </header>
+      
+      <div class="article-info article-info-post">
+		
+          <br>
+          <br>
+        
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/git/">git</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>Git常用的操作命令</p>
+<a id="more"></a>
+<h2 id="Git常用命令"><a href="#Git常用命令" class="headerlink" title="Git常用命令"></a>Git常用命令</h2><ol>
+<li>安装后的第一步</li>
+</ol>
+<ul>
+<li>安装git后，第一件事你需要设置你的名字和邮箱，因为每次提交都需要这些信息。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name &quot;Some One&quot;</span><br><span class="line">$ git config --global user.email &quot;someone@gmail.com&quot;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol>
+<li>是基于指针的</li>
+</ol>
+<ul>
+<li>git上的所有东西都是储存在文件里的，当你创建一次提交时，它会创建一个包含你的提交信息和相关数据（名字，邮箱，日期/时间、上一次提交等等） 的文件并连接一个树文件，而这个树文件包含了对象列表或者其他树。这上面的对象或者blob文件就是这次提交的实际内容（你可以认为这也是一个文件，尽管 并没有储存在对象里而是储存在树中）。所有的文件都以经过SHA-1计算后的文件名（译者注：经过SHA-1计算后的数，即git中的版本号）储存在上 面。</li>
+<li>从这里可以看出，分支和标签都是包含一个指向这次提交的sha-1数（版本号）简单的文件，这样使用引用会变得更快和更灵活，创建一个新的分支是就 像创建文件一样简单，SHA – 1数（版本号）也会引用你这个分支的提交。当然，如果你使用GIT命令行工具（或者GUI）你将无法接触这些。但真的很简单。</li>
+<li>你可能听说过HEAD引用，这是一个指向你当前提交的内容的SHA-1 数（版本号）的指针。如果你正在解决合并冲突，使用HEAD不会对你的特定分支有任何改动只会指向你当前的分支。</li>
+<li>所有分支的指针都保存在 .git/refs/heads，HEAD指针保存在.git/HEAD，标签则保存在 .git/refs/tags，有时间就去看看吧。</li>
+</ul>
+<ol>
+<li>两个母体（Parent），当然！</li>
+</ol>
+<ul>
+<li>当我们在日志文件中查看合并提交信息，你会看到两个母体，第一个母体是正在进行的分支，第二个是你要合并的分支。</li>
+</ul>
+<ol>
+<li>合并冲突</li>
+</ol>
+<ul>
+<li>现在，我发现有合并冲突并解决了它，这是一件在我们编辑文件时很正常的事。将 &lt;&lt;&lt;&lt;, ====, &gt;&gt;&gt;&gt; 这些标记移除后，并保存你想要保存的代码。有些时候在代码被直接替代之前，能看到冲突是件挺不错的事。比如在两个冲突的分支变动之前，可以用这样的命令方 式：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ git diff --merge</span><br><span class="line">diff --cc dummy.rb  </span><br><span class="line">index 5175dde,0c65895..4a00477  </span><br><span class="line">--- a/dummy.rb</span><br><span class="line">+++ b/dummy.rb</span><br><span class="line">@@@ -1,5 -1,5 +1,5 @@@</span><br><span class="line">  class MyFoo</span><br><span class="line">    def say</span><br><span class="line">-     puts &quot;Bonjour&quot;</span><br><span class="line"> -    puts &quot;Hello world&quot;</span><br><span class="line">++    puts &quot;Annyong Haseyo&quot;</span><br><span class="line">    end</span><br><span class="line">  end</span><br></pre></td></tr></table></figure>
+<ul>
+<li>If the file is binary, diffing files isn’t so easy… What you’ll normally want to do is to try each version of the binary file and decide which one to use (or manually copy portions over in the binary file’s editor). To pull a copy of the file from a particular branch (say you’re merging master and feature132):</li>
+<li>如果是二进制文件（binary），区别这些文件并不容易。通常你会查看每个二进制文件的版本，再决定使用哪个（或者在二进制文件编辑器中手动复制），并将其推送至特定的分支。（比如你要合并master和feature132）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout master flash/foo.fla # or...</span><br><span class="line">$ git checkout feature132 flash/foo.fla</span><br><span class="line">$ # Then...</span><br><span class="line">$ git add flash/foo.fla</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Another way is to cat the file from git – you can do this to another filename then copy the correct file over (when you’ve decided which it is) to the normal filename:</li>
+<li>另一个方法就是在git中cat文件，你可以将其命名为另一个文件名，然后将你决定的那个文件改为正确的文件名：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ git show master:flash/foo.fla &gt; master-foo.fla</span><br><span class="line">$ git show feature132:flash/foo.fla &gt; feature132-foo.fla</span><br><span class="line">$ # Check out master-foo.fla and feature132-foo.fla</span><br><span class="line">$ # Let&apos;s say we decide that feature132&apos;s is correct</span><br><span class="line">$ rm flash/foo.fla</span><br><span class="line">$ mv feature132-foo.fla flash/foo.fla</span><br><span class="line">$ rm master-foo.fla</span><br><span class="line">$ git add flash/foo.fla</span><br></pre></td></tr></table></figure>
+<ul>
+<li>更新：感谢carls在原博评论中提醒我，可以使用 “git checkout —ours flash/foo.fla” 和“git checkout —theirs flash/foo.fla” 在不用考虑你需要合并的分支来检查指定版本，就我个人而言，我喜欢更明确的方法，但这也是一个选择…</li>
+<li>记住，解决完合并冲突后要添加文件。（我之前就犯过这样的错误）</li>
+</ul>
+<h2 id="服务，分支和标注"><a href="#服务，分支和标注" class="headerlink" title="服务，分支和标注"></a>服务，分支和标注</h2><ol>
+<li>远程服务</li>
+</ol>
+<ul>
+<li>Git有一个非常强大的特性，就是可以有多个远程服务端（以及你运行的一个本地仓库）。你不需要总是进行访问，你可以有多个服务端并能从其中一个（合并工作）读取再写入另一个。添加一个远程服务端很简单：<br><code>`$ git remote add john git@github.com:johnsomeone/someproject.git</code></li>
+<li>If you want to see information about your remote servers you can do:</li>
+<li>如果你想查看远程服务端的信息你可以：</li>
+<li>shows URLs of each remote server<br><code>$ git remote -v</code></li>
+<li>gives more details about each<br><code>$ git remote show name</code></li>
+<li>You can always see the differences between a local branch and a remote branch:</li>
+<li>你总是能看到本地分支和远程分支不同的地方：<br><code>$ git diff master..john/master</code></li>
+<li>You can also see the changes on HEAD that aren’t on that remote branch:</li>
+<li>你同样也能看到远程分支上没有的HEAD指针的改动：<br><code>$ git log remote/branch..</code></li>
+</ul>
+<h3 id="Note-no-final-refspec-after"><a href="#Note-no-final-refspec-after" class="headerlink" title="Note: no final refspec after .."></a>Note: no final refspec after ..</h3><ol>
+<li>Tagging 标签<br>在Git中有两种类型的标注：轻量级标注和注释型标注。</li>
+</ol>
+<p>记住第二个是Git的指针基础，两者区别很简单，轻量级标注是简单命名提交的指针，你可以将其指向另一个提交。注释型标注是一个有信息和历史并指向标注对象的名字指针，它有着自己的信息，如果需要的话，可以进行GPG标记。</p>
+<p>创建两种类型的标签很简单（其中一个命令行有改动）</p>
+<p>$ git tag to-be-tested<br>$ git tag -a v1.1.0 # Prompts for a tag message</p>
+<ol>
+<li>Creating Branches 创建分支<br>在git中创建分支是件非常简单的事情（非常快并只需要不到100byte的文件大小）。创建新分支并切换到该分支，通常是下面这样的：</li>
+</ol>
+<p>$ git branch feature132<br>$ git checkout feature132<br>当然，如果你想切换到该分支，最直接的方式是使用这样一条命令：</p>
+<p>$ git checkout -b feature132<br>如果你想要重新命名本地分支，也很简单：</p>
+<p>$ git checkout -b twitter-experiment feature132<br>$ git branch -d feature132<br>更新：或者你（Brian Palmer在原博的评论中指出的）可以使用 -m来切换到“git branch”（就像Mike指出，如果你只需要一个特定的分支，就可以重命名当前分支）</p>
+<p>$ git branch -m twitter-experiment<br>$ git branch -m feature132 twitter-experiment<br>8.合并分支<br>以后你可能回想合并你的变动，有两种方式可以做到这一点：</p>
+<p>$ git checkout master<br>$ git merge feature83 # Or…<br>$ git rebase feature83<br>merge和rebase的区别是，merge会尝试解决改动并创建的新的提交来融合他们。rebase则是将从你最后一次从另一个分支分离之后的 改动并入，并直接沿用另一个分支的head指针。尽管如此，在你往远端服务器上推送分支之前，不要使用rebase。这会让你混乱。</p>
+<p>如果你不能确定哪个分支（哪些需要合并，哪些需要移除）。这里有两个git分支切换方式来帮助你：</p>
+<h1 id="Shows-branches-that-are-all-merged-in-to-your-current-branch"><a href="#Shows-branches-that-are-all-merged-in-to-your-current-branch" class="headerlink" title="Shows branches that are all merged in to your current branch"></a>Shows branches that are all merged in to your current branch</h1><p>$ git branch –merged</p>
+<h1 id="Shows-branches-that-are-not-merged-in-to-your-current-branch"><a href="#Shows-branches-that-are-not-merged-in-to-your-current-branch" class="headerlink" title="Shows branches that are not merged in to your current branch"></a>Shows branches that are not merged in to your current branch</h1><p>$ git branch –no-merged<br>9.远程分支<br>如果你想将本地分支放置远程服务端，你可以用这条命令进行推送：</p>
+<p>$ git push origin twitter-experiment:refs/heads/twitter-experiment</p>
+<h1 id="Where-origin-is-our-server-name-and-twitter-experiment-is-the-branch"><a href="#Where-origin-is-our-server-name-and-twitter-experiment-is-the-branch" class="headerlink" title="Where origin is our server name and twitter-experiment is the branch"></a>Where origin is our server name and twitter-experiment is the branch</h1><p>如果你想要从服务端删除分支：</p>
+<p>$ git push origin :twitter-experiment<br>如果你想要查看远程分支的状态：</p>
+<p>$ git remote show origin<br>这将列出那些曾经存在而现在不存在的远程分支，这将帮助你轻易地删除你本地多余的分支。</p>
+<p>$ git remote prune<br>最后，如果本地追踪远程分支，常用方式是：</p>
+<p>$ git branch –track myfeature origin/myfeature<br>$ git checkout myfeature<br>尽管这样，Git的新版本将启动自动追踪，如果你使用-b来checkout：</p>
+<p>$ git checkout -b myfeature origin/myfeature<br>Storing Content in Stashes, Index and File System 在stash储存内容、索引和文件系统</p>
+<ol>
+<li>Stashing<br>在Git中你可以将当前的工作区的内容保存到Git栈中并从最近的一次提交中读取相关内容。以下是个简单的例子：</li>
+</ol>
+<p>$ git stash</p>
+<h1 id="Do-something…"><a href="#Do-something…" class="headerlink" title="Do something…"></a>Do something…</h1><p>$ git stash pop<br>很多人推荐使用git stash apply来代替pop。这样子恢复后储存的stash内容并不会删除，而‘pop’恢复的同时把储存的stash内容也删了 ，使用git stash apply 就可以移除任何栈中最新的内容。</p>
+<p><code data-language="javascript">$ git stash drop<br></code><br>git可以自动创建基于当前提交信息的指令，如果你更喜欢使用通用的信息（相当于不会对前一次提交做任何改动）</p>
+<p><code data-language="javascript">$ git stash save “My stash message”<br></code><br>如果你想使用某个stash（不一定是最后一个），你可以这样将其列表显示出来然后使用：</p>
+<p><code data-language="javascript">$ git stash list<br>  stash@{0}: On master: Changed to German<br>  stash@{1}: On master: Language is now Italian<br>$ git stash apply stash@{1}<br></code><br>11.添加交互<br>在svn中，如果你文件有了改动之后，然后会提交所有改动的文件，在 Git中为了能更好的提交特定的文件或者某个补丁，你需要在交互模式提交选择提交的文件的内容。</p>
+<p>$ git add -i<br>staged     unstaged path</p>
+<p><strong><em> Commands </em></strong><br>  1: status      2: update   3: revert   4: add untracked<br>  5: patch      6: diff     7: quit     8: help<br>What now&gt;<br>这是基于菜单的交互式提示符。您可以使用命令前的数字或进入高亮字母(如果你有高亮输入)模式。常用形式是，输入你想执行的操作前的数字。(你可以像1或1 – 4或2、4、7的格式来执行命令)。</p>
+<p>如果你想进入补丁模式（在交互模式中输入p或5），同样也可以这样操作：</p>
+<p>$ git add -p<br>diff –git a/dummy.rb b/dummy.rb<br>index 4a00477..f856fb0 100644<br>— a/dummy.rb<br>+++ b/dummy.rb<br>@@ -1,5 +1,5 @@<br> class MyFoo<br>   def say</p>
+<ul>
+<li>puts “Annyong Haseyo”</li>
+</ul>
+<ul>
+<li>puts “Guten Tag”<br>end<br>end<br>Stage this hunk [y,n,q,a,d,/,e,?]?<br>如你所见，你将在选择添加改动的那部分文件的底部获得一些选项。此外，使用“？”会说明这个选项。</li>
+</ul>
+<ol>
+<li>文件系统中的储存/检索<br>有些项目（比如Git自己的项目）需要直接在Git的文件系统中添加额外的并不想被检查的文件。</li>
+</ol>
+<p>让我们开始在Git中保存随机文件</p>
+<p>$ echo “Foo” | git hash-object -w –stdin<br>51fc03a9bb365fae74fd2bf66517b30bf48020cb<br>比如数据库中的对象，如果你不想让一些对象被垃圾回收，最简单的方式是给它加标签：</p>
+<p>$ git tag myfile 51fc03a9bb365fae74fd2bf66517b30bf48020cb<br>在这里我们设置myfile的标签，当我们需要检索该文件时可以这样：</p>
+<p>$ git cat-file blob myfile<br>这对开发者可能需要的但是并不想每次都去检查的有用文件（密码，gpg键等等）很管用（特别是在生产过程中）。</p>
+<p>Logging and What Changed? 记录日志和什么改变了？</p>
+<ol>
+<li>查看日志<br>在不使用“git log”的情况下，你不能查看你长期的最近提交内容，但是，仍然有一些更便于你使用的方法，比如，你可以这样查看单次提交变动的内容：</li>
+</ol>
+<p>$ git log -p<br>或者你只看文件变动的摘要：</p>
+<p>$ git log –stat<br>这个很赞的别名，可以让你在一行命令下简化提交，并展示不错的图形化分支。</p>
+<p>$ git config –global alias.lol “log –pretty=oneline –abbrev-commit –graph –decorate”<br>$ git lol</p>
+<ul>
+<li>4d2409a (master) Oops, meant that to be in Korean</li>
+<li>169b845 Hello world<br>14.在日志中查找<br>如果你想根据指定的作者查找：</li>
+</ul>
+<p>$ git log –author=Andy<br>更新：感谢 Johannes的评论，解除了我的一些困惑，</p>
+<p>或者你可以搜索你提交信息的内容：</p>
+<p>$ git log –grep=”Something in the message”<br>这些强大的指令被称为pickaxe指令，来检查被移除或添加特定块的内容（比如，当他们第一次出现或者被移除），添加任何一行内容都会告诉你（但是并不包括那行内容刚刚被改动）</p>
+<p>$ git log -S “TODO: Check for admin status”<br>如果你改动一个特定的文件会怎么样？如：lib/foo.rb</p>
+<p>$ git log lib/foo.rb<br>如果你有feature/132 和ferature/145这两个分支，并想查看这些不在master上的分支内容。（ ^ 符号是意味着非）</p>
+<p>$ git log feature/132 feature/145 ^master<br>你同样可以使用ActiveSupport风格的日期来缩短时间范围：</p>
+<p>$ git log –since=2.months.ago –until=1.day.ago<br>默认会使用OR来合并查询，但你也可改用AND（如果你有不止一个条件）</p>
+<p>$ git log –since=2.months.ago –until=1.day.ago –author=andy -S “something” –all-match<br>15.选择试图/改动的之前的版本。<br>根据你知道的信息，可以按照以下方式来找到之前的版本：</p>
+<p>$ git show 12a86bc38 # By revision<br>$ git show v1.0.1 # By tag<br>$ git show feature132 # By branch name<br>$ git show 12a86bc38^ # Parent of a commit<br>$ git show 12a86bc38~2 # Grandparent of a commit<br>$ git show feature132@{yesterday} # Time relative<br>$ git show feature132@{2.hours.ago} # Time relative<br>注意：不像前一部分所说，在最后的插入符号意味着提交的父类，在前面的插入符号意味着不在这个分支上。</p>
+<ol>
+<li>选择一个方式<br>最简单的方式：</li>
+</ol>
+<p>$ git log origin/master..new</p>
+<h1 id="old-new-everything-you-haven’t-pushed-yet"><a href="#old-new-everything-you-haven’t-pushed-yet" class="headerlink" title="[old]..[new] - everything you haven’t pushed yet"></a>[old]..[new] - everything you haven’t pushed yet</h1><p>你也可以省略[new]，这样将默认使用当前的HEAD指针。</p>
+<p>Rewinding Time &amp; Fixing Mistakes 回滚和修复错误<br>17.重置更改<br>如果你没有提交你可以简单的撤销改动：</p>
+<p>$ git reset HEAD lib/foo.rb<br>通常我们使用”unstage“这样的别名来代替:</p>
+<p>$ git config –global alias.unstage “reset HEAD”<br>$ git unstage lib/foo.rb<br>如果你已经提交了，有两种情况：如果是最后一次提交你仅仅需要amend：</p>
+<p>$ git commit –amend<br>这将不执行最后一次提交，恢复你原来的内容，提交信息将默认为你下次提交的信息。</p>
+<p>如果你已经提交过不止一次了并且想完全回到之前那个记录，你可以重置分支回到指定的时间。</p>
+<p>$ git checkout feature132<br>$ git reset –hard HEAD~2<br>如果你想将分支回滚但想要SHA1数（版本号）不一样（也许你可以将分支的HEAD指向另一个分支，或者之后的提交），你可以通过如下方式：</p>
+<p>$ git checkout FOO<br>$ git reset –hard SHA<br>实际上还有个更快的方式（这样并不会改变你的文件复制内容，并回归到第一次FOO的状态并指向SHA）</p>
+<p>$ git update-ref refs/heads/FOO SHA</p>
+<ol>
+<li>提交至错误的分支<br>好吧，假定你提交到master上了，但是你想提交的是名为experimental的主题分支上，如果想移除这个改动，你可以在当前创建一个分支并将head指针回滚再检查新的分支</li>
+</ol>
+<p>$ git branch experimental   # Creates a pointer to the current master state<br>$ git reset –hard master~3 # Moves the master branch pointer back to 3 revisions ago<br>$ git checkout experimental<br>如果你在分支的分支的分支进行了改动将会很麻烦，那么你需要做的就是在其他处进行分支rebase改动</p>
+<p>$ git branch newtopic STARTPOINT<br>$ git rebase oldtopic –onto newtopic</p>
+<ol>
+<li>rebase的交互<br>这是个很不错的功能，我曾看过演示但一直以来并没有真正搞懂，现在我知道了，非常简单。假如你进行了三次提交，但是你想重新编辑它们（或者结合它们）。</li>
+</ol>
+<p>$ git rebase -i master~3<br>然后你让你的编辑器打开一些指令，你需要做的就是修改指令来选择/squash/编辑(或删除)/提交和保存/退出，编辑完使用git rebase —continue 来通过你的每一个指令。</p>
+<p>如果你选择编辑一个，它将离开你的提交状态，所以你需要使用git commit -amend来编辑它。</p>
+<p>注意：不要在rebase的时候提交——只能添加了之后再使用—continue, —skip 或—abort.</p>
+<ol>
+<li>清除<br>如果你在分支中提交了一些内容（也许是一些SVN上老的资源文件）并想从历史记录中完全移除，可以这样：</li>
+</ol>
+<p>$ git filter-branch –tree-filter ‘rm -f *.class’ HEAD<br>如果你已经将其推送至origin，并提交了一些垃圾内容，你同样可以推送之前在本地系统这样做：</p>
+<p>$ git filter-branch –tree-filter ‘rm -f *.class’ origin/master..HEAD<br>Miscellaneous Tips 各种各样的技巧<br>21.你看过的前面的引用<br>如果你知道你之前看到的SHA-1数（版本号），并需要进行一些重置/回滚，可以使用reflog命令查询最近查看的sha – 1数（版本号）：</p>
+<p>$ git reflog<br>$ git log -g # Same as above, but shows in ‘log’ format</p>
+<ol>
+<li>分支命名<br>一个有趣的小技巧，不要忘记分支名不仅仅限于a-z和0-9，在名字中使用/和.用于命名伪命名空间和版本控制，也是个不错的主意，例如：</li>
+</ol>
+<p>$ # Generate a changelog of Release 132<br>$ git shortlog release/132 ^release/131<br>$ # Tag this as v1.0.1<br>$ git tag v1.0.1 release/132</p>
+<ol>
+<li>找到Dunnit<br>找出谁在一个文件中改变了一行代码，简单的命令是:</li>
+</ol>
+<p>$ git blame FILE<br>有时候是上一个文件发生了变动(如果你合并两个文件，或者你已经转移到一个函数)，这样你就可以使用:</p>
+<p>$ # shows which file names the content came from<br>$ git blame -C FILE<br>有时候需要通过点击来追踪来回的变动，这里有一个不错的内置gui:</p>
+<p>$ git gui blame FILE</p>
+<ol>
+<li>数据库维护<br>通常Git并不需要过多的维护，它几乎可以自己搞定，尽管如此你也可以查看数据库使用的统计：</li>
+</ol>
+<p>$ git count-objects -v<br>如果数值过高你可以选择将你的克隆垃圾回收。这不会影响你推送内容或其他人，但它可以让你的命令运行的更快，并使用更少的空间:</p>
+<p>$ git gc<br>它也可以在运行时进行一致性检验:</p>
+<p>$ git fsck –full<br>你可以在后面添加-auto 参数（如果你在服务器跑定时任务时），这在统计数据时是必须的。</p>
+<p>当检查的结果是“dangling”或“unreachable”这样的是正常的，这通常是回滚和rebase的结果。 得到“missing” 或 “sha1 mismatch” 这样的结果是不好的…你需要得到专业的帮助!</p>
+<ol>
+<li>恢复失去的分支<br>如果你意外的删除一个分支，可以重新创建它:</li>
+</ol>
+<p>$ git branch experimental SHA1_OF_HASH<br>你可以使用git reflog查看你最近访问过的SHA1数（版本号）</p>
+<p>另一个方式就是使用 git fsck —lost-found ，悬空对象（dangling commit ）是就是失去HEAD指针的提交，（删除的分支只是失去了HEAD指针成为悬空对象）</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/post/8298.html">Git常用的操作命令</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">一切随缘</a></p>
+        <p><span>发布时间:</span>2016-10-15, 13:48:28</p>
+        <p><span>最后更新:</span>2018-03-20, 22:50:32</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/post/8298.html" title="Git常用的操作命令">http://code.skyheng.com/post/8298.html</a>
+            <span class="copy-path" data-clipboard-text="原文: http://code.skyheng.com/post/8298.html　　作者: 一切随缘" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/post/47539.html">
+                    Windows下git pull批处理
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/post/26220.html">
+                    python安装
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Git常用命令"><span class="toc-number">1.</span> <span class="toc-text">Git常用命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#服务，分支和标注"><span class="toc-number">2.</span> <span class="toc-text">服务，分支和标注</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Note-no-final-refspec-after"><span class="toc-number">2.1.</span> <span class="toc-text">Note: no final refspec after ..</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Shows-branches-that-are-all-merged-in-to-your-current-branch"><span class="toc-number"></span> <span class="toc-text">Shows branches that are all merged in to your current branch</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Shows-branches-that-are-not-merged-in-to-your-current-branch"><span class="toc-number"></span> <span class="toc-text">Shows branches that are not merged in to your current branch</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Where-origin-is-our-server-name-and-twitter-experiment-is-the-branch"><span class="toc-number"></span> <span class="toc-text">Where origin is our server name and twitter-experiment is the branch</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Do-something…"><span class="toc-number"></span> <span class="toc-text">Do something…</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#old-new-everything-you-haven’t-pushed-yet"><span class="toc-number"></span> <span class="toc-text">[old]..[new] - everything you haven’t pushed yet</span></a>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Git常用的操作命令　| 一切随缘的技术博客　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+    
+
+    
+    
+
+    
+        <section class="changyan" id="comments">
+    <div id="SOHUCS" sid="post/8298.html" ></div>
+    <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+        <script type="text/javascript">
+            window.changyan.api.config({
+                appid: "cyts7t2el",
+                conf: "fb4aa871793bef5899de054a3902f3eb"
+            });
+        </script>
+    </script>
+</section>
+    
+
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/post/47539.html" title="上一篇: Windows下git pull批处理">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/post/26220.html" title="下一篇: python安装">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/post/36308.html">MarkdownPad2在win10上安装及破解</a></li><li class="post-list-item"><a class="post-list-link" href="/post/61360.html">关系数据库常用SQL的详细用法</a></li><li class="post-list-item"><a class="post-list-link" href="/post/5372.html">Hexo部署在阿里云服务器上</a></li><li class="post-list-item"><a class="post-list-link" href="/post/55981.html">BigDecimal的用法详解及注意事项</a></li><li class="post-list-item"><a class="post-list-link" href="/post/4240.html">Java日期时间格式化转换符</a></li><li class="post-list-item"><a class="post-list-link" href="/post/46695.html">Hexo使用过程中常见问题记录</a></li><li class="post-list-item"><a class="post-list-link" href="/post/62692.html">PowerDesigner16应用</a></li><li class="post-list-item"><a class="post-list-link" href="/post/27822.html">怎样在虚拟机上安装Ubuntu17.10系统</a></li><li class="post-list-item"><a class="post-list-link" href="/post/55614.html">Java8 JDK1.8 API中文</a></li><li class="post-list-item"><a class="post-list-link" href="/post/8806.html">前端CDN公共库大全</a></li><li class="post-list-item"><a class="post-list-link" href="/post/25067.html">Shiro Freemarker标签的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/post/50779.html">Velocity与Freemarker比较</a></li><li class="post-list-item"><a class="post-list-link" href="/post/24506.html">Logback.xml常用配置详解</a></li><li class="post-list-item"><a class="post-list-link" href="/post/61394.html">Mysql数据库优化方法,千万级数据库记录查询轻松解决</a></li><li class="post-list-item"><a class="post-list-link" href="/post/49258.html">程序员，你为什么值这么多钱？</a></li><li class="post-list-item"><a class="post-list-link" href="/post/52661.html">数据库事务的四大特性以及事务的隔离级别</a></li><li class="post-list-item"><a class="post-list-link" href="/post/32480.html">从Request中获得参数Map返回可读的Map</a></li><li class="post-list-item"><a class="post-list-link" href="/post/56296.html">Win10常用的快捷键</a></li><li class="post-list-item"><a class="post-list-link" href="/post/25267.html">ZooKeeper常用命令介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/post/50164.html">ZooKeeper的安装与设置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/4103.html">收集的国内Maven镜像地址</a></li><li class="post-list-item"><a class="post-list-link" href="/post/47539.html">Windows下git pull批处理</a></li><li class="post-list-item"><a class="post-list-link" href="/post/8298.html">Git常用的操作命令</a></li><li class="post-list-item"><a class="post-list-link" href="/post/26220.html">python安装</a></li><li class="post-list-item"><a class="post-list-link" href="/post/46664.html">实例Demo之3D-Transform立方体效果</a></li><li class="post-list-item"><a class="post-list-link" href="/post/51910.html">Redis在Linux下的安装和配置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/20294.html">Tomcat7优化配置参数</a></li><li class="post-list-item"><a class="post-list-link" href="/post/56640.html">一些好的技术博客,追随牛逼的人,让自己更牛逼</a></li><li class="post-list-item"><a class="post-list-link" href="/post/37438.html">国内外知名IT科技博客（强烈推荐）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/59806.html">Eclipse常用插件安装</a></li><li class="post-list-item"><a class="post-list-link" href="/post/33906.html">Eclipse安装JRebel6.4.8热部署插件教程</a></li><li class="post-list-item"><a class="post-list-link" href="/post/8028.html">JQuery的eval解析JSON中的注意点介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/post/28651.html">关于分布式一致性的探究</a></li><li class="post-list-item"><a class="post-list-link" href="/post/5101.html">初识分布式系统</a></li><li class="post-list-item"><a class="post-list-link" href="/post/13879.html">用Excel生成和管理Markdown表格</a></li><li class="post-list-item"><a class="post-list-link" href="/post/29405.html">Hexo最常用的几个命令</a></li><li class="post-list-item"><a class="post-list-link" href="/post/52802.html">GIT的常用操作命令</a></li><li class="post-list-item"><a class="post-list-link" href="/post/31797.html">常用软件与工具整理</a></li><li class="post-list-item"><a class="post-list-link" href="/post/23662.html">Linux常用命令大全</a></li><li class="post-list-item"><a class="post-list-link" href="/post/62293.html">在一个千万级的数据库查询中，如何提高查询效率？</a></li><li class="post-list-item"><a class="post-list-link" href="/post/60804.html">VMware中CentOS设置静态IP</a></li><li class="post-list-item"><a class="post-list-link" href="/post/9311.html">Tomcat8安装和配置以及优化</a></li><li class="post-list-item"><a class="post-list-link" href="/post/65527.html">【微信支付】“刷卡支付”、“被扫支付”开发JavaDemo</a></li><li class="post-list-item"><a class="post-list-link" href="/post/30401.html">【微信支付】“刷卡支付”、“被扫支付”开发说明</a></li><li class="post-list-item"><a class="post-list-link" href="/post/60927.html">Svn密码破解，Svn密码本地找回</a></li><li class="post-list-item"><a class="post-list-link" href="/post/26924.html">Subversion在Linux下的安装与配置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/56374.html">Mysql在Linux下的安装和配置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/24125.html">Maven在Linux下的安装和配置</a></li><li class="post-list-item"><a class="post-list-link" href="/post/7577.html">在linux下的JDK安装和配置（基于阿里云服务器CentOS 6.5）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/59363.html">Nexus在linux下的安装和配置（基于阿里云服务器CentOS 6.5）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/4365.html">我的学习归纳方法（以学习Maven为例）</a></li><li class="post-list-item"><a class="post-list-link" href="/post/53342.html">使用Github搭建Hexo技术博客--增强教程</a></li><li class="post-list-item"><a class="post-list-link" href="/post/4103.html">使用Github搭建Hexo技术博客--安装教程</a></li><li class="post-list-item"><a class="post-list-link" href="/post/2803.html">构建工具Maven相关知识整理专题</a></li><li class="post-list-item"><a class="post-list-link" href="/post/17946.html">JAVA中重写和重载区别</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2015-2018 一切随缘
+                <span>| </span>
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备16005473号-1</a>
+                <!--|| <span>博客全站共2字</span>-->
+            </div>
+            <div class="footer-right">
+                <a>
+                    
+                        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1273088600'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1273088600%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+                    
+                </a>
+                <span>| </span>
+                Hosted by <a href="https://pages.coding.me" style="font-weight: bold" target="_blank" >Coding Pages</a>
+				<!--
+                    <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>Theme
+                    <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE
+                    <i class="fa fa-heart animated infinite pulse"></i>
+                 -->
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+	<script type="text/javascript" src="/resources/love.js"></script>
+	<script type="text/javascript" src="/resources/float.js"></script>
+	<script type="text/javascript" src="/resources/typewriter.js"></script>
+	<script type="text/javascript" color=0,104,183 opacity=1 zindex=-1 count=50 src="/resources/particle.js"></script>
+
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+  </div>
+</body>
+</html>
